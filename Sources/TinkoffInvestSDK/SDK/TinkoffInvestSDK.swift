@@ -29,4 +29,6 @@ public class TinkoffInvestSDK {
     public lazy var marketDataServiceStream: MarketDataStreamService = GRPCMarketDataStreamService(tokenProvider: commonTokenProvider)
 
     public lazy var stopOrdersService: StopOrdersService = GRPCStopOrdersService(tokenProvider: commonTokenProvider)
+    
+    public lazy var ordersService: OrdersService = GRPCOrdersService(tokenProvider: commonTokenProvider)
 }
