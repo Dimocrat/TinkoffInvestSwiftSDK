@@ -13,6 +13,7 @@ import Foundation
 public protocol OrdersStreamService: AnyObject {
     ///Метод выставления заявки.
     func subscribeToOrders() -> AnyPublisher<TradesStreamResponse, RPCError>
+    func cancelAllSubscribtions()
 }
 
 final class GRPCOrdersStreamService: BaseCombineGRPCService, OrdersStreamService {
