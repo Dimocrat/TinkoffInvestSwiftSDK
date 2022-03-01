@@ -31,4 +31,6 @@ public class TinkoffInvestSDK {
     public lazy var stopOrdersService: StopOrdersService = GRPCStopOrdersService(tokenProvider: commonTokenProvider)
     
     public lazy var ordersService: OrdersService = GRPCOrdersService(tokenProvider: commonTokenProvider)
+    
+    public lazy var ordersStreamService: OrdersStreamService = GRPCOrdersStreamService(tokenProvider: commonTokenProvider)
 }
