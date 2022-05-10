@@ -39,7 +39,7 @@ public struct InstrumentParameters {
 
 public protocol InstrumentsService {
 
-    func getTradingSchedules() -> AnyPublisher<TradingSchedulesResponse, RPCError>
+    func getTradingSchedules(request: TradingSchedulesRequest) -> AnyPublisher<TradingSchedulesResponse, RPCError>
     func getAccruedInterests(request: GetAccruedInterestsRequest) -> AnyPublisher<GetAccruedInterestsResponse, RPCError>
     func getFuturesMargin(request: GetFuturesMarginRequest) -> AnyPublisher<GetFuturesMarginResponse, RPCError>
     func getInstrumentBy(params: InstrumentParameters) -> AnyPublisher<InstrumentResponse, RPCError>
@@ -67,8 +67,8 @@ final class GRPCInstrumentsService: BaseCombineGRPCService, InstrumentsService {
 
     // MARK: - InstrumentsService
 
-    func getTradingSchedules() -> AnyPublisher<TradingSchedulesResponse, RPCError> {
-        return executor.call(client.tradingSchedules)(TradingSchedulesRequest())
+    func getTradingSchedules(request: TradingSchedulesRequest) -> AnyPublisher<TradingSchedulesResponse, RPCError> {
+        return executor.call(client.tradingSchedules)(request)
     }
 
     func getAccruedInterests(request: GetAccruedInterestsRequest) -> AnyPublisher<GetAccruedInterestsResponse, RPCError> {
