@@ -16,6 +16,18 @@ public extension MoneyValue {
         }
         return .init(currency: currency, value: value)
     }
+    
+    var asQuotation: Quotation {
+        var quotation = Quotation()
+        quotation.units = units
+        quotation.nano = nano
+        return quotation
+    }
+    
+    var asAmount: Decimal {
+        let value = Decimal(units) + Decimal(sign: nano.signum() == -1 ? .minus : .plus , exponent: -9, significand: Decimal(nano))
+        return value
+    }
 }
 
 public extension Decimal {
