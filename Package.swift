@@ -19,8 +19,8 @@ let package = Package(
             targets: ["TinkoffInvestSDK"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/grpc/grpc-swift.git", from: "1.6.0"),
-        .package(url: "https://github.com/vyshane/grpc-swift-combine.git", from: "1.0.8"),
+        .package(url: "https://github.com/grpc/grpc-swift.git", from: "1.9.0"),
+        .package(url: "https://github.com/vyshane/grpc-swift-combine.git", from: "1.0.13"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.

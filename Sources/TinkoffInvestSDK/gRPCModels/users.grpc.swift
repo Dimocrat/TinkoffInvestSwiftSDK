@@ -22,240 +22,615 @@
 //
 import GRPC
 import NIO
+import NIOConcurrencyHelpers
 import SwiftProtobuf
 
 
 ///Сервис предназначен для получения: </br> **1**.
-///списка счетов пользователя; </br> **2**. маржинальных показателе по счёту.
+///списка счетов пользователя; </br> **2**. маржинальных показателей по счёту.
 ///
-/// Usage: instantiate `UsersServiceClient`, then call methods of this protocol to make API calls.
-public protocol UsersServiceClientProtocol: GRPCClient {
-  var serviceName: String { get }
-  var interceptors: UsersServiceClientInterceptorFactoryProtocol? { get }
-
-  func getAccounts(
-    _ request: GetAccountsRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<GetAccountsRequest, GetAccountsResponse>
-
-  func getMarginAttributes(
-    _ request: GetMarginAttributesRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<GetMarginAttributesRequest, GetMarginAttributesResponse>
-
-  func getUserTariff(
-    _ request: GetUserTariffRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<GetUserTariffRequest, GetUserTariffResponse>
-
-  func getInfo(
-    _ request: GetInfoRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<GetInfoRequest, GetInfoResponse>
+/// Usage: instantiate `Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClient`, then call methods of this protocol to make API calls.
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientProtocol: GRPCClient {
+    var serviceName: String { get }
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientInterceptorFactoryProtocol? { get }
+    
+    func getAccounts(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse>
+    
+    func getMarginAttributes(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesResponse>
+    
+    func getUserTariff(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffResponse>
+    
+    func getInfo(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetInfoRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetInfoRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetInfoResponse>
 }
 
-extension UsersServiceClientProtocol {
-  public var serviceName: String {
-    return "tinkoff.public.invest.api.contract.v1.UsersService"
-  }
-
-  ///Метод получения счетов пользователя.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetAccounts.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func getAccounts(
-    _ request: GetAccountsRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<GetAccountsRequest, GetAccountsResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.UsersService/GetAccounts",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetAccountsInterceptors() ?? []
-    )
-  }
-
-  ///Расчёт маржинальных показателей по счёту.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetMarginAttributes.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func getMarginAttributes(
-    _ request: GetMarginAttributesRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<GetMarginAttributesRequest, GetMarginAttributesResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.UsersService/GetMarginAttributes",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetMarginAttributesInterceptors() ?? []
-    )
-  }
-
-  ///Запрос тарифа пользователя.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetUserTariff.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func getUserTariff(
-    _ request: GetUserTariffRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<GetUserTariffRequest, GetUserTariffResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.UsersService/GetUserTariff",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetUserTariffInterceptors() ?? []
-    )
-  }
-
-  ///Метод получения информации о пользователе.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetInfo.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func getInfo(
-    _ request: GetInfoRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<GetInfoRequest, GetInfoResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.UsersService/GetInfo",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetInfoInterceptors() ?? []
-    )
-  }
+extension Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientProtocol {
+    internal var serviceName: String {
+        return "tinkoff.public.invest.api.contract.v1.UsersService"
+    }
+    
+    ///Метод получения счетов пользователя.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetAccounts.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getAccounts(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientMetadata.Methods.getAccounts.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetAccountsInterceptors() ?? []
+        )
+    }
+    
+    ///Расчёт маржинальных показателей по счёту.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetMarginAttributes.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getMarginAttributes(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientMetadata.Methods.getMarginAttributes.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetMarginAttributesInterceptors() ?? []
+        )
+    }
+    
+    ///Запрос тарифа пользователя.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetUserTariff.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getUserTariff(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientMetadata.Methods.getUserTariff.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetUserTariffInterceptors() ?? []
+        )
+    }
+    
+    ///Метод получения информации о пользователе.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetInfo.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getInfo(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetInfoRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetInfoRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetInfoResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientMetadata.Methods.getInfo.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetInfoInterceptors() ?? []
+        )
+    }
 }
 
-public protocol UsersServiceClientInterceptorFactoryProtocol {
+#if compiler(>=5.6)
+@available(*, deprecated)
+extension Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClient: @unchecked Sendable {}
+#endif // compiler(>=5.6)
 
-  /// - Returns: Interceptors to use when invoking 'getAccounts'.
-  func makeGetAccountsInterceptors() -> [ClientInterceptor<GetAccountsRequest, GetAccountsResponse>]
-
-  /// - Returns: Interceptors to use when invoking 'getMarginAttributes'.
-  func makeGetMarginAttributesInterceptors() -> [ClientInterceptor<GetMarginAttributesRequest, GetMarginAttributesResponse>]
-
-  /// - Returns: Interceptors to use when invoking 'getUserTariff'.
-  func makeGetUserTariffInterceptors() -> [ClientInterceptor<GetUserTariffRequest, GetUserTariffResponse>]
-
-  /// - Returns: Interceptors to use when invoking 'getInfo'.
-  func makeGetInfoInterceptors() -> [ClientInterceptor<GetInfoRequest, GetInfoResponse>]
+@available(*, deprecated, renamed: "Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceNIOClient")
+public final class Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClient: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientProtocol {
+    private let lock = Lock()
+    private var _defaultCallOptions: CallOptions
+    private var _interceptors: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientInterceptorFactoryProtocol?
+    public let channel: GRPCChannel
+    public var defaultCallOptions: CallOptions {
+        get { self.lock.withLock { return self._defaultCallOptions } }
+        set { self.lock.withLockVoid { self._defaultCallOptions = newValue } }
+    }
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientInterceptorFactoryProtocol? {
+        get { self.lock.withLock { return self._interceptors } }
+        set { self.lock.withLockVoid { self._interceptors = newValue } }
+    }
+    
+    /// Creates a client for the tinkoff.public.invest.api.contract.v1.UsersService service.
+    ///
+    /// - Parameters:
+    ///   - channel: `GRPCChannel` to the service host.
+    ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+    ///   - interceptors: A factory providing interceptors for each RPC.
+    internal init(
+        channel: GRPCChannel,
+        defaultCallOptions: CallOptions = CallOptions(),
+        interceptors: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientInterceptorFactoryProtocol? = nil
+    ) {
+        self.channel = channel
+        self._defaultCallOptions = defaultCallOptions
+        self._interceptors = interceptors
+    }
 }
 
-public final class UsersServiceClient: UsersServiceClientProtocol {
-  public let channel: GRPCChannel
-  public var defaultCallOptions: CallOptions
-  public var interceptors: UsersServiceClientInterceptorFactoryProtocol?
+public struct Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceNIOClient: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientProtocol {
+    public var channel: GRPCChannel
+    public var defaultCallOptions: CallOptions
+    public var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientInterceptorFactoryProtocol?
+    
+    /// Creates a client for the tinkoff.public.invest.api.contract.v1.UsersService service.
+    ///
+    /// - Parameters:
+    ///   - channel: `GRPCChannel` to the service host.
+    ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+    ///   - interceptors: A factory providing interceptors for each RPC.
+    internal init(
+        channel: GRPCChannel,
+        defaultCallOptions: CallOptions = CallOptions(),
+        interceptors: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientInterceptorFactoryProtocol? = nil
+    ) {
+        self.channel = channel
+        self.defaultCallOptions = defaultCallOptions
+        self.interceptors = interceptors
+    }
+}
 
-  /// Creates a client for the tinkoff.public.invest.api.contract.v1.UsersService service.
-  ///
-  /// - Parameters:
-  ///   - channel: `GRPCChannel` to the service host.
-  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
-  ///   - interceptors: A factory providing interceptors for each RPC.
-  public init(
-    channel: GRPCChannel,
-    defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: UsersServiceClientInterceptorFactoryProtocol? = nil
-  ) {
-    self.channel = channel
-    self.defaultCallOptions = defaultCallOptions
-    self.interceptors = interceptors
-  }
+#if compiler(>=5.6)
+///Сервис предназначен для получения: </br> **1**.
+///списка счетов пользователя; </br> **2**. маржинальных показателей по счёту.
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceAsyncClientProtocol: GRPCClient {
+    static var serviceDescriptor: GRPCServiceDescriptor { get }
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientInterceptorFactoryProtocol? { get }
+    
+    func makeGetAccountsCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse>
+    
+    func makeGetMarginAttributesCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesResponse>
+    
+    func makeGetUserTariffCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffResponse>
+    
+    func makeGetInfoCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetInfoRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetInfoRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetInfoResponse>
+}
+
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceAsyncClientProtocol {
+    internal static var serviceDescriptor: GRPCServiceDescriptor {
+        return Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientMetadata.serviceDescriptor
+    }
+    
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientInterceptorFactoryProtocol? {
+        return nil
+    }
+    
+    internal func makeGetAccountsCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientMetadata.Methods.getAccounts.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetAccountsInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetMarginAttributesCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientMetadata.Methods.getMarginAttributes.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetMarginAttributesInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetUserTariffCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientMetadata.Methods.getUserTariff.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetUserTariffInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetInfoCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetInfoRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetInfoRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetInfoResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientMetadata.Methods.getInfo.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetInfoInterceptors() ?? []
+        )
+    }
+}
+
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceAsyncClientProtocol {
+    internal func getAccounts(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientMetadata.Methods.getAccounts.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetAccountsInterceptors() ?? []
+        )
+    }
+    
+    internal func getMarginAttributes(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientMetadata.Methods.getMarginAttributes.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetMarginAttributesInterceptors() ?? []
+        )
+    }
+    
+    internal func getUserTariff(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientMetadata.Methods.getUserTariff.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetUserTariffInterceptors() ?? []
+        )
+    }
+    
+    internal func getInfo(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetInfoRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetInfoResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientMetadata.Methods.getInfo.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetInfoInterceptors() ?? []
+        )
+    }
+}
+
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+internal struct Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceAsyncClient: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceAsyncClientProtocol {
+    internal var channel: GRPCChannel
+    internal var defaultCallOptions: CallOptions
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientInterceptorFactoryProtocol?
+    
+    internal init(
+        channel: GRPCChannel,
+        defaultCallOptions: CallOptions = CallOptions(),
+        interceptors: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientInterceptorFactoryProtocol? = nil
+    ) {
+        self.channel = channel
+        self.defaultCallOptions = defaultCallOptions
+        self.interceptors = interceptors
+    }
+}
+
+#endif // compiler(>=5.6)
+
+public protocol Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientInterceptorFactoryProtocol: GRPCSendable {
+    
+    /// - Returns: Interceptors to use when invoking 'getAccounts'.
+    func makeGetAccountsInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'getMarginAttributes'.
+    func makeGetMarginAttributesInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'getUserTariff'.
+    func makeGetUserTariffInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'getInfo'.
+    func makeGetInfoInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetInfoRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetInfoResponse>]
+}
+
+internal enum Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientMetadata {
+    internal static let serviceDescriptor = GRPCServiceDescriptor(
+        name: "UsersService",
+        fullName: "tinkoff.public.invest.api.contract.v1.UsersService",
+        methods: [
+            Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientMetadata.Methods.getAccounts,
+            Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientMetadata.Methods.getMarginAttributes,
+            Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientMetadata.Methods.getUserTariff,
+            Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientMetadata.Methods.getInfo,
+        ]
+    )
+    
+    internal enum Methods {
+        internal static let getAccounts = GRPCMethodDescriptor(
+            name: "GetAccounts",
+            path: "/tinkoff.public.invest.api.contract.v1.UsersService/GetAccounts",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getMarginAttributes = GRPCMethodDescriptor(
+            name: "GetMarginAttributes",
+            path: "/tinkoff.public.invest.api.contract.v1.UsersService/GetMarginAttributes",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getUserTariff = GRPCMethodDescriptor(
+            name: "GetUserTariff",
+            path: "/tinkoff.public.invest.api.contract.v1.UsersService/GetUserTariff",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getInfo = GRPCMethodDescriptor(
+            name: "GetInfo",
+            path: "/tinkoff.public.invest.api.contract.v1.UsersService/GetInfo",
+            type: GRPCCallType.unary
+        )
+    }
 }
 
 ///Сервис предназначен для получения: </br> **1**.
-///списка счетов пользователя; </br> **2**. маржинальных показателе по счёту.
+///списка счетов пользователя; </br> **2**. маржинальных показателей по счёту.
 ///
 /// To build a server, implement a class that conforms to this protocol.
-public protocol UsersServiceProvider: CallHandlerProvider {
-  var interceptors: UsersServiceServerInterceptorFactoryProtocol? { get }
-
-  ///Метод получения счетов пользователя.
-  func getAccounts(request: GetAccountsRequest, context: StatusOnlyCallContext) -> EventLoopFuture<GetAccountsResponse>
-
-  ///Расчёт маржинальных показателей по счёту.
-  func getMarginAttributes(request: GetMarginAttributesRequest, context: StatusOnlyCallContext) -> EventLoopFuture<GetMarginAttributesResponse>
-
-  ///Запрос тарифа пользователя.
-  func getUserTariff(request: GetUserTariffRequest, context: StatusOnlyCallContext) -> EventLoopFuture<GetUserTariffResponse>
-
-  ///Метод получения информации о пользователе.
-  func getInfo(request: GetInfoRequest, context: StatusOnlyCallContext) -> EventLoopFuture<GetInfoResponse>
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceProvider: CallHandlerProvider {
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceServerInterceptorFactoryProtocol? { get }
+    
+    ///Метод получения счетов пользователя.
+    func getAccounts(request: Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse>
+    
+    ///Расчёт маржинальных показателей по счёту.
+    func getMarginAttributes(request: Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesResponse>
+    
+    ///Запрос тарифа пользователя.
+    func getUserTariff(request: Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffResponse>
+    
+    ///Метод получения информации о пользователе.
+    func getInfo(request: Tinkoff_Public_Invest_Api_Contract_V1_GetInfoRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_GetInfoResponse>
 }
 
-extension UsersServiceProvider {
-  public var serviceName: Substring { return "tinkoff.public.invest.api.contract.v1.UsersService" }
-
-  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
-  /// Returns nil for methods not handled by this service.
-  public func handle(
-    method name: Substring,
-    context: CallHandlerContext
-  ) -> GRPCServerHandlerProtocol? {
-    switch name {
-    case "GetAccounts":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<GetAccountsRequest>(),
-        responseSerializer: ProtobufSerializer<GetAccountsResponse>(),
-        interceptors: self.interceptors?.makeGetAccountsInterceptors() ?? [],
-        userFunction: self.getAccounts(request:context:)
-      )
-
-    case "GetMarginAttributes":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<GetMarginAttributesRequest>(),
-        responseSerializer: ProtobufSerializer<GetMarginAttributesResponse>(),
-        interceptors: self.interceptors?.makeGetMarginAttributesInterceptors() ?? [],
-        userFunction: self.getMarginAttributes(request:context:)
-      )
-
-    case "GetUserTariff":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<GetUserTariffRequest>(),
-        responseSerializer: ProtobufSerializer<GetUserTariffResponse>(),
-        interceptors: self.interceptors?.makeGetUserTariffInterceptors() ?? [],
-        userFunction: self.getUserTariff(request:context:)
-      )
-
-    case "GetInfo":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<GetInfoRequest>(),
-        responseSerializer: ProtobufSerializer<GetInfoResponse>(),
-        interceptors: self.interceptors?.makeGetInfoInterceptors() ?? [],
-        userFunction: self.getInfo(request:context:)
-      )
-
-    default:
-      return nil
+extension Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceProvider {
+    internal var serviceName: Substring {
+        return Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceServerMetadata.serviceDescriptor.fullName[...]
     }
-  }
+    
+    /// Determines, calls and returns the appropriate request handler, depending on the request's method.
+    /// Returns nil for methods not handled by this service.
+    internal func handle(
+        method name: Substring,
+        context: CallHandlerContext
+    ) -> GRPCServerHandlerProtocol? {
+        switch name {
+        case "GetAccounts":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse>(),
+                interceptors: self.interceptors?.makeGetAccountsInterceptors() ?? [],
+                userFunction: self.getAccounts(request:context:)
+            )
+            
+        case "GetMarginAttributes":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesResponse>(),
+                interceptors: self.interceptors?.makeGetMarginAttributesInterceptors() ?? [],
+                userFunction: self.getMarginAttributes(request:context:)
+            )
+            
+        case "GetUserTariff":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffResponse>(),
+                interceptors: self.interceptors?.makeGetUserTariffInterceptors() ?? [],
+                userFunction: self.getUserTariff(request:context:)
+            )
+            
+        case "GetInfo":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetInfoRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetInfoResponse>(),
+                interceptors: self.interceptors?.makeGetInfoInterceptors() ?? [],
+                userFunction: self.getInfo(request:context:)
+            )
+            
+        default:
+            return nil
+        }
+    }
 }
 
-public protocol UsersServiceServerInterceptorFactoryProtocol {
+#if compiler(>=5.6)
 
-  /// - Returns: Interceptors to use when handling 'getAccounts'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetAccountsInterceptors() -> [ServerInterceptor<GetAccountsRequest, GetAccountsResponse>]
+///Сервис предназначен для получения: </br> **1**.
+///списка счетов пользователя; </br> **2**. маржинальных показателей по счёту.
+///
+/// To implement a server, implement an object which conforms to this protocol.
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceAsyncProvider: CallHandlerProvider {
+    static var serviceDescriptor: GRPCServiceDescriptor { get }
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceServerInterceptorFactoryProtocol? { get }
+    
+    ///Метод получения счетов пользователя.
+    @Sendable func getAccounts(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse
+    
+    ///Расчёт маржинальных показателей по счёту.
+    @Sendable func getMarginAttributes(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesResponse
+    
+    ///Запрос тарифа пользователя.
+    @Sendable func getUserTariff(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffResponse
+    
+    ///Метод получения информации о пользователе.
+    @Sendable func getInfo(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_GetInfoRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetInfoResponse
+}
 
-  /// - Returns: Interceptors to use when handling 'getMarginAttributes'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetMarginAttributesInterceptors() -> [ServerInterceptor<GetMarginAttributesRequest, GetMarginAttributesResponse>]
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceAsyncProvider {
+    internal static var serviceDescriptor: GRPCServiceDescriptor {
+        return Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceServerMetadata.serviceDescriptor
+    }
+    
+    internal var serviceName: Substring {
+        return Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceServerMetadata.serviceDescriptor.fullName[...]
+    }
+    
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceServerInterceptorFactoryProtocol? {
+        return nil
+    }
+    
+    internal func handle(
+        method name: Substring,
+        context: CallHandlerContext
+    ) -> GRPCServerHandlerProtocol? {
+        switch name {
+        case "GetAccounts":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse>(),
+                interceptors: self.interceptors?.makeGetAccountsInterceptors() ?? [],
+                wrapping: self.getAccounts(request:context:)
+            )
+            
+        case "GetMarginAttributes":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesResponse>(),
+                interceptors: self.interceptors?.makeGetMarginAttributesInterceptors() ?? [],
+                wrapping: self.getMarginAttributes(request:context:)
+            )
+            
+        case "GetUserTariff":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffResponse>(),
+                interceptors: self.interceptors?.makeGetUserTariffInterceptors() ?? [],
+                wrapping: self.getUserTariff(request:context:)
+            )
+            
+        case "GetInfo":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetInfoRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetInfoResponse>(),
+                interceptors: self.interceptors?.makeGetInfoInterceptors() ?? [],
+                wrapping: self.getInfo(request:context:)
+            )
+            
+        default:
+            return nil
+        }
+    }
+}
 
-  /// - Returns: Interceptors to use when handling 'getUserTariff'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetUserTariffInterceptors() -> [ServerInterceptor<GetUserTariffRequest, GetUserTariffResponse>]
+#endif // compiler(>=5.6)
 
-  /// - Returns: Interceptors to use when handling 'getInfo'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetInfoInterceptors() -> [ServerInterceptor<GetInfoRequest, GetInfoResponse>]
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceServerInterceptorFactoryProtocol {
+    
+    /// - Returns: Interceptors to use when handling 'getAccounts'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetAccountsInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'getMarginAttributes'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetMarginAttributesInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'getUserTariff'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetUserTariffInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'getInfo'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetInfoInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetInfoRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetInfoResponse>]
+}
+
+internal enum Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceServerMetadata {
+    internal static let serviceDescriptor = GRPCServiceDescriptor(
+        name: "UsersService",
+        fullName: "tinkoff.public.invest.api.contract.v1.UsersService",
+        methods: [
+            Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceServerMetadata.Methods.getAccounts,
+            Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceServerMetadata.Methods.getMarginAttributes,
+            Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceServerMetadata.Methods.getUserTariff,
+            Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceServerMetadata.Methods.getInfo,
+        ]
+    )
+    
+    internal enum Methods {
+        internal static let getAccounts = GRPCMethodDescriptor(
+            name: "GetAccounts",
+            path: "/tinkoff.public.invest.api.contract.v1.UsersService/GetAccounts",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getMarginAttributes = GRPCMethodDescriptor(
+            name: "GetMarginAttributes",
+            path: "/tinkoff.public.invest.api.contract.v1.UsersService/GetMarginAttributes",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getUserTariff = GRPCMethodDescriptor(
+            name: "GetUserTariff",
+            path: "/tinkoff.public.invest.api.contract.v1.UsersService/GetUserTariff",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getInfo = GRPCMethodDescriptor(
+            name: "GetInfo",
+            path: "/tinkoff.public.invest.api.contract.v1.UsersService/GetInfo",
+            type: GRPCCallType.unary
+        )
+    }
 }

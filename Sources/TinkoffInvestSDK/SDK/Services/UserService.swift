@@ -9,6 +9,15 @@ import Combine
 import GRPC
 import CombineGRPC
 
+public typealias GetAccountsResponse = Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse
+public typealias GetInfoResponse = Tinkoff_Public_Invest_Api_Contract_V1_GetInfoResponse
+public typealias GetMarginAttributesResponse = Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesResponse
+public typealias GetUserTariffResponse = Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffResponse
+public typealias UsersServiceClient = Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceNIOClient
+public typealias GetAccountsRequest = Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest
+public typealias GetMarginAttributesRequest = Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesRequest
+public typealias GetUserTariffRequest = Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffRequest
+
 public protocol UserService {
     func getAccounts() -> AnyPublisher<GetAccountsResponse, RPCError>
 

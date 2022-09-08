@@ -11,6 +11,17 @@ import Combine
 import GRPC
 import CombineGRPC
 
+public typealias PostOrderRequest = Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest
+public typealias PostOrderResponse = Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse
+
+public typealias GetOrdersRequest = Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersRequest
+public typealias GetOrdersResponse = Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersResponse
+public typealias GetOrderStateRequest = Tinkoff_Public_Invest_Api_Contract_V1_GetOrderStateRequest
+public typealias OrderState = Tinkoff_Public_Invest_Api_Contract_V1_OrderState
+public typealias CancelOrderRequest = Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderRequest
+public typealias CancelOrderResponse = Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderResponse
+public typealias OrdersServiceClient = Tinkoff_Public_Invest_Api_Contract_V1_OrdersServiceNIOClient
+
 public protocol OrdersService: AnyObject {
     ///Метод выставления заявки.
     func postOrder(request: PostOrderRequest) -> AnyPublisher<PostOrderResponse, RPCError>

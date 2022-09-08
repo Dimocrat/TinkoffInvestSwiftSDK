@@ -22,242 +22,1326 @@
 //
 import GRPC
 import NIO
+import NIOConcurrencyHelpers
 import SwiftProtobuf
 
 
 ///Сервис предназначен для получения:</br> **1**.  списка операций по счёту;</br> **2**.
 ///портфеля по счёту;</br> **3**. позиций ценных бумаг на счёте;</br> **4**.
-///доступного остатка для вывода средств.
+///доступного остатка для вывода средств;</br> **5**. получения различных отчётов.
 ///
-/// Usage: instantiate `OperationsServiceClient`, then call methods of this protocol to make API calls.
-public protocol OperationsServiceClientProtocol: GRPCClient {
-  var serviceName: String { get }
-  var interceptors: OperationsServiceClientInterceptorFactoryProtocol? { get }
-
-  func getOperations(
-    _ request: OperationsRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<OperationsRequest, OperationsResponse>
-
-  func getPortfolio(
-    _ request: PortfolioRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<PortfolioRequest, PortfolioResponse>
-
-  func getPositions(
-    _ request: PositionsRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<PositionsRequest, PositionsResponse>
-
-  func getWithdrawLimits(
-    _ request: WithdrawLimitsRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<WithdrawLimitsRequest, WithdrawLimitsResponse>
+/// Usage: instantiate `Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClient`, then call methods of this protocol to make API calls.
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientProtocol: GRPCClient {
+    var serviceName: String { get }
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientInterceptorFactoryProtocol? { get }
+    
+    func getOperations(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse>
+    
+    func getPortfolio(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest, Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse>
+    
+    func getPositions(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest, Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse>
+    
+    func getWithdrawLimits(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest, Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse>
+    
+    func getBrokerReport(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportRequest, Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportResponse>
+    
+    func getDividendsForeignIssuer(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerResponse>
+    
+    func getOperationsByCursor(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorResponse>
 }
 
-extension OperationsServiceClientProtocol {
-  public var serviceName: String {
-    return "tinkoff.public.invest.api.contract.v1.OperationsService"
-  }
-
-  ///Метод получения списка операций по счёту.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetOperations.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func getOperations(
-    _ request: OperationsRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<OperationsRequest, OperationsResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.OperationsService/GetOperations",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetOperationsInterceptors() ?? []
-    )
-  }
-
-  ///Метод получения портфеля по счёту.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetPortfolio.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func getPortfolio(
-    _ request: PortfolioRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<PortfolioRequest, PortfolioResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.OperationsService/GetPortfolio",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetPortfolioInterceptors() ?? []
-    )
-  }
-
-  ///Метод получения списка позиций по счёту.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetPositions.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func getPositions(
-    _ request: PositionsRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<PositionsRequest, PositionsResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.OperationsService/GetPositions",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetPositionsInterceptors() ?? []
-    )
-  }
-
-  ///Метод получения доступного остатка для вывода средств.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetWithdrawLimits.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func getWithdrawLimits(
-    _ request: WithdrawLimitsRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<WithdrawLimitsRequest, WithdrawLimitsResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.OperationsService/GetWithdrawLimits",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetWithdrawLimitsInterceptors() ?? []
-    )
-  }
+extension Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientProtocol {
+    internal var serviceName: String {
+        return "tinkoff.public.invest.api.contract.v1.OperationsService"
+    }
+    
+    ///Метод получения списка операций по счёту.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetOperations.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getOperations(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getOperations.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetOperationsInterceptors() ?? []
+        )
+    }
+    
+    ///Метод получения портфеля по счёту.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetPortfolio.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getPortfolio(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest, Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getPortfolio.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetPortfolioInterceptors() ?? []
+        )
+    }
+    
+    ///Метод получения списка позиций по счёту.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetPositions.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getPositions(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest, Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getPositions.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetPositionsInterceptors() ?? []
+        )
+    }
+    
+    ///Метод получения доступного остатка для вывода средств.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetWithdrawLimits.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getWithdrawLimits(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest, Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getWithdrawLimits.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetWithdrawLimitsInterceptors() ?? []
+        )
+    }
+    
+    ///Метод получения брокерского отчёта.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetBrokerReport.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getBrokerReport(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportRequest, Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getBrokerReport.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetBrokerReportInterceptors() ?? []
+        )
+    }
+    
+    ///Метод получения отчёта "Справка о доходах за пределами РФ".
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetDividendsForeignIssuer.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getDividendsForeignIssuer(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getDividendsForeignIssuer.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetDividendsForeignIssuerInterceptors() ?? []
+        )
+    }
+    
+    ///Метод получения списка операций по счёту с пагинацией.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetOperationsByCursor.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getOperationsByCursor(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getOperationsByCursor.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetOperationsByCursorInterceptors() ?? []
+        )
+    }
 }
 
-public protocol OperationsServiceClientInterceptorFactoryProtocol {
+#if compiler(>=5.6)
+@available(*, deprecated)
+extension Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClient: @unchecked Sendable {}
+#endif // compiler(>=5.6)
 
-  /// - Returns: Interceptors to use when invoking 'getOperations'.
-  func makeGetOperationsInterceptors() -> [ClientInterceptor<OperationsRequest, OperationsResponse>]
-
-  /// - Returns: Interceptors to use when invoking 'getPortfolio'.
-  func makeGetPortfolioInterceptors() -> [ClientInterceptor<PortfolioRequest, PortfolioResponse>]
-
-  /// - Returns: Interceptors to use when invoking 'getPositions'.
-  func makeGetPositionsInterceptors() -> [ClientInterceptor<PositionsRequest, PositionsResponse>]
-
-  /// - Returns: Interceptors to use when invoking 'getWithdrawLimits'.
-  func makeGetWithdrawLimitsInterceptors() -> [ClientInterceptor<WithdrawLimitsRequest, WithdrawLimitsResponse>]
+@available(*, deprecated, renamed: "Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceNIOClient")
+public final class Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClient: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientProtocol {
+    private let lock = Lock()
+    private var _defaultCallOptions: CallOptions
+    private var _interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientInterceptorFactoryProtocol?
+    public let channel: GRPCChannel
+    public var defaultCallOptions: CallOptions {
+        get { self.lock.withLock { return self._defaultCallOptions } }
+        set { self.lock.withLockVoid { self._defaultCallOptions = newValue } }
+    }
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientInterceptorFactoryProtocol? {
+        get { self.lock.withLock { return self._interceptors } }
+        set { self.lock.withLockVoid { self._interceptors = newValue } }
+    }
+    
+    /// Creates a client for the tinkoff.public.invest.api.contract.v1.OperationsService service.
+    ///
+    /// - Parameters:
+    ///   - channel: `GRPCChannel` to the service host.
+    ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+    ///   - interceptors: A factory providing interceptors for each RPC.
+    internal init(
+        channel: GRPCChannel,
+        defaultCallOptions: CallOptions = CallOptions(),
+        interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientInterceptorFactoryProtocol? = nil
+    ) {
+        self.channel = channel
+        self._defaultCallOptions = defaultCallOptions
+        self._interceptors = interceptors
+    }
 }
 
-public final class OperationsServiceClient: OperationsServiceClientProtocol {
-  public let channel: GRPCChannel
-  public var defaultCallOptions: CallOptions
-  public var interceptors: OperationsServiceClientInterceptorFactoryProtocol?
+public struct Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceNIOClient: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientProtocol {
+    public var channel: GRPCChannel
+    public var defaultCallOptions: CallOptions
+    public var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientInterceptorFactoryProtocol?
+    
+    /// Creates a client for the tinkoff.public.invest.api.contract.v1.OperationsService service.
+    ///
+    /// - Parameters:
+    ///   - channel: `GRPCChannel` to the service host.
+    ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+    ///   - interceptors: A factory providing interceptors for each RPC.
+    internal init(
+        channel: GRPCChannel,
+        defaultCallOptions: CallOptions = CallOptions(),
+        interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientInterceptorFactoryProtocol? = nil
+    ) {
+        self.channel = channel
+        self.defaultCallOptions = defaultCallOptions
+        self.interceptors = interceptors
+    }
+}
 
-  /// Creates a client for the tinkoff.public.invest.api.contract.v1.OperationsService service.
-  ///
-  /// - Parameters:
-  ///   - channel: `GRPCChannel` to the service host.
-  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
-  ///   - interceptors: A factory providing interceptors for each RPC.
-  public init(
-    channel: GRPCChannel,
-    defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: OperationsServiceClientInterceptorFactoryProtocol? = nil
-  ) {
-    self.channel = channel
-    self.defaultCallOptions = defaultCallOptions
-    self.interceptors = interceptors
-  }
+#if compiler(>=5.6)
+///Сервис предназначен для получения:</br> **1**.  списка операций по счёту;</br> **2**.
+///портфеля по счёту;</br> **3**. позиций ценных бумаг на счёте;</br> **4**.
+///доступного остатка для вывода средств;</br> **5**. получения различных отчётов.
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceAsyncClientProtocol: GRPCClient {
+    static var serviceDescriptor: GRPCServiceDescriptor { get }
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientInterceptorFactoryProtocol? { get }
+    
+    func makeGetOperationsCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse>
+    
+    func makeGetPortfolioCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest, Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse>
+    
+    func makeGetPositionsCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest, Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse>
+    
+    func makeGetWithdrawLimitsCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest, Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse>
+    
+    func makeGetBrokerReportCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportRequest, Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportResponse>
+    
+    func makeGetDividendsForeignIssuerCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerResponse>
+    
+    func makeGetOperationsByCursorCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorResponse>
+}
+
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceAsyncClientProtocol {
+    internal static var serviceDescriptor: GRPCServiceDescriptor {
+        return Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.serviceDescriptor
+    }
+    
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientInterceptorFactoryProtocol? {
+        return nil
+    }
+    
+    internal func makeGetOperationsCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getOperations.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetOperationsInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetPortfolioCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest, Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getPortfolio.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetPortfolioInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetPositionsCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest, Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getPositions.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetPositionsInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetWithdrawLimitsCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest, Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getWithdrawLimits.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetWithdrawLimitsInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetBrokerReportCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportRequest, Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getBrokerReport.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetBrokerReportInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetDividendsForeignIssuerCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getDividendsForeignIssuer.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetDividendsForeignIssuerInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetOperationsByCursorCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getOperationsByCursor.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetOperationsByCursorInterceptors() ?? []
+        )
+    }
+}
+
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceAsyncClientProtocol {
+    internal func getOperations(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getOperations.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetOperationsInterceptors() ?? []
+        )
+    }
+    
+    internal func getPortfolio(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getPortfolio.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetPortfolioInterceptors() ?? []
+        )
+    }
+    
+    internal func getPositions(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getPositions.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetPositionsInterceptors() ?? []
+        )
+    }
+    
+    internal func getWithdrawLimits(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getWithdrawLimits.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetWithdrawLimitsInterceptors() ?? []
+        )
+    }
+    
+    internal func getBrokerReport(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getBrokerReport.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetBrokerReportInterceptors() ?? []
+        )
+    }
+    
+    internal func getDividendsForeignIssuer(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getDividendsForeignIssuer.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetDividendsForeignIssuerInterceptors() ?? []
+        )
+    }
+    
+    internal func getOperationsByCursor(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getOperationsByCursor.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetOperationsByCursorInterceptors() ?? []
+        )
+    }
+}
+
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+internal struct Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceAsyncClient: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceAsyncClientProtocol {
+    internal var channel: GRPCChannel
+    internal var defaultCallOptions: CallOptions
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientInterceptorFactoryProtocol?
+    
+    internal init(
+        channel: GRPCChannel,
+        defaultCallOptions: CallOptions = CallOptions(),
+        interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientInterceptorFactoryProtocol? = nil
+    ) {
+        self.channel = channel
+        self.defaultCallOptions = defaultCallOptions
+        self.interceptors = interceptors
+    }
+}
+
+#endif // compiler(>=5.6)
+
+public protocol Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientInterceptorFactoryProtocol: GRPCSendable {
+    
+    /// - Returns: Interceptors to use when invoking 'getOperations'.
+    func makeGetOperationsInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'getPortfolio'.
+    func makeGetPortfolioInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest, Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'getPositions'.
+    func makeGetPositionsInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest, Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'getWithdrawLimits'.
+    func makeGetWithdrawLimitsInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest, Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'getBrokerReport'.
+    func makeGetBrokerReportInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportRequest, Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'getDividendsForeignIssuer'.
+    func makeGetDividendsForeignIssuerInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'getOperationsByCursor'.
+    func makeGetOperationsByCursorInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorResponse>]
+}
+
+internal enum Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata {
+    internal static let serviceDescriptor = GRPCServiceDescriptor(
+        name: "OperationsService",
+        fullName: "tinkoff.public.invest.api.contract.v1.OperationsService",
+        methods: [
+            Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getOperations,
+            Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getPortfolio,
+            Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getPositions,
+            Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getWithdrawLimits,
+            Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getBrokerReport,
+            Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getDividendsForeignIssuer,
+            Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientMetadata.Methods.getOperationsByCursor,
+        ]
+    )
+    
+    internal enum Methods {
+        internal static let getOperations = GRPCMethodDescriptor(
+            name: "GetOperations",
+            path: "/tinkoff.public.invest.api.contract.v1.OperationsService/GetOperations",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getPortfolio = GRPCMethodDescriptor(
+            name: "GetPortfolio",
+            path: "/tinkoff.public.invest.api.contract.v1.OperationsService/GetPortfolio",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getPositions = GRPCMethodDescriptor(
+            name: "GetPositions",
+            path: "/tinkoff.public.invest.api.contract.v1.OperationsService/GetPositions",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getWithdrawLimits = GRPCMethodDescriptor(
+            name: "GetWithdrawLimits",
+            path: "/tinkoff.public.invest.api.contract.v1.OperationsService/GetWithdrawLimits",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getBrokerReport = GRPCMethodDescriptor(
+            name: "GetBrokerReport",
+            path: "/tinkoff.public.invest.api.contract.v1.OperationsService/GetBrokerReport",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getDividendsForeignIssuer = GRPCMethodDescriptor(
+            name: "GetDividendsForeignIssuer",
+            path: "/tinkoff.public.invest.api.contract.v1.OperationsService/GetDividendsForeignIssuer",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getOperationsByCursor = GRPCMethodDescriptor(
+            name: "GetOperationsByCursor",
+            path: "/tinkoff.public.invest.api.contract.v1.OperationsService/GetOperationsByCursor",
+            type: GRPCCallType.unary
+        )
+    }
+}
+
+/// Usage: instantiate `Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClient`, then call methods of this protocol to make API calls.
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientProtocol: GRPCClient {
+    var serviceName: String { get }
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientInterceptorFactoryProtocol? { get }
+    
+    func portfolioStream(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamRequest,
+        callOptions: CallOptions?,
+        handler: @escaping (Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamResponse) -> Void
+    ) -> ServerStreamingCall<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamRequest, Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamResponse>
+    
+    func positionsStream(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamRequest,
+        callOptions: CallOptions?,
+        handler: @escaping (Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamResponse) -> Void
+    ) -> ServerStreamingCall<Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamRequest, Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamResponse>
+}
+
+extension Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientProtocol {
+    internal var serviceName: String {
+        return "tinkoff.public.invest.api.contract.v1.OperationsStreamService"
+    }
+    
+    ///Server-side stream обновлений портфеля
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to PortfolioStream.
+    ///   - callOptions: Call options.
+    ///   - handler: A closure called when each response is received from the server.
+    /// - Returns: A `ServerStreamingCall` with futures for the metadata and status.
+    internal func portfolioStream(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamRequest,
+        callOptions: CallOptions? = nil,
+        handler: @escaping (Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamResponse) -> Void
+    ) -> ServerStreamingCall<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamRequest, Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamResponse> {
+        return self.makeServerStreamingCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientMetadata.Methods.portfolioStream.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makePortfolioStreamInterceptors() ?? [],
+            handler: handler
+        )
+    }
+    
+    ///Server-side stream обновлений информации по изменению позиций портфеля
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to PositionsStream.
+    ///   - callOptions: Call options.
+    ///   - handler: A closure called when each response is received from the server.
+    /// - Returns: A `ServerStreamingCall` with futures for the metadata and status.
+    internal func positionsStream(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamRequest,
+        callOptions: CallOptions? = nil,
+        handler: @escaping (Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamResponse) -> Void
+    ) -> ServerStreamingCall<Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamRequest, Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamResponse> {
+        return self.makeServerStreamingCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientMetadata.Methods.positionsStream.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makePositionsStreamInterceptors() ?? [],
+            handler: handler
+        )
+    }
+}
+
+#if compiler(>=5.6)
+@available(*, deprecated)
+extension Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClient: @unchecked Sendable {}
+#endif // compiler(>=5.6)
+
+@available(*, deprecated, renamed: "Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceNIOClient")
+internal final class Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClient: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientProtocol {
+    private let lock = Lock()
+    private var _defaultCallOptions: CallOptions
+    private var _interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientInterceptorFactoryProtocol?
+    internal let channel: GRPCChannel
+    internal var defaultCallOptions: CallOptions {
+        get { self.lock.withLock { return self._defaultCallOptions } }
+        set { self.lock.withLockVoid { self._defaultCallOptions = newValue } }
+    }
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientInterceptorFactoryProtocol? {
+        get { self.lock.withLock { return self._interceptors } }
+        set { self.lock.withLockVoid { self._interceptors = newValue } }
+    }
+    
+    /// Creates a client for the tinkoff.public.invest.api.contract.v1.OperationsStreamService service.
+    ///
+    /// - Parameters:
+    ///   - channel: `GRPCChannel` to the service host.
+    ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+    ///   - interceptors: A factory providing interceptors for each RPC.
+    internal init(
+        channel: GRPCChannel,
+        defaultCallOptions: CallOptions = CallOptions(),
+        interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientInterceptorFactoryProtocol? = nil
+    ) {
+        self.channel = channel
+        self._defaultCallOptions = defaultCallOptions
+        self._interceptors = interceptors
+    }
+}
+
+internal struct Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceNIOClient: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientProtocol {
+    internal var channel: GRPCChannel
+    internal var defaultCallOptions: CallOptions
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientInterceptorFactoryProtocol?
+    
+    /// Creates a client for the tinkoff.public.invest.api.contract.v1.OperationsStreamService service.
+    ///
+    /// - Parameters:
+    ///   - channel: `GRPCChannel` to the service host.
+    ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+    ///   - interceptors: A factory providing interceptors for each RPC.
+    internal init(
+        channel: GRPCChannel,
+        defaultCallOptions: CallOptions = CallOptions(),
+        interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientInterceptorFactoryProtocol? = nil
+    ) {
+        self.channel = channel
+        self.defaultCallOptions = defaultCallOptions
+        self.interceptors = interceptors
+    }
+}
+
+#if compiler(>=5.6)
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceAsyncClientProtocol: GRPCClient {
+    static var serviceDescriptor: GRPCServiceDescriptor { get }
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientInterceptorFactoryProtocol? { get }
+    
+    func makePortfolioStreamCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncServerStreamingCall<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamRequest, Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamResponse>
+    
+    func makePositionsStreamCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncServerStreamingCall<Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamRequest, Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamResponse>
+}
+
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceAsyncClientProtocol {
+    internal static var serviceDescriptor: GRPCServiceDescriptor {
+        return Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientMetadata.serviceDescriptor
+    }
+    
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientInterceptorFactoryProtocol? {
+        return nil
+    }
+    
+    internal func makePortfolioStreamCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncServerStreamingCall<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamRequest, Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamResponse> {
+        return self.makeAsyncServerStreamingCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientMetadata.Methods.portfolioStream.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makePortfolioStreamInterceptors() ?? []
+        )
+    }
+    
+    internal func makePositionsStreamCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncServerStreamingCall<Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamRequest, Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamResponse> {
+        return self.makeAsyncServerStreamingCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientMetadata.Methods.positionsStream.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makePositionsStreamInterceptors() ?? []
+        )
+    }
+}
+
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceAsyncClientProtocol {
+    internal func portfolioStream(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncResponseStream<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamResponse> {
+        return self.performAsyncServerStreamingCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientMetadata.Methods.portfolioStream.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makePortfolioStreamInterceptors() ?? []
+        )
+    }
+    
+    internal func positionsStream(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncResponseStream<Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamResponse> {
+        return self.performAsyncServerStreamingCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientMetadata.Methods.positionsStream.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makePositionsStreamInterceptors() ?? []
+        )
+    }
+}
+
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+internal struct Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceAsyncClient: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceAsyncClientProtocol {
+    internal var channel: GRPCChannel
+    internal var defaultCallOptions: CallOptions
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientInterceptorFactoryProtocol?
+    
+    internal init(
+        channel: GRPCChannel,
+        defaultCallOptions: CallOptions = CallOptions(),
+        interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientInterceptorFactoryProtocol? = nil
+    ) {
+        self.channel = channel
+        self.defaultCallOptions = defaultCallOptions
+        self.interceptors = interceptors
+    }
+}
+
+#endif // compiler(>=5.6)
+
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientInterceptorFactoryProtocol: GRPCSendable {
+    
+    /// - Returns: Interceptors to use when invoking 'portfolioStream'.
+    func makePortfolioStreamInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamRequest, Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'positionsStream'.
+    func makePositionsStreamInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamRequest, Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamResponse>]
+}
+
+internal enum Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientMetadata {
+    internal static let serviceDescriptor = GRPCServiceDescriptor(
+        name: "OperationsStreamService",
+        fullName: "tinkoff.public.invest.api.contract.v1.OperationsStreamService",
+        methods: [
+            Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientMetadata.Methods.portfolioStream,
+            Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClientMetadata.Methods.positionsStream,
+        ]
+    )
+    
+    internal enum Methods {
+        internal static let portfolioStream = GRPCMethodDescriptor(
+            name: "PortfolioStream",
+            path: "/tinkoff.public.invest.api.contract.v1.OperationsStreamService/PortfolioStream",
+            type: GRPCCallType.serverStreaming
+        )
+        
+        internal static let positionsStream = GRPCMethodDescriptor(
+            name: "PositionsStream",
+            path: "/tinkoff.public.invest.api.contract.v1.OperationsStreamService/PositionsStream",
+            type: GRPCCallType.serverStreaming
+        )
+    }
 }
 
 ///Сервис предназначен для получения:</br> **1**.  списка операций по счёту;</br> **2**.
 ///портфеля по счёту;</br> **3**. позиций ценных бумаг на счёте;</br> **4**.
-///доступного остатка для вывода средств.
+///доступного остатка для вывода средств;</br> **5**. получения различных отчётов.
 ///
 /// To build a server, implement a class that conforms to this protocol.
-public protocol OperationsServiceProvider: CallHandlerProvider {
-  var interceptors: OperationsServiceServerInterceptorFactoryProtocol? { get }
-
-  ///Метод получения списка операций по счёту.
-  func getOperations(request: OperationsRequest, context: StatusOnlyCallContext) -> EventLoopFuture<OperationsResponse>
-
-  ///Метод получения портфеля по счёту.
-  func getPortfolio(request: PortfolioRequest, context: StatusOnlyCallContext) -> EventLoopFuture<PortfolioResponse>
-
-  ///Метод получения списка позиций по счёту.
-  func getPositions(request: PositionsRequest, context: StatusOnlyCallContext) -> EventLoopFuture<PositionsResponse>
-
-  ///Метод получения доступного остатка для вывода средств.
-  func getWithdrawLimits(request: WithdrawLimitsRequest, context: StatusOnlyCallContext) -> EventLoopFuture<WithdrawLimitsResponse>
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceProvider: CallHandlerProvider {
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceServerInterceptorFactoryProtocol? { get }
+    
+    ///Метод получения списка операций по счёту.
+    func getOperations(request: Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse>
+    
+    ///Метод получения портфеля по счёту.
+    func getPortfolio(request: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse>
+    
+    ///Метод получения списка позиций по счёту.
+    func getPositions(request: Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse>
+    
+    ///Метод получения доступного остатка для вывода средств.
+    func getWithdrawLimits(request: Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse>
+    
+    ///Метод получения брокерского отчёта.
+    func getBrokerReport(request: Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportResponse>
+    
+    ///Метод получения отчёта "Справка о доходах за пределами РФ".
+    func getDividendsForeignIssuer(request: Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerResponse>
+    
+    ///Метод получения списка операций по счёту с пагинацией.
+    func getOperationsByCursor(request: Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorResponse>
 }
 
-extension OperationsServiceProvider {
-  public var serviceName: Substring { return "tinkoff.public.invest.api.contract.v1.OperationsService" }
-
-  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
-  /// Returns nil for methods not handled by this service.
-  public func handle(
-    method name: Substring,
-    context: CallHandlerContext
-  ) -> GRPCServerHandlerProtocol? {
-    switch name {
-    case "GetOperations":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<OperationsRequest>(),
-        responseSerializer: ProtobufSerializer<OperationsResponse>(),
-        interceptors: self.interceptors?.makeGetOperationsInterceptors() ?? [],
-        userFunction: self.getOperations(request:context:)
-      )
-
-    case "GetPortfolio":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<PortfolioRequest>(),
-        responseSerializer: ProtobufSerializer<PortfolioResponse>(),
-        interceptors: self.interceptors?.makeGetPortfolioInterceptors() ?? [],
-        userFunction: self.getPortfolio(request:context:)
-      )
-
-    case "GetPositions":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<PositionsRequest>(),
-        responseSerializer: ProtobufSerializer<PositionsResponse>(),
-        interceptors: self.interceptors?.makeGetPositionsInterceptors() ?? [],
-        userFunction: self.getPositions(request:context:)
-      )
-
-    case "GetWithdrawLimits":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<WithdrawLimitsRequest>(),
-        responseSerializer: ProtobufSerializer<WithdrawLimitsResponse>(),
-        interceptors: self.interceptors?.makeGetWithdrawLimitsInterceptors() ?? [],
-        userFunction: self.getWithdrawLimits(request:context:)
-      )
-
-    default:
-      return nil
+extension Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceProvider {
+    internal var serviceName: Substring {
+        return Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceServerMetadata.serviceDescriptor.fullName[...]
     }
-  }
+    
+    /// Determines, calls and returns the appropriate request handler, depending on the request's method.
+    /// Returns nil for methods not handled by this service.
+    internal func handle(
+        method name: Substring,
+        context: CallHandlerContext
+    ) -> GRPCServerHandlerProtocol? {
+        switch name {
+        case "GetOperations":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse>(),
+                interceptors: self.interceptors?.makeGetOperationsInterceptors() ?? [],
+                userFunction: self.getOperations(request:context:)
+            )
+            
+        case "GetPortfolio":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse>(),
+                interceptors: self.interceptors?.makeGetPortfolioInterceptors() ?? [],
+                userFunction: self.getPortfolio(request:context:)
+            )
+            
+        case "GetPositions":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse>(),
+                interceptors: self.interceptors?.makeGetPositionsInterceptors() ?? [],
+                userFunction: self.getPositions(request:context:)
+            )
+            
+        case "GetWithdrawLimits":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse>(),
+                interceptors: self.interceptors?.makeGetWithdrawLimitsInterceptors() ?? [],
+                userFunction: self.getWithdrawLimits(request:context:)
+            )
+            
+        case "GetBrokerReport":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportResponse>(),
+                interceptors: self.interceptors?.makeGetBrokerReportInterceptors() ?? [],
+                userFunction: self.getBrokerReport(request:context:)
+            )
+            
+        case "GetDividendsForeignIssuer":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerResponse>(),
+                interceptors: self.interceptors?.makeGetDividendsForeignIssuerInterceptors() ?? [],
+                userFunction: self.getDividendsForeignIssuer(request:context:)
+            )
+            
+        case "GetOperationsByCursor":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorResponse>(),
+                interceptors: self.interceptors?.makeGetOperationsByCursorInterceptors() ?? [],
+                userFunction: self.getOperationsByCursor(request:context:)
+            )
+            
+        default:
+            return nil
+        }
+    }
 }
 
-public protocol OperationsServiceServerInterceptorFactoryProtocol {
+#if compiler(>=5.6)
 
-  /// - Returns: Interceptors to use when handling 'getOperations'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetOperationsInterceptors() -> [ServerInterceptor<OperationsRequest, OperationsResponse>]
+///Сервис предназначен для получения:</br> **1**.  списка операций по счёту;</br> **2**.
+///портфеля по счёту;</br> **3**. позиций ценных бумаг на счёте;</br> **4**.
+///доступного остатка для вывода средств;</br> **5**. получения различных отчётов.
+///
+/// To implement a server, implement an object which conforms to this protocol.
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceAsyncProvider: CallHandlerProvider {
+    static var serviceDescriptor: GRPCServiceDescriptor { get }
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceServerInterceptorFactoryProtocol? { get }
+    
+    ///Метод получения списка операций по счёту.
+    @Sendable func getOperations(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse
+    
+    ///Метод получения портфеля по счёту.
+    @Sendable func getPortfolio(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse
+    
+    ///Метод получения списка позиций по счёту.
+    @Sendable func getPositions(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse
+    
+    ///Метод получения доступного остатка для вывода средств.
+    @Sendable func getWithdrawLimits(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse
+    
+    ///Метод получения брокерского отчёта.
+    @Sendable func getBrokerReport(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportResponse
+    
+    ///Метод получения отчёта "Справка о доходах за пределами РФ".
+    @Sendable func getDividendsForeignIssuer(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerResponse
+    
+    ///Метод получения списка операций по счёту с пагинацией.
+    @Sendable func getOperationsByCursor(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorResponse
+}
 
-  /// - Returns: Interceptors to use when handling 'getPortfolio'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetPortfolioInterceptors() -> [ServerInterceptor<PortfolioRequest, PortfolioResponse>]
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceAsyncProvider {
+    internal static var serviceDescriptor: GRPCServiceDescriptor {
+        return Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceServerMetadata.serviceDescriptor
+    }
+    
+    internal var serviceName: Substring {
+        return Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceServerMetadata.serviceDescriptor.fullName[...]
+    }
+    
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceServerInterceptorFactoryProtocol? {
+        return nil
+    }
+    
+    internal func handle(
+        method name: Substring,
+        context: CallHandlerContext
+    ) -> GRPCServerHandlerProtocol? {
+        switch name {
+        case "GetOperations":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse>(),
+                interceptors: self.interceptors?.makeGetOperationsInterceptors() ?? [],
+                wrapping: self.getOperations(request:context:)
+            )
+            
+        case "GetPortfolio":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse>(),
+                interceptors: self.interceptors?.makeGetPortfolioInterceptors() ?? [],
+                wrapping: self.getPortfolio(request:context:)
+            )
+            
+        case "GetPositions":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse>(),
+                interceptors: self.interceptors?.makeGetPositionsInterceptors() ?? [],
+                wrapping: self.getPositions(request:context:)
+            )
+            
+        case "GetWithdrawLimits":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse>(),
+                interceptors: self.interceptors?.makeGetWithdrawLimitsInterceptors() ?? [],
+                wrapping: self.getWithdrawLimits(request:context:)
+            )
+            
+        case "GetBrokerReport":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportResponse>(),
+                interceptors: self.interceptors?.makeGetBrokerReportInterceptors() ?? [],
+                wrapping: self.getBrokerReport(request:context:)
+            )
+            
+        case "GetDividendsForeignIssuer":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerResponse>(),
+                interceptors: self.interceptors?.makeGetDividendsForeignIssuerInterceptors() ?? [],
+                wrapping: self.getDividendsForeignIssuer(request:context:)
+            )
+            
+        case "GetOperationsByCursor":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorResponse>(),
+                interceptors: self.interceptors?.makeGetOperationsByCursorInterceptors() ?? [],
+                wrapping: self.getOperationsByCursor(request:context:)
+            )
+            
+        default:
+            return nil
+        }
+    }
+}
 
-  /// - Returns: Interceptors to use when handling 'getPositions'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetPositionsInterceptors() -> [ServerInterceptor<PositionsRequest, PositionsResponse>]
+#endif // compiler(>=5.6)
 
-  /// - Returns: Interceptors to use when handling 'getWithdrawLimits'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetWithdrawLimitsInterceptors() -> [ServerInterceptor<WithdrawLimitsRequest, WithdrawLimitsResponse>]
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceServerInterceptorFactoryProtocol {
+    
+    /// - Returns: Interceptors to use when handling 'getOperations'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetOperationsInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'getPortfolio'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetPortfolioInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest, Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'getPositions'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetPositionsInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest, Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'getWithdrawLimits'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetWithdrawLimitsInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest, Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'getBrokerReport'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetBrokerReportInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportRequest, Tinkoff_Public_Invest_Api_Contract_V1_BrokerReportResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'getDividendsForeignIssuer'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetDividendsForeignIssuerInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'getOperationsByCursor'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetOperationsByCursorInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorResponse>]
+}
+
+internal enum Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceServerMetadata {
+    internal static let serviceDescriptor = GRPCServiceDescriptor(
+        name: "OperationsService",
+        fullName: "tinkoff.public.invest.api.contract.v1.OperationsService",
+        methods: [
+            Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceServerMetadata.Methods.getOperations,
+            Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceServerMetadata.Methods.getPortfolio,
+            Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceServerMetadata.Methods.getPositions,
+            Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceServerMetadata.Methods.getWithdrawLimits,
+            Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceServerMetadata.Methods.getBrokerReport,
+            Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceServerMetadata.Methods.getDividendsForeignIssuer,
+            Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceServerMetadata.Methods.getOperationsByCursor,
+        ]
+    )
+    
+    internal enum Methods {
+        internal static let getOperations = GRPCMethodDescriptor(
+            name: "GetOperations",
+            path: "/tinkoff.public.invest.api.contract.v1.OperationsService/GetOperations",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getPortfolio = GRPCMethodDescriptor(
+            name: "GetPortfolio",
+            path: "/tinkoff.public.invest.api.contract.v1.OperationsService/GetPortfolio",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getPositions = GRPCMethodDescriptor(
+            name: "GetPositions",
+            path: "/tinkoff.public.invest.api.contract.v1.OperationsService/GetPositions",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getWithdrawLimits = GRPCMethodDescriptor(
+            name: "GetWithdrawLimits",
+            path: "/tinkoff.public.invest.api.contract.v1.OperationsService/GetWithdrawLimits",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getBrokerReport = GRPCMethodDescriptor(
+            name: "GetBrokerReport",
+            path: "/tinkoff.public.invest.api.contract.v1.OperationsService/GetBrokerReport",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getDividendsForeignIssuer = GRPCMethodDescriptor(
+            name: "GetDividendsForeignIssuer",
+            path: "/tinkoff.public.invest.api.contract.v1.OperationsService/GetDividendsForeignIssuer",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getOperationsByCursor = GRPCMethodDescriptor(
+            name: "GetOperationsByCursor",
+            path: "/tinkoff.public.invest.api.contract.v1.OperationsService/GetOperationsByCursor",
+            type: GRPCCallType.unary
+        )
+    }
+}
+/// To build a server, implement a class that conforms to this protocol.
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceProvider: CallHandlerProvider {
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceServerInterceptorFactoryProtocol? { get }
+    
+    ///Server-side stream обновлений портфеля
+    func portfolioStream(request: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamRequest, context: StreamingResponseCallContext<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamResponse>) -> EventLoopFuture<GRPCStatus>
+    
+    ///Server-side stream обновлений информации по изменению позиций портфеля
+    func positionsStream(request: Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamRequest, context: StreamingResponseCallContext<Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamResponse>) -> EventLoopFuture<GRPCStatus>
+}
+
+extension Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceProvider {
+    internal var serviceName: Substring {
+        return Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceServerMetadata.serviceDescriptor.fullName[...]
+    }
+    
+    /// Determines, calls and returns the appropriate request handler, depending on the request's method.
+    /// Returns nil for methods not handled by this service.
+    internal func handle(
+        method name: Substring,
+        context: CallHandlerContext
+    ) -> GRPCServerHandlerProtocol? {
+        switch name {
+        case "PortfolioStream":
+            return ServerStreamingServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamResponse>(),
+                interceptors: self.interceptors?.makePortfolioStreamInterceptors() ?? [],
+                userFunction: self.portfolioStream(request:context:)
+            )
+            
+        case "PositionsStream":
+            return ServerStreamingServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamResponse>(),
+                interceptors: self.interceptors?.makePositionsStreamInterceptors() ?? [],
+                userFunction: self.positionsStream(request:context:)
+            )
+            
+        default:
+            return nil
+        }
+    }
+}
+
+#if compiler(>=5.6)
+
+/// To implement a server, implement an object which conforms to this protocol.
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceAsyncProvider: CallHandlerProvider {
+    static var serviceDescriptor: GRPCServiceDescriptor { get }
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceServerInterceptorFactoryProtocol? { get }
+    
+    ///Server-side stream обновлений портфеля
+    @Sendable func portfolioStream(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamRequest,
+        responseStream: GRPCAsyncResponseStreamWriter<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamResponse>,
+        context: GRPCAsyncServerCallContext
+    ) async throws
+    
+    ///Server-side stream обновлений информации по изменению позиций портфеля
+    @Sendable func positionsStream(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamRequest,
+        responseStream: GRPCAsyncResponseStreamWriter<Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamResponse>,
+        context: GRPCAsyncServerCallContext
+    ) async throws
+}
+
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceAsyncProvider {
+    internal static var serviceDescriptor: GRPCServiceDescriptor {
+        return Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceServerMetadata.serviceDescriptor
+    }
+    
+    internal var serviceName: Substring {
+        return Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceServerMetadata.serviceDescriptor.fullName[...]
+    }
+    
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceServerInterceptorFactoryProtocol? {
+        return nil
+    }
+    
+    internal func handle(
+        method name: Substring,
+        context: CallHandlerContext
+    ) -> GRPCServerHandlerProtocol? {
+        switch name {
+        case "PortfolioStream":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamResponse>(),
+                interceptors: self.interceptors?.makePortfolioStreamInterceptors() ?? [],
+                wrapping: self.portfolioStream(request:responseStream:context:)
+            )
+            
+        case "PositionsStream":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamResponse>(),
+                interceptors: self.interceptors?.makePositionsStreamInterceptors() ?? [],
+                wrapping: self.positionsStream(request:responseStream:context:)
+            )
+            
+        default:
+            return nil
+        }
+    }
+}
+
+#endif // compiler(>=5.6)
+
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceServerInterceptorFactoryProtocol {
+    
+    /// - Returns: Interceptors to use when handling 'portfolioStream'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makePortfolioStreamInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamRequest, Tinkoff_Public_Invest_Api_Contract_V1_PortfolioStreamResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'positionsStream'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makePositionsStreamInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamRequest, Tinkoff_Public_Invest_Api_Contract_V1_PositionsStreamResponse>]
+}
+
+internal enum Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceServerMetadata {
+    internal static let serviceDescriptor = GRPCServiceDescriptor(
+        name: "OperationsStreamService",
+        fullName: "tinkoff.public.invest.api.contract.v1.OperationsStreamService",
+        methods: [
+            Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceServerMetadata.Methods.portfolioStream,
+            Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceServerMetadata.Methods.positionsStream,
+        ]
+    )
+    
+    internal enum Methods {
+        internal static let portfolioStream = GRPCMethodDescriptor(
+            name: "PortfolioStream",
+            path: "/tinkoff.public.invest.api.contract.v1.OperationsStreamService/PortfolioStream",
+            type: GRPCCallType.serverStreaming
+        )
+        
+        internal static let positionsStream = GRPCMethodDescriptor(
+            name: "PositionsStream",
+            path: "/tinkoff.public.invest.api.contract.v1.OperationsStreamService/PositionsStream",
+            type: GRPCCallType.serverStreaming
+        )
+    }
 }

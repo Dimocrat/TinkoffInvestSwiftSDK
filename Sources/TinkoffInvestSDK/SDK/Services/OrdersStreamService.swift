@@ -10,6 +10,10 @@ import GRPC
 import CombineGRPC
 import Foundation
 
+public typealias TradesStreamResponse = Tinkoff_Public_Invest_Api_Contract_V1_TradesStreamResponse
+public typealias OrdersStreamServiceClient = Tinkoff_Public_Invest_Api_Contract_V1_OrdersStreamServiceNIOClient
+public typealias TradesStreamRequest = Tinkoff_Public_Invest_Api_Contract_V1_TradesStreamRequest
+
 public protocol OrdersStreamService: AnyObject {
     ///Метод выставления заявки.
     func subscribeToOrders() -> AnyPublisher<TradesStreamResponse, RPCError>

@@ -22,532 +22,1511 @@
 //
 import GRPC
 import NIO
+import NIOConcurrencyHelpers
 import SwiftProtobuf
 
 
 ///Сервис для работы с песочницей TINKOFF INVEST API
 ///
-/// Usage: instantiate `SandboxServiceClient`, then call methods of this protocol to make API calls.
-public protocol SandboxServiceClientProtocol: GRPCClient {
-  var serviceName: String { get }
-  var interceptors: SandboxServiceClientInterceptorFactoryProtocol? { get }
-
-  func openSandboxAccount(
-    _ request: OpenSandboxAccountRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<OpenSandboxAccountRequest, OpenSandboxAccountResponse>
-
-  func getSandboxAccounts(
-    _ request: GetAccountsRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<GetAccountsRequest, GetAccountsResponse>
-
-  func closeSandboxAccount(
-    _ request: CloseSandboxAccountRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<CloseSandboxAccountRequest, CloseSandboxAccountResponse>
-
-  func postSandboxOrder(
-    _ request: PostOrderRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<PostOrderRequest, PostOrderResponse>
-
-  func getSandboxOrders(
-    _ request: GetOrdersRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<GetOrdersRequest, GetOrdersResponse>
-
-  func cancelSandboxOrder(
-    _ request: CancelOrderRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<CancelOrderRequest, CancelOrderResponse>
-
-  func getSandboxOrderState(
-    _ request: GetOrderStateRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<GetOrderStateRequest, OrderState>
-
-  func getSandboxPositions(
-    _ request: PositionsRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<PositionsRequest, PositionsResponse>
-
-  func getSandboxOperations(
-    _ request: OperationsRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<OperationsRequest, OperationsResponse>
-
-  func getSandboxPortfolio(
-    _ request: PortfolioRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<PortfolioRequest, PortfolioResponse>
-
-  func sandboxPayIn(
-    _ request: SandboxPayInRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<SandboxPayInRequest, SandboxPayInResponse>
+/// Usage: instantiate `Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClient`, then call methods of this protocol to make API calls.
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientProtocol: GRPCClient {
+    var serviceName: String { get }
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientInterceptorFactoryProtocol? { get }
+    
+    func openSandboxAccount(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountRequest, Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountResponse>
+    
+    func getSandboxAccounts(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse>
+    
+    func closeSandboxAccount(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountRequest, Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountResponse>
+    
+    func postSandboxOrder(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest, Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse>
+    
+    func replaceSandboxOrder(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_ReplaceOrderRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_ReplaceOrderRequest, Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse>
+    
+    func getSandboxOrders(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersResponse>
+    
+    func cancelSandboxOrder(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderRequest, Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderResponse>
+    
+    func getSandboxOrderState(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetOrderStateRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetOrderStateRequest, Tinkoff_Public_Invest_Api_Contract_V1_OrderState>
+    
+    func getSandboxPositions(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest, Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse>
+    
+    func getSandboxOperations(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse>
+    
+    func getSandboxPortfolio(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest, Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse>
+    
+    func sandboxPayIn(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInRequest, Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInResponse>
+    
+    func getSandboxWithdrawLimits(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest, Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse>
 }
 
-extension SandboxServiceClientProtocol {
-  public var serviceName: String {
-    return "tinkoff.public.invest.api.contract.v1.SandboxService"
-  }
-
-  ///Метод регистрации счёта в песочнице.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to OpenSandboxAccount.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func openSandboxAccount(
-    _ request: OpenSandboxAccountRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<OpenSandboxAccountRequest, OpenSandboxAccountResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.SandboxService/OpenSandboxAccount",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeOpenSandboxAccountInterceptors() ?? []
-    )
-  }
-
-  ///Метод получения счетов в песочнице.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetSandboxAccounts.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func getSandboxAccounts(
-    _ request: GetAccountsRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<GetAccountsRequest, GetAccountsResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxAccounts",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetSandboxAccountsInterceptors() ?? []
-    )
-  }
-
-  ///Метод закрытия счёта в песочнице.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to CloseSandboxAccount.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func closeSandboxAccount(
-    _ request: CloseSandboxAccountRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<CloseSandboxAccountRequest, CloseSandboxAccountResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.SandboxService/CloseSandboxAccount",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeCloseSandboxAccountInterceptors() ?? []
-    )
-  }
-
-  ///Метод выставления торгового поручения в песочнице.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to PostSandboxOrder.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func postSandboxOrder(
-    _ request: PostOrderRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<PostOrderRequest, PostOrderResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.SandboxService/PostSandboxOrder",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makePostSandboxOrderInterceptors() ?? []
-    )
-  }
-
-  ///Метод получения списка активных заявок по счёту в песочнице.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetSandboxOrders.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func getSandboxOrders(
-    _ request: GetOrdersRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<GetOrdersRequest, GetOrdersResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxOrders",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetSandboxOrdersInterceptors() ?? []
-    )
-  }
-
-  ///Метод отмены торгового поручения в песочнице.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to CancelSandboxOrder.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func cancelSandboxOrder(
-    _ request: CancelOrderRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<CancelOrderRequest, CancelOrderResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.SandboxService/CancelSandboxOrder",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeCancelSandboxOrderInterceptors() ?? []
-    )
-  }
-
-  ///Метод получения статуса заявки в песочнице.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetSandboxOrderState.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func getSandboxOrderState(
-    _ request: GetOrderStateRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<GetOrderStateRequest, OrderState> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxOrderState",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetSandboxOrderStateInterceptors() ?? []
-    )
-  }
-
-  ///Метод получения позиций по виртуальному счёту песочницы.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetSandboxPositions.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func getSandboxPositions(
-    _ request: PositionsRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<PositionsRequest, PositionsResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxPositions",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetSandboxPositionsInterceptors() ?? []
-    )
-  }
-
-  ///Метод получения операций в песочнице по номеру счёта.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetSandboxOperations.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func getSandboxOperations(
-    _ request: OperationsRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<OperationsRequest, OperationsResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxOperations",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetSandboxOperationsInterceptors() ?? []
-    )
-  }
-
-  ///Метод получения портфолио в песочнице.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetSandboxPortfolio.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func getSandboxPortfolio(
-    _ request: PortfolioRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<PortfolioRequest, PortfolioResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxPortfolio",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetSandboxPortfolioInterceptors() ?? []
-    )
-  }
-
-  ///Метод пополнения счёта в песочнице.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to SandboxPayIn.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func sandboxPayIn(
-    _ request: SandboxPayInRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<SandboxPayInRequest, SandboxPayInResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.SandboxService/SandboxPayIn",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeSandboxPayInInterceptors() ?? []
-    )
-  }
+extension Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientProtocol {
+    internal var serviceName: String {
+        return "tinkoff.public.invest.api.contract.v1.SandboxService"
+    }
+    
+    ///Метод регистрации счёта в песочнице.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to OpenSandboxAccount.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func openSandboxAccount(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountRequest, Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.openSandboxAccount.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeOpenSandboxAccountInterceptors() ?? []
+        )
+    }
+    
+    ///Метод получения счетов в песочнице.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetSandboxAccounts.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getSandboxAccounts(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxAccounts.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetSandboxAccountsInterceptors() ?? []
+        )
+    }
+    
+    ///Метод закрытия счёта в песочнице.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to CloseSandboxAccount.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func closeSandboxAccount(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountRequest, Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.closeSandboxAccount.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeCloseSandboxAccountInterceptors() ?? []
+        )
+    }
+    
+    ///Метод выставления торгового поручения в песочнице.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to PostSandboxOrder.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func postSandboxOrder(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest, Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.postSandboxOrder.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makePostSandboxOrderInterceptors() ?? []
+        )
+    }
+    
+    ///Метод изменения выставленной заявки.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to ReplaceSandboxOrder.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func replaceSandboxOrder(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_ReplaceOrderRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_ReplaceOrderRequest, Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.replaceSandboxOrder.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeReplaceSandboxOrderInterceptors() ?? []
+        )
+    }
+    
+    ///Метод получения списка активных заявок по счёту в песочнице.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetSandboxOrders.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getSandboxOrders(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxOrders.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetSandboxOrdersInterceptors() ?? []
+        )
+    }
+    
+    ///Метод отмены торгового поручения в песочнице.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to CancelSandboxOrder.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func cancelSandboxOrder(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderRequest, Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.cancelSandboxOrder.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeCancelSandboxOrderInterceptors() ?? []
+        )
+    }
+    
+    ///Метод получения статуса заявки в песочнице.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetSandboxOrderState.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getSandboxOrderState(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetOrderStateRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetOrderStateRequest, Tinkoff_Public_Invest_Api_Contract_V1_OrderState> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxOrderState.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetSandboxOrderStateInterceptors() ?? []
+        )
+    }
+    
+    ///Метод получения позиций по виртуальному счёту песочницы.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetSandboxPositions.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getSandboxPositions(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest, Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxPositions.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetSandboxPositionsInterceptors() ?? []
+        )
+    }
+    
+    ///Метод получения операций в песочнице по номеру счёта.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetSandboxOperations.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getSandboxOperations(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxOperations.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetSandboxOperationsInterceptors() ?? []
+        )
+    }
+    
+    ///Метод получения портфолио в песочнице.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetSandboxPortfolio.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getSandboxPortfolio(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest, Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxPortfolio.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetSandboxPortfolioInterceptors() ?? []
+        )
+    }
+    
+    ///Метод пополнения счёта в песочнице.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to SandboxPayIn.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func sandboxPayIn(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInRequest, Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.sandboxPayIn.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeSandboxPayInInterceptors() ?? []
+        )
+    }
+    
+    ///Метод получения доступного остатка для вывода средств в песочнице.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetSandboxWithdrawLimits.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getSandboxWithdrawLimits(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest, Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxWithdrawLimits.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetSandboxWithdrawLimitsInterceptors() ?? []
+        )
+    }
 }
 
-public protocol SandboxServiceClientInterceptorFactoryProtocol {
+#if compiler(>=5.6)
+@available(*, deprecated)
+extension Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClient: @unchecked Sendable {}
+#endif // compiler(>=5.6)
 
-  /// - Returns: Interceptors to use when invoking 'openSandboxAccount'.
-  func makeOpenSandboxAccountInterceptors() -> [ClientInterceptor<OpenSandboxAccountRequest, OpenSandboxAccountResponse>]
-
-  /// - Returns: Interceptors to use when invoking 'getSandboxAccounts'.
-  func makeGetSandboxAccountsInterceptors() -> [ClientInterceptor<GetAccountsRequest, GetAccountsResponse>]
-
-  /// - Returns: Interceptors to use when invoking 'closeSandboxAccount'.
-  func makeCloseSandboxAccountInterceptors() -> [ClientInterceptor<CloseSandboxAccountRequest, CloseSandboxAccountResponse>]
-
-  /// - Returns: Interceptors to use when invoking 'postSandboxOrder'.
-  func makePostSandboxOrderInterceptors() -> [ClientInterceptor<PostOrderRequest, PostOrderResponse>]
-
-  /// - Returns: Interceptors to use when invoking 'getSandboxOrders'.
-  func makeGetSandboxOrdersInterceptors() -> [ClientInterceptor<GetOrdersRequest, GetOrdersResponse>]
-
-  /// - Returns: Interceptors to use when invoking 'cancelSandboxOrder'.
-  func makeCancelSandboxOrderInterceptors() -> [ClientInterceptor<CancelOrderRequest, CancelOrderResponse>]
-
-  /// - Returns: Interceptors to use when invoking 'getSandboxOrderState'.
-  func makeGetSandboxOrderStateInterceptors() -> [ClientInterceptor<GetOrderStateRequest, OrderState>]
-
-  /// - Returns: Interceptors to use when invoking 'getSandboxPositions'.
-  func makeGetSandboxPositionsInterceptors() -> [ClientInterceptor<PositionsRequest, PositionsResponse>]
-
-  /// - Returns: Interceptors to use when invoking 'getSandboxOperations'.
-  func makeGetSandboxOperationsInterceptors() -> [ClientInterceptor<OperationsRequest, OperationsResponse>]
-
-  /// - Returns: Interceptors to use when invoking 'getSandboxPortfolio'.
-  func makeGetSandboxPortfolioInterceptors() -> [ClientInterceptor<PortfolioRequest, PortfolioResponse>]
-
-  /// - Returns: Interceptors to use when invoking 'sandboxPayIn'.
-  func makeSandboxPayInInterceptors() -> [ClientInterceptor<SandboxPayInRequest, SandboxPayInResponse>]
+@available(*, deprecated, renamed: "Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceNIOClient")
+internal final class Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClient: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientProtocol {
+    private let lock = Lock()
+    private var _defaultCallOptions: CallOptions
+    private var _interceptors: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientInterceptorFactoryProtocol?
+    internal let channel: GRPCChannel
+    internal var defaultCallOptions: CallOptions {
+        get { self.lock.withLock { return self._defaultCallOptions } }
+        set { self.lock.withLockVoid { self._defaultCallOptions = newValue } }
+    }
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientInterceptorFactoryProtocol? {
+        get { self.lock.withLock { return self._interceptors } }
+        set { self.lock.withLockVoid { self._interceptors = newValue } }
+    }
+    
+    /// Creates a client for the tinkoff.public.invest.api.contract.v1.SandboxService service.
+    ///
+    /// - Parameters:
+    ///   - channel: `GRPCChannel` to the service host.
+    ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+    ///   - interceptors: A factory providing interceptors for each RPC.
+    internal init(
+        channel: GRPCChannel,
+        defaultCallOptions: CallOptions = CallOptions(),
+        interceptors: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientInterceptorFactoryProtocol? = nil
+    ) {
+        self.channel = channel
+        self._defaultCallOptions = defaultCallOptions
+        self._interceptors = interceptors
+    }
 }
 
-public final class SandboxServiceClient: SandboxServiceClientProtocol {
-  public let channel: GRPCChannel
-  public var defaultCallOptions: CallOptions
-  public var interceptors: SandboxServiceClientInterceptorFactoryProtocol?
+internal struct Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceNIOClient: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientProtocol {
+    internal var channel: GRPCChannel
+    internal var defaultCallOptions: CallOptions
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientInterceptorFactoryProtocol?
+    
+    /// Creates a client for the tinkoff.public.invest.api.contract.v1.SandboxService service.
+    ///
+    /// - Parameters:
+    ///   - channel: `GRPCChannel` to the service host.
+    ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+    ///   - interceptors: A factory providing interceptors for each RPC.
+    internal init(
+        channel: GRPCChannel,
+        defaultCallOptions: CallOptions = CallOptions(),
+        interceptors: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientInterceptorFactoryProtocol? = nil
+    ) {
+        self.channel = channel
+        self.defaultCallOptions = defaultCallOptions
+        self.interceptors = interceptors
+    }
+}
 
-  /// Creates a client for the tinkoff.public.invest.api.contract.v1.SandboxService service.
-  ///
-  /// - Parameters:
-  ///   - channel: `GRPCChannel` to the service host.
-  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
-  ///   - interceptors: A factory providing interceptors for each RPC.
-  public init(
-    channel: GRPCChannel,
-    defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: SandboxServiceClientInterceptorFactoryProtocol? = nil
-  ) {
-    self.channel = channel
-    self.defaultCallOptions = defaultCallOptions
-    self.interceptors = interceptors
-  }
+#if compiler(>=5.6)
+///Сервис для работы с песочницей TINKOFF INVEST API
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceAsyncClientProtocol: GRPCClient {
+    static var serviceDescriptor: GRPCServiceDescriptor { get }
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientInterceptorFactoryProtocol? { get }
+    
+    func makeOpenSandboxAccountCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountRequest, Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountResponse>
+    
+    func makeGetSandboxAccountsCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse>
+    
+    func makeCloseSandboxAccountCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountRequest, Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountResponse>
+    
+    func makePostSandboxOrderCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest, Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse>
+    
+    func makeReplaceSandboxOrderCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_ReplaceOrderRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_ReplaceOrderRequest, Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse>
+    
+    func makeGetSandboxOrdersCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersResponse>
+    
+    func makeCancelSandboxOrderCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderRequest, Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderResponse>
+    
+    func makeGetSandboxOrderStateCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetOrderStateRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetOrderStateRequest, Tinkoff_Public_Invest_Api_Contract_V1_OrderState>
+    
+    func makeGetSandboxPositionsCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest, Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse>
+    
+    func makeGetSandboxOperationsCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse>
+    
+    func makeGetSandboxPortfolioCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest, Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse>
+    
+    func makeSandboxPayInCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInRequest, Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInResponse>
+    
+    func makeGetSandboxWithdrawLimitsCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest, Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse>
+}
+
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceAsyncClientProtocol {
+    internal static var serviceDescriptor: GRPCServiceDescriptor {
+        return Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.serviceDescriptor
+    }
+    
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientInterceptorFactoryProtocol? {
+        return nil
+    }
+    
+    internal func makeOpenSandboxAccountCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountRequest, Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.openSandboxAccount.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeOpenSandboxAccountInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetSandboxAccountsCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxAccounts.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetSandboxAccountsInterceptors() ?? []
+        )
+    }
+    
+    internal func makeCloseSandboxAccountCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountRequest, Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.closeSandboxAccount.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeCloseSandboxAccountInterceptors() ?? []
+        )
+    }
+    
+    internal func makePostSandboxOrderCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest, Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.postSandboxOrder.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makePostSandboxOrderInterceptors() ?? []
+        )
+    }
+    
+    internal func makeReplaceSandboxOrderCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_ReplaceOrderRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_ReplaceOrderRequest, Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.replaceSandboxOrder.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeReplaceSandboxOrderInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetSandboxOrdersCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxOrders.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetSandboxOrdersInterceptors() ?? []
+        )
+    }
+    
+    internal func makeCancelSandboxOrderCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderRequest, Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.cancelSandboxOrder.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeCancelSandboxOrderInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetSandboxOrderStateCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetOrderStateRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetOrderStateRequest, Tinkoff_Public_Invest_Api_Contract_V1_OrderState> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxOrderState.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetSandboxOrderStateInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetSandboxPositionsCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest, Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxPositions.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetSandboxPositionsInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetSandboxOperationsCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxOperations.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetSandboxOperationsInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetSandboxPortfolioCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest, Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxPortfolio.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetSandboxPortfolioInterceptors() ?? []
+        )
+    }
+    
+    internal func makeSandboxPayInCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInRequest, Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.sandboxPayIn.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeSandboxPayInInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetSandboxWithdrawLimitsCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest, Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxWithdrawLimits.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetSandboxWithdrawLimitsInterceptors() ?? []
+        )
+    }
+}
+
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceAsyncClientProtocol {
+    internal func openSandboxAccount(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.openSandboxAccount.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeOpenSandboxAccountInterceptors() ?? []
+        )
+    }
+    
+    internal func getSandboxAccounts(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxAccounts.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetSandboxAccountsInterceptors() ?? []
+        )
+    }
+    
+    internal func closeSandboxAccount(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.closeSandboxAccount.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeCloseSandboxAccountInterceptors() ?? []
+        )
+    }
+    
+    internal func postSandboxOrder(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.postSandboxOrder.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makePostSandboxOrderInterceptors() ?? []
+        )
+    }
+    
+    internal func replaceSandboxOrder(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_ReplaceOrderRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.replaceSandboxOrder.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeReplaceSandboxOrderInterceptors() ?? []
+        )
+    }
+    
+    internal func getSandboxOrders(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxOrders.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetSandboxOrdersInterceptors() ?? []
+        )
+    }
+    
+    internal func cancelSandboxOrder(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.cancelSandboxOrder.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeCancelSandboxOrderInterceptors() ?? []
+        )
+    }
+    
+    internal func getSandboxOrderState(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetOrderStateRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_OrderState {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxOrderState.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetSandboxOrderStateInterceptors() ?? []
+        )
+    }
+    
+    internal func getSandboxPositions(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxPositions.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetSandboxPositionsInterceptors() ?? []
+        )
+    }
+    
+    internal func getSandboxOperations(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxOperations.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetSandboxOperationsInterceptors() ?? []
+        )
+    }
+    
+    internal func getSandboxPortfolio(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxPortfolio.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetSandboxPortfolioInterceptors() ?? []
+        )
+    }
+    
+    internal func sandboxPayIn(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.sandboxPayIn.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeSandboxPayInInterceptors() ?? []
+        )
+    }
+    
+    internal func getSandboxWithdrawLimits(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxWithdrawLimits.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetSandboxWithdrawLimitsInterceptors() ?? []
+        )
+    }
+}
+
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+internal struct Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceAsyncClient: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceAsyncClientProtocol {
+    internal var channel: GRPCChannel
+    internal var defaultCallOptions: CallOptions
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientInterceptorFactoryProtocol?
+    
+    internal init(
+        channel: GRPCChannel,
+        defaultCallOptions: CallOptions = CallOptions(),
+        interceptors: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientInterceptorFactoryProtocol? = nil
+    ) {
+        self.channel = channel
+        self.defaultCallOptions = defaultCallOptions
+        self.interceptors = interceptors
+    }
+}
+
+#endif // compiler(>=5.6)
+
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientInterceptorFactoryProtocol: GRPCSendable {
+    
+    /// - Returns: Interceptors to use when invoking 'openSandboxAccount'.
+    func makeOpenSandboxAccountInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountRequest, Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'getSandboxAccounts'.
+    func makeGetSandboxAccountsInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'closeSandboxAccount'.
+    func makeCloseSandboxAccountInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountRequest, Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'postSandboxOrder'.
+    func makePostSandboxOrderInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest, Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'replaceSandboxOrder'.
+    func makeReplaceSandboxOrderInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_ReplaceOrderRequest, Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'getSandboxOrders'.
+    func makeGetSandboxOrdersInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'cancelSandboxOrder'.
+    func makeCancelSandboxOrderInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderRequest, Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'getSandboxOrderState'.
+    func makeGetSandboxOrderStateInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetOrderStateRequest, Tinkoff_Public_Invest_Api_Contract_V1_OrderState>]
+    
+    /// - Returns: Interceptors to use when invoking 'getSandboxPositions'.
+    func makeGetSandboxPositionsInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest, Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'getSandboxOperations'.
+    func makeGetSandboxOperationsInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'getSandboxPortfolio'.
+    func makeGetSandboxPortfolioInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest, Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'sandboxPayIn'.
+    func makeSandboxPayInInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInRequest, Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'getSandboxWithdrawLimits'.
+    func makeGetSandboxWithdrawLimitsInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest, Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse>]
+}
+
+internal enum Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata {
+    internal static let serviceDescriptor = GRPCServiceDescriptor(
+        name: "SandboxService",
+        fullName: "tinkoff.public.invest.api.contract.v1.SandboxService",
+        methods: [
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.openSandboxAccount,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxAccounts,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.closeSandboxAccount,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.postSandboxOrder,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.replaceSandboxOrder,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxOrders,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.cancelSandboxOrder,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxOrderState,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxPositions,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxOperations,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxPortfolio,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.sandboxPayIn,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceClientMetadata.Methods.getSandboxWithdrawLimits,
+        ]
+    )
+    
+    internal enum Methods {
+        internal static let openSandboxAccount = GRPCMethodDescriptor(
+            name: "OpenSandboxAccount",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/OpenSandboxAccount",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getSandboxAccounts = GRPCMethodDescriptor(
+            name: "GetSandboxAccounts",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxAccounts",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let closeSandboxAccount = GRPCMethodDescriptor(
+            name: "CloseSandboxAccount",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/CloseSandboxAccount",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let postSandboxOrder = GRPCMethodDescriptor(
+            name: "PostSandboxOrder",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/PostSandboxOrder",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let replaceSandboxOrder = GRPCMethodDescriptor(
+            name: "ReplaceSandboxOrder",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/ReplaceSandboxOrder",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getSandboxOrders = GRPCMethodDescriptor(
+            name: "GetSandboxOrders",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxOrders",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let cancelSandboxOrder = GRPCMethodDescriptor(
+            name: "CancelSandboxOrder",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/CancelSandboxOrder",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getSandboxOrderState = GRPCMethodDescriptor(
+            name: "GetSandboxOrderState",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxOrderState",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getSandboxPositions = GRPCMethodDescriptor(
+            name: "GetSandboxPositions",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxPositions",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getSandboxOperations = GRPCMethodDescriptor(
+            name: "GetSandboxOperations",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxOperations",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getSandboxPortfolio = GRPCMethodDescriptor(
+            name: "GetSandboxPortfolio",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxPortfolio",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let sandboxPayIn = GRPCMethodDescriptor(
+            name: "SandboxPayIn",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/SandboxPayIn",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getSandboxWithdrawLimits = GRPCMethodDescriptor(
+            name: "GetSandboxWithdrawLimits",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxWithdrawLimits",
+            type: GRPCCallType.unary
+        )
+    }
 }
 
 ///Сервис для работы с песочницей TINKOFF INVEST API
 ///
 /// To build a server, implement a class that conforms to this protocol.
-public protocol SandboxServiceProvider: CallHandlerProvider {
-  var interceptors: SandboxServiceServerInterceptorFactoryProtocol? { get }
-
-  ///Метод регистрации счёта в песочнице.
-  func openSandboxAccount(request: OpenSandboxAccountRequest, context: StatusOnlyCallContext) -> EventLoopFuture<OpenSandboxAccountResponse>
-
-  ///Метод получения счетов в песочнице.
-  func getSandboxAccounts(request: GetAccountsRequest, context: StatusOnlyCallContext) -> EventLoopFuture<GetAccountsResponse>
-
-  ///Метод закрытия счёта в песочнице.
-  func closeSandboxAccount(request: CloseSandboxAccountRequest, context: StatusOnlyCallContext) -> EventLoopFuture<CloseSandboxAccountResponse>
-
-  ///Метод выставления торгового поручения в песочнице.
-  func postSandboxOrder(request: PostOrderRequest, context: StatusOnlyCallContext) -> EventLoopFuture<PostOrderResponse>
-
-  ///Метод получения списка активных заявок по счёту в песочнице.
-  func getSandboxOrders(request: GetOrdersRequest, context: StatusOnlyCallContext) -> EventLoopFuture<GetOrdersResponse>
-
-  ///Метод отмены торгового поручения в песочнице.
-  func cancelSandboxOrder(request: CancelOrderRequest, context: StatusOnlyCallContext) -> EventLoopFuture<CancelOrderResponse>
-
-  ///Метод получения статуса заявки в песочнице.
-  func getSandboxOrderState(request: GetOrderStateRequest, context: StatusOnlyCallContext) -> EventLoopFuture<OrderState>
-
-  ///Метод получения позиций по виртуальному счёту песочницы.
-  func getSandboxPositions(request: PositionsRequest, context: StatusOnlyCallContext) -> EventLoopFuture<PositionsResponse>
-
-  ///Метод получения операций в песочнице по номеру счёта.
-  func getSandboxOperations(request: OperationsRequest, context: StatusOnlyCallContext) -> EventLoopFuture<OperationsResponse>
-
-  ///Метод получения портфолио в песочнице.
-  func getSandboxPortfolio(request: PortfolioRequest, context: StatusOnlyCallContext) -> EventLoopFuture<PortfolioResponse>
-
-  ///Метод пополнения счёта в песочнице.
-  func sandboxPayIn(request: SandboxPayInRequest, context: StatusOnlyCallContext) -> EventLoopFuture<SandboxPayInResponse>
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceProvider: CallHandlerProvider {
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceServerInterceptorFactoryProtocol? { get }
+    
+    ///Метод регистрации счёта в песочнице.
+    func openSandboxAccount(request: Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountResponse>
+    
+    ///Метод получения счетов в песочнице.
+    func getSandboxAccounts(request: Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse>
+    
+    ///Метод закрытия счёта в песочнице.
+    func closeSandboxAccount(request: Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountResponse>
+    
+    ///Метод выставления торгового поручения в песочнице.
+    func postSandboxOrder(request: Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse>
+    
+    ///Метод изменения выставленной заявки.
+    func replaceSandboxOrder(request: Tinkoff_Public_Invest_Api_Contract_V1_ReplaceOrderRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse>
+    
+    ///Метод получения списка активных заявок по счёту в песочнице.
+    func getSandboxOrders(request: Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersResponse>
+    
+    ///Метод отмены торгового поручения в песочнице.
+    func cancelSandboxOrder(request: Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderResponse>
+    
+    ///Метод получения статуса заявки в песочнице.
+    func getSandboxOrderState(request: Tinkoff_Public_Invest_Api_Contract_V1_GetOrderStateRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_OrderState>
+    
+    ///Метод получения позиций по виртуальному счёту песочницы.
+    func getSandboxPositions(request: Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse>
+    
+    ///Метод получения операций в песочнице по номеру счёта.
+    func getSandboxOperations(request: Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse>
+    
+    ///Метод получения портфолио в песочнице.
+    func getSandboxPortfolio(request: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse>
+    
+    ///Метод пополнения счёта в песочнице.
+    func sandboxPayIn(request: Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInResponse>
+    
+    ///Метод получения доступного остатка для вывода средств в песочнице.
+    func getSandboxWithdrawLimits(request: Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse>
 }
 
-extension SandboxServiceProvider {
-  public var serviceName: Substring { return "tinkoff.public.invest.api.contract.v1.SandboxService" }
-
-  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
-  /// Returns nil for methods not handled by this service.
-  public func handle(
-    method name: Substring,
-    context: CallHandlerContext
-  ) -> GRPCServerHandlerProtocol? {
-    switch name {
-    case "OpenSandboxAccount":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<OpenSandboxAccountRequest>(),
-        responseSerializer: ProtobufSerializer<OpenSandboxAccountResponse>(),
-        interceptors: self.interceptors?.makeOpenSandboxAccountInterceptors() ?? [],
-        userFunction: self.openSandboxAccount(request:context:)
-      )
-
-    case "GetSandboxAccounts":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<GetAccountsRequest>(),
-        responseSerializer: ProtobufSerializer<GetAccountsResponse>(),
-        interceptors: self.interceptors?.makeGetSandboxAccountsInterceptors() ?? [],
-        userFunction: self.getSandboxAccounts(request:context:)
-      )
-
-    case "CloseSandboxAccount":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<CloseSandboxAccountRequest>(),
-        responseSerializer: ProtobufSerializer<CloseSandboxAccountResponse>(),
-        interceptors: self.interceptors?.makeCloseSandboxAccountInterceptors() ?? [],
-        userFunction: self.closeSandboxAccount(request:context:)
-      )
-
-    case "PostSandboxOrder":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<PostOrderRequest>(),
-        responseSerializer: ProtobufSerializer<PostOrderResponse>(),
-        interceptors: self.interceptors?.makePostSandboxOrderInterceptors() ?? [],
-        userFunction: self.postSandboxOrder(request:context:)
-      )
-
-    case "GetSandboxOrders":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<GetOrdersRequest>(),
-        responseSerializer: ProtobufSerializer<GetOrdersResponse>(),
-        interceptors: self.interceptors?.makeGetSandboxOrdersInterceptors() ?? [],
-        userFunction: self.getSandboxOrders(request:context:)
-      )
-
-    case "CancelSandboxOrder":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<CancelOrderRequest>(),
-        responseSerializer: ProtobufSerializer<CancelOrderResponse>(),
-        interceptors: self.interceptors?.makeCancelSandboxOrderInterceptors() ?? [],
-        userFunction: self.cancelSandboxOrder(request:context:)
-      )
-
-    case "GetSandboxOrderState":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<GetOrderStateRequest>(),
-        responseSerializer: ProtobufSerializer<OrderState>(),
-        interceptors: self.interceptors?.makeGetSandboxOrderStateInterceptors() ?? [],
-        userFunction: self.getSandboxOrderState(request:context:)
-      )
-
-    case "GetSandboxPositions":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<PositionsRequest>(),
-        responseSerializer: ProtobufSerializer<PositionsResponse>(),
-        interceptors: self.interceptors?.makeGetSandboxPositionsInterceptors() ?? [],
-        userFunction: self.getSandboxPositions(request:context:)
-      )
-
-    case "GetSandboxOperations":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<OperationsRequest>(),
-        responseSerializer: ProtobufSerializer<OperationsResponse>(),
-        interceptors: self.interceptors?.makeGetSandboxOperationsInterceptors() ?? [],
-        userFunction: self.getSandboxOperations(request:context:)
-      )
-
-    case "GetSandboxPortfolio":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<PortfolioRequest>(),
-        responseSerializer: ProtobufSerializer<PortfolioResponse>(),
-        interceptors: self.interceptors?.makeGetSandboxPortfolioInterceptors() ?? [],
-        userFunction: self.getSandboxPortfolio(request:context:)
-      )
-
-    case "SandboxPayIn":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<SandboxPayInRequest>(),
-        responseSerializer: ProtobufSerializer<SandboxPayInResponse>(),
-        interceptors: self.interceptors?.makeSandboxPayInInterceptors() ?? [],
-        userFunction: self.sandboxPayIn(request:context:)
-      )
-
-    default:
-      return nil
+extension Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceProvider {
+    internal var serviceName: Substring {
+        return Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceServerMetadata.serviceDescriptor.fullName[...]
     }
-  }
+    
+    /// Determines, calls and returns the appropriate request handler, depending on the request's method.
+    /// Returns nil for methods not handled by this service.
+    internal func handle(
+        method name: Substring,
+        context: CallHandlerContext
+    ) -> GRPCServerHandlerProtocol? {
+        switch name {
+        case "OpenSandboxAccount":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountResponse>(),
+                interceptors: self.interceptors?.makeOpenSandboxAccountInterceptors() ?? [],
+                userFunction: self.openSandboxAccount(request:context:)
+            )
+            
+        case "GetSandboxAccounts":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse>(),
+                interceptors: self.interceptors?.makeGetSandboxAccountsInterceptors() ?? [],
+                userFunction: self.getSandboxAccounts(request:context:)
+            )
+            
+        case "CloseSandboxAccount":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountResponse>(),
+                interceptors: self.interceptors?.makeCloseSandboxAccountInterceptors() ?? [],
+                userFunction: self.closeSandboxAccount(request:context:)
+            )
+            
+        case "PostSandboxOrder":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse>(),
+                interceptors: self.interceptors?.makePostSandboxOrderInterceptors() ?? [],
+                userFunction: self.postSandboxOrder(request:context:)
+            )
+            
+        case "ReplaceSandboxOrder":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_ReplaceOrderRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse>(),
+                interceptors: self.interceptors?.makeReplaceSandboxOrderInterceptors() ?? [],
+                userFunction: self.replaceSandboxOrder(request:context:)
+            )
+            
+        case "GetSandboxOrders":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersResponse>(),
+                interceptors: self.interceptors?.makeGetSandboxOrdersInterceptors() ?? [],
+                userFunction: self.getSandboxOrders(request:context:)
+            )
+            
+        case "CancelSandboxOrder":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderResponse>(),
+                interceptors: self.interceptors?.makeCancelSandboxOrderInterceptors() ?? [],
+                userFunction: self.cancelSandboxOrder(request:context:)
+            )
+            
+        case "GetSandboxOrderState":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetOrderStateRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_OrderState>(),
+                interceptors: self.interceptors?.makeGetSandboxOrderStateInterceptors() ?? [],
+                userFunction: self.getSandboxOrderState(request:context:)
+            )
+            
+        case "GetSandboxPositions":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse>(),
+                interceptors: self.interceptors?.makeGetSandboxPositionsInterceptors() ?? [],
+                userFunction: self.getSandboxPositions(request:context:)
+            )
+            
+        case "GetSandboxOperations":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse>(),
+                interceptors: self.interceptors?.makeGetSandboxOperationsInterceptors() ?? [],
+                userFunction: self.getSandboxOperations(request:context:)
+            )
+            
+        case "GetSandboxPortfolio":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse>(),
+                interceptors: self.interceptors?.makeGetSandboxPortfolioInterceptors() ?? [],
+                userFunction: self.getSandboxPortfolio(request:context:)
+            )
+            
+        case "SandboxPayIn":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInResponse>(),
+                interceptors: self.interceptors?.makeSandboxPayInInterceptors() ?? [],
+                userFunction: self.sandboxPayIn(request:context:)
+            )
+            
+        case "GetSandboxWithdrawLimits":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse>(),
+                interceptors: self.interceptors?.makeGetSandboxWithdrawLimitsInterceptors() ?? [],
+                userFunction: self.getSandboxWithdrawLimits(request:context:)
+            )
+            
+        default:
+            return nil
+        }
+    }
 }
 
-public protocol SandboxServiceServerInterceptorFactoryProtocol {
+#if compiler(>=5.6)
 
-  /// - Returns: Interceptors to use when handling 'openSandboxAccount'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeOpenSandboxAccountInterceptors() -> [ServerInterceptor<OpenSandboxAccountRequest, OpenSandboxAccountResponse>]
+///Сервис для работы с песочницей TINKOFF INVEST API
+///
+/// To implement a server, implement an object which conforms to this protocol.
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceAsyncProvider: CallHandlerProvider {
+    static var serviceDescriptor: GRPCServiceDescriptor { get }
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceServerInterceptorFactoryProtocol? { get }
+    
+    ///Метод регистрации счёта в песочнице.
+    @Sendable func openSandboxAccount(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountResponse
+    
+    ///Метод получения счетов в песочнице.
+    @Sendable func getSandboxAccounts(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse
+    
+    ///Метод закрытия счёта в песочнице.
+    @Sendable func closeSandboxAccount(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountResponse
+    
+    ///Метод выставления торгового поручения в песочнице.
+    @Sendable func postSandboxOrder(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse
+    
+    ///Метод изменения выставленной заявки.
+    @Sendable func replaceSandboxOrder(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_ReplaceOrderRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse
+    
+    ///Метод получения списка активных заявок по счёту в песочнице.
+    @Sendable func getSandboxOrders(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersResponse
+    
+    ///Метод отмены торгового поручения в песочнице.
+    @Sendable func cancelSandboxOrder(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderResponse
+    
+    ///Метод получения статуса заявки в песочнице.
+    @Sendable func getSandboxOrderState(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_GetOrderStateRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_OrderState
+    
+    ///Метод получения позиций по виртуальному счёту песочницы.
+    @Sendable func getSandboxPositions(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse
+    
+    ///Метод получения операций в песочнице по номеру счёта.
+    @Sendable func getSandboxOperations(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse
+    
+    ///Метод получения портфолио в песочнице.
+    @Sendable func getSandboxPortfolio(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse
+    
+    ///Метод пополнения счёта в песочнице.
+    @Sendable func sandboxPayIn(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInResponse
+    
+    ///Метод получения доступного остатка для вывода средств в песочнице.
+    @Sendable func getSandboxWithdrawLimits(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse
+}
 
-  /// - Returns: Interceptors to use when handling 'getSandboxAccounts'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetSandboxAccountsInterceptors() -> [ServerInterceptor<GetAccountsRequest, GetAccountsResponse>]
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceAsyncProvider {
+    internal static var serviceDescriptor: GRPCServiceDescriptor {
+        return Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceServerMetadata.serviceDescriptor
+    }
+    
+    internal var serviceName: Substring {
+        return Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceServerMetadata.serviceDescriptor.fullName[...]
+    }
+    
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceServerInterceptorFactoryProtocol? {
+        return nil
+    }
+    
+    internal func handle(
+        method name: Substring,
+        context: CallHandlerContext
+    ) -> GRPCServerHandlerProtocol? {
+        switch name {
+        case "OpenSandboxAccount":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountResponse>(),
+                interceptors: self.interceptors?.makeOpenSandboxAccountInterceptors() ?? [],
+                wrapping: self.openSandboxAccount(request:context:)
+            )
+            
+        case "GetSandboxAccounts":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse>(),
+                interceptors: self.interceptors?.makeGetSandboxAccountsInterceptors() ?? [],
+                wrapping: self.getSandboxAccounts(request:context:)
+            )
+            
+        case "CloseSandboxAccount":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountResponse>(),
+                interceptors: self.interceptors?.makeCloseSandboxAccountInterceptors() ?? [],
+                wrapping: self.closeSandboxAccount(request:context:)
+            )
+            
+        case "PostSandboxOrder":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse>(),
+                interceptors: self.interceptors?.makePostSandboxOrderInterceptors() ?? [],
+                wrapping: self.postSandboxOrder(request:context:)
+            )
+            
+        case "ReplaceSandboxOrder":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_ReplaceOrderRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse>(),
+                interceptors: self.interceptors?.makeReplaceSandboxOrderInterceptors() ?? [],
+                wrapping: self.replaceSandboxOrder(request:context:)
+            )
+            
+        case "GetSandboxOrders":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersResponse>(),
+                interceptors: self.interceptors?.makeGetSandboxOrdersInterceptors() ?? [],
+                wrapping: self.getSandboxOrders(request:context:)
+            )
+            
+        case "CancelSandboxOrder":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderResponse>(),
+                interceptors: self.interceptors?.makeCancelSandboxOrderInterceptors() ?? [],
+                wrapping: self.cancelSandboxOrder(request:context:)
+            )
+            
+        case "GetSandboxOrderState":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetOrderStateRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_OrderState>(),
+                interceptors: self.interceptors?.makeGetSandboxOrderStateInterceptors() ?? [],
+                wrapping: self.getSandboxOrderState(request:context:)
+            )
+            
+        case "GetSandboxPositions":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse>(),
+                interceptors: self.interceptors?.makeGetSandboxPositionsInterceptors() ?? [],
+                wrapping: self.getSandboxPositions(request:context:)
+            )
+            
+        case "GetSandboxOperations":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse>(),
+                interceptors: self.interceptors?.makeGetSandboxOperationsInterceptors() ?? [],
+                wrapping: self.getSandboxOperations(request:context:)
+            )
+            
+        case "GetSandboxPortfolio":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse>(),
+                interceptors: self.interceptors?.makeGetSandboxPortfolioInterceptors() ?? [],
+                wrapping: self.getSandboxPortfolio(request:context:)
+            )
+            
+        case "SandboxPayIn":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInResponse>(),
+                interceptors: self.interceptors?.makeSandboxPayInInterceptors() ?? [],
+                wrapping: self.sandboxPayIn(request:context:)
+            )
+            
+        case "GetSandboxWithdrawLimits":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse>(),
+                interceptors: self.interceptors?.makeGetSandboxWithdrawLimitsInterceptors() ?? [],
+                wrapping: self.getSandboxWithdrawLimits(request:context:)
+            )
+            
+        default:
+            return nil
+        }
+    }
+}
 
-  /// - Returns: Interceptors to use when handling 'closeSandboxAccount'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeCloseSandboxAccountInterceptors() -> [ServerInterceptor<CloseSandboxAccountRequest, CloseSandboxAccountResponse>]
+#endif // compiler(>=5.6)
 
-  /// - Returns: Interceptors to use when handling 'postSandboxOrder'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makePostSandboxOrderInterceptors() -> [ServerInterceptor<PostOrderRequest, PostOrderResponse>]
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceServerInterceptorFactoryProtocol {
+    
+    /// - Returns: Interceptors to use when handling 'openSandboxAccount'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeOpenSandboxAccountInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountRequest, Tinkoff_Public_Invest_Api_Contract_V1_OpenSandboxAccountResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'getSandboxAccounts'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetSandboxAccountsInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'closeSandboxAccount'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeCloseSandboxAccountInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountRequest, Tinkoff_Public_Invest_Api_Contract_V1_CloseSandboxAccountResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'postSandboxOrder'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makePostSandboxOrderInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest, Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'replaceSandboxOrder'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeReplaceSandboxOrderInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_ReplaceOrderRequest, Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'getSandboxOrders'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetSandboxOrdersInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetOrdersResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'cancelSandboxOrder'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeCancelSandboxOrderInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderRequest, Tinkoff_Public_Invest_Api_Contract_V1_CancelOrderResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'getSandboxOrderState'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetSandboxOrderStateInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetOrderStateRequest, Tinkoff_Public_Invest_Api_Contract_V1_OrderState>]
+    
+    /// - Returns: Interceptors to use when handling 'getSandboxPositions'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetSandboxPositionsInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest, Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'getSandboxOperations'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetSandboxOperationsInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'getSandboxPortfolio'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetSandboxPortfolioInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest, Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'sandboxPayIn'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeSandboxPayInInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInRequest, Tinkoff_Public_Invest_Api_Contract_V1_SandboxPayInResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'getSandboxWithdrawLimits'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetSandboxWithdrawLimitsInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest, Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse>]
+}
 
-  /// - Returns: Interceptors to use when handling 'getSandboxOrders'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetSandboxOrdersInterceptors() -> [ServerInterceptor<GetOrdersRequest, GetOrdersResponse>]
-
-  /// - Returns: Interceptors to use when handling 'cancelSandboxOrder'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeCancelSandboxOrderInterceptors() -> [ServerInterceptor<CancelOrderRequest, CancelOrderResponse>]
-
-  /// - Returns: Interceptors to use when handling 'getSandboxOrderState'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetSandboxOrderStateInterceptors() -> [ServerInterceptor<GetOrderStateRequest, OrderState>]
-
-  /// - Returns: Interceptors to use when handling 'getSandboxPositions'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetSandboxPositionsInterceptors() -> [ServerInterceptor<PositionsRequest, PositionsResponse>]
-
-  /// - Returns: Interceptors to use when handling 'getSandboxOperations'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetSandboxOperationsInterceptors() -> [ServerInterceptor<OperationsRequest, OperationsResponse>]
-
-  /// - Returns: Interceptors to use when handling 'getSandboxPortfolio'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetSandboxPortfolioInterceptors() -> [ServerInterceptor<PortfolioRequest, PortfolioResponse>]
-
-  /// - Returns: Interceptors to use when handling 'sandboxPayIn'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeSandboxPayInInterceptors() -> [ServerInterceptor<SandboxPayInRequest, SandboxPayInResponse>]
+internal enum Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceServerMetadata {
+    internal static let serviceDescriptor = GRPCServiceDescriptor(
+        name: "SandboxService",
+        fullName: "tinkoff.public.invest.api.contract.v1.SandboxService",
+        methods: [
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceServerMetadata.Methods.openSandboxAccount,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceServerMetadata.Methods.getSandboxAccounts,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceServerMetadata.Methods.closeSandboxAccount,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceServerMetadata.Methods.postSandboxOrder,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceServerMetadata.Methods.replaceSandboxOrder,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceServerMetadata.Methods.getSandboxOrders,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceServerMetadata.Methods.cancelSandboxOrder,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceServerMetadata.Methods.getSandboxOrderState,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceServerMetadata.Methods.getSandboxPositions,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceServerMetadata.Methods.getSandboxOperations,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceServerMetadata.Methods.getSandboxPortfolio,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceServerMetadata.Methods.sandboxPayIn,
+            Tinkoff_Public_Invest_Api_Contract_V1_SandboxServiceServerMetadata.Methods.getSandboxWithdrawLimits,
+        ]
+    )
+    
+    internal enum Methods {
+        internal static let openSandboxAccount = GRPCMethodDescriptor(
+            name: "OpenSandboxAccount",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/OpenSandboxAccount",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getSandboxAccounts = GRPCMethodDescriptor(
+            name: "GetSandboxAccounts",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxAccounts",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let closeSandboxAccount = GRPCMethodDescriptor(
+            name: "CloseSandboxAccount",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/CloseSandboxAccount",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let postSandboxOrder = GRPCMethodDescriptor(
+            name: "PostSandboxOrder",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/PostSandboxOrder",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let replaceSandboxOrder = GRPCMethodDescriptor(
+            name: "ReplaceSandboxOrder",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/ReplaceSandboxOrder",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getSandboxOrders = GRPCMethodDescriptor(
+            name: "GetSandboxOrders",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxOrders",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let cancelSandboxOrder = GRPCMethodDescriptor(
+            name: "CancelSandboxOrder",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/CancelSandboxOrder",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getSandboxOrderState = GRPCMethodDescriptor(
+            name: "GetSandboxOrderState",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxOrderState",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getSandboxPositions = GRPCMethodDescriptor(
+            name: "GetSandboxPositions",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxPositions",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getSandboxOperations = GRPCMethodDescriptor(
+            name: "GetSandboxOperations",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxOperations",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getSandboxPortfolio = GRPCMethodDescriptor(
+            name: "GetSandboxPortfolio",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxPortfolio",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let sandboxPayIn = GRPCMethodDescriptor(
+            name: "SandboxPayIn",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/SandboxPayIn",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getSandboxWithdrawLimits = GRPCMethodDescriptor(
+            name: "GetSandboxWithdrawLimits",
+            path: "/tinkoff.public.invest.api.contract.v1.SandboxService/GetSandboxWithdrawLimits",
+            type: GRPCCallType.unary
+        )
+    }
 }

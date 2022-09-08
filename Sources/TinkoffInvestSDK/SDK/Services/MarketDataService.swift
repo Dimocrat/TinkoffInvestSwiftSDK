@@ -9,6 +9,16 @@ import Combine
 import GRPC
 import CombineGRPC
 
+public typealias GetCandlesRequest = Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesRequest
+public typealias GetCandlesResponse = Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesResponse
+public typealias GetLastPricesResponse = Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesResponse
+public typealias MarketDataServiceClient = Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceNIOClient
+public typealias GetLastPricesRequest = Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesRequest
+public typealias GetOrderBookRequest = Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookRequest
+public typealias GetOrderBookResponse = Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookResponse
+public typealias GetTradingStatusRequest = Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest
+public typealias GetTradingStatusResponse = Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusResponse
+
 public protocol MarketDataService: AnyObject {
     func getCandels(request: GetCandlesRequest) -> AnyPublisher<GetCandlesResponse, RPCError>
 

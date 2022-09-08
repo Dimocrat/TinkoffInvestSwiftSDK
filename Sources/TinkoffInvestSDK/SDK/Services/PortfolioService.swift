@@ -9,6 +9,18 @@ import Combine
 import GRPC
 import CombineGRPC
 
+public typealias PositionsResponse = Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse
+public typealias PortfolioResponse = Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse
+public typealias WithdrawLimitsResponse = Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse
+public typealias OperationsRequest = Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest
+public typealias OperationsResponse = Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse
+public typealias OperationsServiceClient = Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceNIOClient
+public typealias PositionsRequest = Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest
+public typealias WithdrawLimitsRequest = Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest
+public typealias PortfolioRequest = Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest
+public typealias GetOperationsByCursorRequest = Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRequest
+public typealias GetOperationsByCursorResponse = Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorResponse
+
 public protocol PortfolioService: AnyObject {
 
     func getPortfolio(accountID: String) -> AnyPublisher<PortfolioResponse, RPCError>
@@ -18,6 +30,8 @@ public protocol PortfolioService: AnyObject {
     func getWithdrawLimits(accountID: String) -> AnyPublisher<WithdrawLimitsResponse, RPCError>
 
     func getOperations(request: OperationsRequest) -> AnyPublisher<OperationsResponse, RPCError>
+    
+    func getOperationsByCursor(request: GetOperationsByCursorRequest) -> AnyPublisher<GetOperationsByCursorResponse, RPCError>
 }
 
 final class GRPCPortfolioService: BaseCombineGRPCService, PortfolioService {
@@ -48,5 +62,9 @@ final class GRPCPortfolioService: BaseCombineGRPCService, PortfolioService {
 
     func getOperations(request: OperationsRequest) -> AnyPublisher<OperationsResponse, RPCError> {
         return executor.call(client.getOperations)(request)
+    }
+    
+    func getOperationsByCursor(request: GetOperationsByCursorRequest) -> AnyPublisher<GetOperationsByCursorResponse, RPCError> {
+        return executor.call(client.getOperationsByCursor)(request)
     }
 }

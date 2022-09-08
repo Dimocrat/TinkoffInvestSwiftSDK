@@ -22,343 +22,1226 @@
 //
 import GRPC
 import NIO
+import NIOConcurrencyHelpers
 import SwiftProtobuf
 
 
 ///Сервис получения биржевой информации:</br> **1**. свечи;</br> **2**. стаканы;</br> **3**. торговые статусы;</br> **4**. лента сделок.
 ///
-/// Usage: instantiate `MarketDataServiceClient`, then call methods of this protocol to make API calls.
-public protocol MarketDataServiceClientProtocol: GRPCClient {
-  var serviceName: String { get }
-  var interceptors: MarketDataServiceClientInterceptorFactoryProtocol? { get }
-
-  func getCandles(
-    _ request: GetCandlesRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<GetCandlesRequest, GetCandlesResponse>
-
-  func getLastPrices(
-    _ request: GetLastPricesRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<GetLastPricesRequest, GetLastPricesResponse>
-
-  func getOrderBook(
-    _ request: GetOrderBookRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<GetOrderBookRequest, GetOrderBookResponse>
-
-  func getTradingStatus(
-    _ request: GetTradingStatusRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<GetTradingStatusRequest, GetTradingStatusResponse>
+/// Usage: instantiate `Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClient`, then call methods of this protocol to make API calls.
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientProtocol: GRPCClient {
+    var serviceName: String { get }
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientInterceptorFactoryProtocol? { get }
+    
+    func getCandles(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesResponse>
+    
+    func getLastPrices(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesResponse>
+    
+    func getOrderBook(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookResponse>
+    
+    func getTradingStatus(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusResponse>
+    
+    func getLastTrades(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesResponse>
+    
+    func getClosePrices(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesResponse>
 }
 
-extension MarketDataServiceClientProtocol {
-  public var serviceName: String {
-    return "tinkoff.public.invest.api.contract.v1.MarketDataService"
-  }
+extension Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientProtocol {
+    internal var serviceName: String {
+        return "tinkoff.public.invest.api.contract.v1.MarketDataService"
+    }
+    
+    ///Метод запроса исторических свечей по инструменту.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetCandles.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getCandles(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getCandles.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetCandlesInterceptors() ?? []
+        )
+    }
+    
+    ///Метод запроса последних цен по инструментам.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetLastPrices.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getLastPrices(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getLastPrices.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetLastPricesInterceptors() ?? []
+        )
+    }
+    
+    ///Метод получения стакана по инструменту.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetOrderBook.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getOrderBook(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getOrderBook.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetOrderBookInterceptors() ?? []
+        )
+    }
+    
+    ///Метод запроса статуса торгов по инструментам.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetTradingStatus.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getTradingStatus(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getTradingStatus.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetTradingStatusInterceptors() ?? []
+        )
+    }
+    
+    ///Метод запроса обезличенных сделок за последний час.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetLastTrades.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getLastTrades(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getLastTrades.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetLastTradesInterceptors() ?? []
+        )
+    }
+    
+    ///Метод запроса цен закрытия торговой сессии по инструментам.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetClosePrices.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getClosePrices(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getClosePrices.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetClosePricesInterceptors() ?? []
+        )
+    }
+}
 
-  ///Метод запроса исторических свечей по инструменту.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetCandles.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func getCandles(
-    _ request: GetCandlesRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<GetCandlesRequest, GetCandlesResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetCandles",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetCandlesInterceptors() ?? []
+#if compiler(>=5.6)
+@available(*, deprecated)
+extension Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClient: @unchecked Sendable {}
+#endif // compiler(>=5.6)
+
+@available(*, deprecated, renamed: "Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceNIOClient")
+internal final class Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClient: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientProtocol {
+    private let lock = Lock()
+    private var _defaultCallOptions: CallOptions
+    private var _interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientInterceptorFactoryProtocol?
+    internal let channel: GRPCChannel
+    internal var defaultCallOptions: CallOptions {
+        get { self.lock.withLock { return self._defaultCallOptions } }
+        set { self.lock.withLockVoid { self._defaultCallOptions = newValue } }
+    }
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientInterceptorFactoryProtocol? {
+        get { self.lock.withLock { return self._interceptors } }
+        set { self.lock.withLockVoid { self._interceptors = newValue } }
+    }
+    
+    /// Creates a client for the tinkoff.public.invest.api.contract.v1.MarketDataService service.
+    ///
+    /// - Parameters:
+    ///   - channel: `GRPCChannel` to the service host.
+    ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+    ///   - interceptors: A factory providing interceptors for each RPC.
+    internal init(
+        channel: GRPCChannel,
+        defaultCallOptions: CallOptions = CallOptions(),
+        interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientInterceptorFactoryProtocol? = nil
+    ) {
+        self.channel = channel
+        self._defaultCallOptions = defaultCallOptions
+        self._interceptors = interceptors
+    }
+}
+
+public struct Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceNIOClient: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientProtocol {
+    public var channel: GRPCChannel
+    public var defaultCallOptions: CallOptions
+    public var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientInterceptorFactoryProtocol?
+    
+    /// Creates a client for the tinkoff.public.invest.api.contract.v1.MarketDataService service.
+    ///
+    /// - Parameters:
+    ///   - channel: `GRPCChannel` to the service host.
+    ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+    ///   - interceptors: A factory providing interceptors for each RPC.
+    internal init(
+        channel: GRPCChannel,
+        defaultCallOptions: CallOptions = CallOptions(),
+        interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientInterceptorFactoryProtocol? = nil
+    ) {
+        self.channel = channel
+        self.defaultCallOptions = defaultCallOptions
+        self.interceptors = interceptors
+    }
+}
+
+#if compiler(>=5.6)
+///Сервис получения биржевой информации:</br> **1**. свечи;</br> **2**. стаканы;</br> **3**. торговые статусы;</br> **4**. лента сделок.
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceAsyncClientProtocol: GRPCClient {
+    static var serviceDescriptor: GRPCServiceDescriptor { get }
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientInterceptorFactoryProtocol? { get }
+    
+    func makeGetCandlesCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesResponse>
+    
+    func makeGetLastPricesCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesResponse>
+    
+    func makeGetOrderBookCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookResponse>
+    
+    func makeGetTradingStatusCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusResponse>
+    
+    func makeGetLastTradesCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesResponse>
+    
+    func makeGetClosePricesCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesResponse>
+}
+
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceAsyncClientProtocol {
+    internal static var serviceDescriptor: GRPCServiceDescriptor {
+        return Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.serviceDescriptor
+    }
+    
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientInterceptorFactoryProtocol? {
+        return nil
+    }
+    
+    internal func makeGetCandlesCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getCandles.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetCandlesInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetLastPricesCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getLastPrices.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetLastPricesInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetOrderBookCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getOrderBook.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetOrderBookInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetTradingStatusCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getTradingStatus.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetTradingStatusInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetLastTradesCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getLastTrades.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetLastTradesInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetClosePricesCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getClosePrices.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetClosePricesInterceptors() ?? []
+        )
+    }
+}
+
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceAsyncClientProtocol {
+    internal func getCandles(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getCandles.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetCandlesInterceptors() ?? []
+        )
+    }
+    
+    internal func getLastPrices(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getLastPrices.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetLastPricesInterceptors() ?? []
+        )
+    }
+    
+    internal func getOrderBook(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getOrderBook.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetOrderBookInterceptors() ?? []
+        )
+    }
+    
+    internal func getTradingStatus(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getTradingStatus.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetTradingStatusInterceptors() ?? []
+        )
+    }
+    
+    internal func getLastTrades(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getLastTrades.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetLastTradesInterceptors() ?? []
+        )
+    }
+    
+    internal func getClosePrices(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getClosePrices.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetClosePricesInterceptors() ?? []
+        )
+    }
+}
+
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+internal struct Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceAsyncClient: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceAsyncClientProtocol {
+    internal var channel: GRPCChannel
+    internal var defaultCallOptions: CallOptions
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientInterceptorFactoryProtocol?
+    
+    internal init(
+        channel: GRPCChannel,
+        defaultCallOptions: CallOptions = CallOptions(),
+        interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientInterceptorFactoryProtocol? = nil
+    ) {
+        self.channel = channel
+        self.defaultCallOptions = defaultCallOptions
+        self.interceptors = interceptors
+    }
+}
+
+#endif // compiler(>=5.6)
+
+public protocol Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientInterceptorFactoryProtocol: GRPCSendable {
+    
+    /// - Returns: Interceptors to use when invoking 'getCandles'.
+    func makeGetCandlesInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'getLastPrices'.
+    func makeGetLastPricesInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'getOrderBook'.
+    func makeGetOrderBookInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'getTradingStatus'.
+    func makeGetTradingStatusInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'getLastTrades'.
+    func makeGetLastTradesInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'getClosePrices'.
+    func makeGetClosePricesInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesResponse>]
+}
+
+internal enum Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata {
+    internal static let serviceDescriptor = GRPCServiceDescriptor(
+        name: "MarketDataService",
+        fullName: "tinkoff.public.invest.api.contract.v1.MarketDataService",
+        methods: [
+            Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getCandles,
+            Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getLastPrices,
+            Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getOrderBook,
+            Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getTradingStatus,
+            Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getLastTrades,
+            Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getClosePrices,
+        ]
     )
-  }
+    
+    internal enum Methods {
+        internal static let getCandles = GRPCMethodDescriptor(
+            name: "GetCandles",
+            path: "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetCandles",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getLastPrices = GRPCMethodDescriptor(
+            name: "GetLastPrices",
+            path: "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetLastPrices",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getOrderBook = GRPCMethodDescriptor(
+            name: "GetOrderBook",
+            path: "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetOrderBook",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getTradingStatus = GRPCMethodDescriptor(
+            name: "GetTradingStatus",
+            path: "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetTradingStatus",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getLastTrades = GRPCMethodDescriptor(
+            name: "GetLastTrades",
+            path: "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetLastTrades",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getClosePrices = GRPCMethodDescriptor(
+            name: "GetClosePrices",
+            path: "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetClosePrices",
+            type: GRPCCallType.unary
+        )
+    }
+}
 
-  ///Метод запроса последних цен по инструментам.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetLastPrices.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func getLastPrices(
-    _ request: GetLastPricesRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<GetLastPricesRequest, GetLastPricesResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetLastPrices",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetLastPricesInterceptors() ?? []
+/// Usage: instantiate `Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClient`, then call methods of this protocol to make API calls.
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientProtocol: GRPCClient {
+    var serviceName: String { get }
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientInterceptorFactoryProtocol? { get }
+    
+    func marketDataStream(
+        callOptions: CallOptions?,
+        handler: @escaping (Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse) -> Void
+    ) -> BidirectionalStreamingCall<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataRequest, Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse>
+    
+    func marketDataServerSideStream(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServerSideStreamRequest,
+        callOptions: CallOptions?,
+        handler: @escaping (Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse) -> Void
+    ) -> ServerStreamingCall<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServerSideStreamRequest, Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse>
+}
+
+extension Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientProtocol {
+    internal var serviceName: String {
+        return "tinkoff.public.invest.api.contract.v1.MarketDataStreamService"
+    }
+    
+    ///Bi-directional стрим предоставления биржевой информации.
+    ///
+    /// Callers should use the `send` method on the returned object to send messages
+    /// to the server. The caller should send an `.end` after the final message has been sent.
+    ///
+    /// - Parameters:
+    ///   - callOptions: Call options.
+    ///   - handler: A closure called when each response is received from the server.
+    /// - Returns: A `ClientStreamingCall` with futures for the metadata and status.
+    internal func marketDataStream(
+        callOptions: CallOptions? = nil,
+        handler: @escaping (Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse) -> Void
+    ) -> BidirectionalStreamingCall<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataRequest, Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse> {
+        return self.makeBidirectionalStreamingCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientMetadata.Methods.marketDataStream.path,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeMarketDataStreamInterceptors() ?? [],
+            handler: handler
+        )
+    }
+    
+    ///Server-side стрим предоставления биржевой информации.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to MarketDataServerSideStream.
+    ///   - callOptions: Call options.
+    ///   - handler: A closure called when each response is received from the server.
+    /// - Returns: A `ServerStreamingCall` with futures for the metadata and status.
+    internal func marketDataServerSideStream(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServerSideStreamRequest,
+        callOptions: CallOptions? = nil,
+        handler: @escaping (Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse) -> Void
+    ) -> ServerStreamingCall<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServerSideStreamRequest, Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse> {
+        return self.makeServerStreamingCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientMetadata.Methods.marketDataServerSideStream.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeMarketDataServerSideStreamInterceptors() ?? [],
+            handler: handler
+        )
+    }
+}
+
+#if compiler(>=5.6)
+@available(*, deprecated)
+extension Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClient: @unchecked Sendable {}
+#endif // compiler(>=5.6)
+
+@available(*, deprecated, renamed: "Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceNIOClient")
+internal final class Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClient: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientProtocol {
+    private let lock = Lock()
+    private var _defaultCallOptions: CallOptions
+    private var _interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientInterceptorFactoryProtocol?
+    internal let channel: GRPCChannel
+    internal var defaultCallOptions: CallOptions {
+        get { self.lock.withLock { return self._defaultCallOptions } }
+        set { self.lock.withLockVoid { self._defaultCallOptions = newValue } }
+    }
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientInterceptorFactoryProtocol? {
+        get { self.lock.withLock { return self._interceptors } }
+        set { self.lock.withLockVoid { self._interceptors = newValue } }
+    }
+    
+    /// Creates a client for the tinkoff.public.invest.api.contract.v1.MarketDataStreamService service.
+    ///
+    /// - Parameters:
+    ///   - channel: `GRPCChannel` to the service host.
+    ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+    ///   - interceptors: A factory providing interceptors for each RPC.
+    internal init(
+        channel: GRPCChannel,
+        defaultCallOptions: CallOptions = CallOptions(),
+        interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientInterceptorFactoryProtocol? = nil
+    ) {
+        self.channel = channel
+        self._defaultCallOptions = defaultCallOptions
+        self._interceptors = interceptors
+    }
+}
+
+public struct Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceNIOClient: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientProtocol {
+    public var channel: GRPCChannel
+    public  var defaultCallOptions: CallOptions
+    public var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientInterceptorFactoryProtocol?
+    
+    /// Creates a client for the tinkoff.public.invest.api.contract.v1.MarketDataStreamService service.
+    ///
+    /// - Parameters:
+    ///   - channel: `GRPCChannel` to the service host.
+    ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+    ///   - interceptors: A factory providing interceptors for each RPC.
+    internal init(
+        channel: GRPCChannel,
+        defaultCallOptions: CallOptions = CallOptions(),
+        interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientInterceptorFactoryProtocol? = nil
+    ) {
+        self.channel = channel
+        self.defaultCallOptions = defaultCallOptions
+        self.interceptors = interceptors
+    }
+}
+
+#if compiler(>=5.6)
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceAsyncClientProtocol: GRPCClient {
+    static var serviceDescriptor: GRPCServiceDescriptor { get }
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientInterceptorFactoryProtocol? { get }
+    
+    func makeMarketDataStreamCall(
+        callOptions: CallOptions?
+    ) -> GRPCAsyncBidirectionalStreamingCall<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataRequest, Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse>
+    
+    func makeMarketDataServerSideStreamCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServerSideStreamRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncServerStreamingCall<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServerSideStreamRequest, Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse>
+}
+
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceAsyncClientProtocol {
+    internal static var serviceDescriptor: GRPCServiceDescriptor {
+        return Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientMetadata.serviceDescriptor
+    }
+    
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientInterceptorFactoryProtocol? {
+        return nil
+    }
+    
+    internal func makeMarketDataStreamCall(
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncBidirectionalStreamingCall<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataRequest, Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse> {
+        return self.makeAsyncBidirectionalStreamingCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientMetadata.Methods.marketDataStream.path,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeMarketDataStreamInterceptors() ?? []
+        )
+    }
+    
+    internal func makeMarketDataServerSideStreamCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServerSideStreamRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncServerStreamingCall<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServerSideStreamRequest, Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse> {
+        return self.makeAsyncServerStreamingCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientMetadata.Methods.marketDataServerSideStream.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeMarketDataServerSideStreamInterceptors() ?? []
+        )
+    }
+}
+
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceAsyncClientProtocol {
+    internal func marketDataStream<RequestStream>(
+        _ requests: RequestStream,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncResponseStream<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse> where RequestStream: Sequence, RequestStream.Element == Tinkoff_Public_Invest_Api_Contract_V1_MarketDataRequest {
+        return self.performAsyncBidirectionalStreamingCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientMetadata.Methods.marketDataStream.path,
+            requests: requests,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeMarketDataStreamInterceptors() ?? []
+        )
+    }
+    
+    internal func marketDataStream<RequestStream>(
+        _ requests: RequestStream,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncResponseStream<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse> where RequestStream: AsyncSequence & Sendable, RequestStream.Element == Tinkoff_Public_Invest_Api_Contract_V1_MarketDataRequest {
+        return self.performAsyncBidirectionalStreamingCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientMetadata.Methods.marketDataStream.path,
+            requests: requests,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeMarketDataStreamInterceptors() ?? []
+        )
+    }
+    
+    internal func marketDataServerSideStream(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServerSideStreamRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncResponseStream<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse> {
+        return self.performAsyncServerStreamingCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientMetadata.Methods.marketDataServerSideStream.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeMarketDataServerSideStreamInterceptors() ?? []
+        )
+    }
+}
+
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+internal struct Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceAsyncClient: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceAsyncClientProtocol {
+    internal var channel: GRPCChannel
+    internal var defaultCallOptions: CallOptions
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientInterceptorFactoryProtocol?
+    
+    internal init(
+        channel: GRPCChannel,
+        defaultCallOptions: CallOptions = CallOptions(),
+        interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientInterceptorFactoryProtocol? = nil
+    ) {
+        self.channel = channel
+        self.defaultCallOptions = defaultCallOptions
+        self.interceptors = interceptors
+    }
+}
+
+#endif // compiler(>=5.6)
+
+public protocol Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientInterceptorFactoryProtocol: GRPCSendable {
+    
+    /// - Returns: Interceptors to use when invoking 'marketDataStream'.
+    func makeMarketDataStreamInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataRequest, Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse>]
+    
+    /// - Returns: Interceptors to use when invoking 'marketDataServerSideStream'.
+    func makeMarketDataServerSideStreamInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServerSideStreamRequest, Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse>]
+}
+
+internal enum Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientMetadata {
+    internal static let serviceDescriptor = GRPCServiceDescriptor(
+        name: "MarketDataStreamService",
+        fullName: "tinkoff.public.invest.api.contract.v1.MarketDataStreamService",
+        methods: [
+            Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientMetadata.Methods.marketDataStream,
+            Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientMetadata.Methods.marketDataServerSideStream,
+        ]
     )
-  }
-
-  ///Метод получения стакана по инструменту.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetOrderBook.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func getOrderBook(
-    _ request: GetOrderBookRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<GetOrderBookRequest, GetOrderBookResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetOrderBook",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetOrderBookInterceptors() ?? []
-    )
-  }
-
-  ///Метод запроса статуса торгов по инструментам.
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetTradingStatus.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func getTradingStatus(
-    _ request: GetTradingStatusRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<GetTradingStatusRequest, GetTradingStatusResponse> {
-    return self.makeUnaryCall(
-      path: "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetTradingStatus",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetTradingStatusInterceptors() ?? []
-    )
-  }
-}
-
-public protocol MarketDataServiceClientInterceptorFactoryProtocol {
-
-  /// - Returns: Interceptors to use when invoking 'getCandles'.
-  func makeGetCandlesInterceptors() -> [ClientInterceptor<GetCandlesRequest, GetCandlesResponse>]
-
-  /// - Returns: Interceptors to use when invoking 'getLastPrices'.
-  func makeGetLastPricesInterceptors() -> [ClientInterceptor<GetLastPricesRequest, GetLastPricesResponse>]
-
-  /// - Returns: Interceptors to use when invoking 'getOrderBook'.
-  func makeGetOrderBookInterceptors() -> [ClientInterceptor<GetOrderBookRequest, GetOrderBookResponse>]
-
-  /// - Returns: Interceptors to use when invoking 'getTradingStatus'.
-  func makeGetTradingStatusInterceptors() -> [ClientInterceptor<GetTradingStatusRequest, GetTradingStatusResponse>]
-}
-
-public final class MarketDataServiceClient: MarketDataServiceClientProtocol {
-  public let channel: GRPCChannel
-  public var defaultCallOptions: CallOptions
-  public var interceptors: MarketDataServiceClientInterceptorFactoryProtocol?
-
-  /// Creates a client for the tinkoff.public.invest.api.contract.v1.MarketDataService service.
-  ///
-  /// - Parameters:
-  ///   - channel: `GRPCChannel` to the service host.
-  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
-  ///   - interceptors: A factory providing interceptors for each RPC.
-  public init(
-    channel: GRPCChannel,
-    defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: MarketDataServiceClientInterceptorFactoryProtocol? = nil
-  ) {
-    self.channel = channel
-    self.defaultCallOptions = defaultCallOptions
-    self.interceptors = interceptors
-  }
-}
-
-/// Usage: instantiate `MarketDataStreamServiceClient`, then call methods of this protocol to make API calls.
-public protocol MarketDataStreamServiceClientProtocol: GRPCClient {
-  var serviceName: String { get }
-  var interceptors: MarketDataStreamServiceClientInterceptorFactoryProtocol? { get }
-
-  func marketDataStream(
-    callOptions: CallOptions?,
-    handler: @escaping (MarketDataResponse) -> Void
-  ) -> BidirectionalStreamingCall<MarketDataRequest, MarketDataResponse>
-}
-
-extension MarketDataStreamServiceClientProtocol {
-  public var serviceName: String {
-    return "tinkoff.public.invest.api.contract.v1.MarketDataStreamService"
-  }
-
-  ///Bi-directional стрим предоставления биржевой информации.
-  ///
-  /// Callers should use the `send` method on the returned object to send messages
-  /// to the server. The caller should send an `.end` after the final message has been sent.
-  ///
-  /// - Parameters:
-  ///   - callOptions: Call options.
-  ///   - handler: A closure called when each response is received from the server.
-  /// - Returns: A `ClientStreamingCall` with futures for the metadata and status.
-  public func marketDataStream(
-    callOptions: CallOptions? = nil,
-    handler: @escaping (MarketDataResponse) -> Void
-  ) -> BidirectionalStreamingCall<MarketDataRequest, MarketDataResponse> {
-    return self.makeBidirectionalStreamingCall(
-      path: "/tinkoff.public.invest.api.contract.v1.MarketDataStreamService/MarketDataStream",
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeMarketDataStreamInterceptors() ?? [],
-      handler: handler
-    )
-  }
-}
-
-public protocol MarketDataStreamServiceClientInterceptorFactoryProtocol {
-
-  /// - Returns: Interceptors to use when invoking 'marketDataStream'.
-  func makeMarketDataStreamInterceptors() -> [ClientInterceptor<MarketDataRequest, MarketDataResponse>]
-}
-
-public final class MarketDataStreamServiceClient: MarketDataStreamServiceClientProtocol {
-  public let channel: GRPCChannel
-  public var defaultCallOptions: CallOptions
-  public var interceptors: MarketDataStreamServiceClientInterceptorFactoryProtocol?
-
-  /// Creates a client for the tinkoff.public.invest.api.contract.v1.MarketDataStreamService service.
-  ///
-  /// - Parameters:
-  ///   - channel: `GRPCChannel` to the service host.
-  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
-  ///   - interceptors: A factory providing interceptors for each RPC.
-  public init(
-    channel: GRPCChannel,
-    defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: MarketDataStreamServiceClientInterceptorFactoryProtocol? = nil
-  ) {
-    self.channel = channel
-    self.defaultCallOptions = defaultCallOptions
-    self.interceptors = interceptors
-  }
+    
+    internal enum Methods {
+        internal static let marketDataStream = GRPCMethodDescriptor(
+            name: "MarketDataStream",
+            path: "/tinkoff.public.invest.api.contract.v1.MarketDataStreamService/MarketDataStream",
+            type: GRPCCallType.bidirectionalStreaming
+        )
+        
+        internal static let marketDataServerSideStream = GRPCMethodDescriptor(
+            name: "MarketDataServerSideStream",
+            path: "/tinkoff.public.invest.api.contract.v1.MarketDataStreamService/MarketDataServerSideStream",
+            type: GRPCCallType.serverStreaming
+        )
+    }
 }
 
 ///Сервис получения биржевой информации:</br> **1**. свечи;</br> **2**. стаканы;</br> **3**. торговые статусы;</br> **4**. лента сделок.
 ///
 /// To build a server, implement a class that conforms to this protocol.
-public protocol MarketDataServiceProvider: CallHandlerProvider {
-  var interceptors: MarketDataServiceServerInterceptorFactoryProtocol? { get }
-
-  ///Метод запроса исторических свечей по инструменту.
-  func getCandles(request: GetCandlesRequest, context: StatusOnlyCallContext) -> EventLoopFuture<GetCandlesResponse>
-
-  ///Метод запроса последних цен по инструментам.
-  func getLastPrices(request: GetLastPricesRequest, context: StatusOnlyCallContext) -> EventLoopFuture<GetLastPricesResponse>
-
-  ///Метод получения стакана по инструменту.
-  func getOrderBook(request: GetOrderBookRequest, context: StatusOnlyCallContext) -> EventLoopFuture<GetOrderBookResponse>
-
-  ///Метод запроса статуса торгов по инструментам.
-  func getTradingStatus(request: GetTradingStatusRequest, context: StatusOnlyCallContext) -> EventLoopFuture<GetTradingStatusResponse>
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceProvider: CallHandlerProvider {
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerInterceptorFactoryProtocol? { get }
+    
+    ///Метод запроса исторических свечей по инструменту.
+    func getCandles(request: Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesResponse>
+    
+    ///Метод запроса последних цен по инструментам.
+    func getLastPrices(request: Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesResponse>
+    
+    ///Метод получения стакана по инструменту.
+    func getOrderBook(request: Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookResponse>
+    
+    ///Метод запроса статуса торгов по инструментам.
+    func getTradingStatus(request: Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusResponse>
+    
+    ///Метод запроса обезличенных сделок за последний час.
+    func getLastTrades(request: Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesResponse>
+    
+    ///Метод запроса цен закрытия торговой сессии по инструментам.
+    func getClosePrices(request: Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesResponse>
 }
 
-extension MarketDataServiceProvider {
-  public var serviceName: Substring { return "tinkoff.public.invest.api.contract.v1.MarketDataService" }
-
-  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
-  /// Returns nil for methods not handled by this service.
-  public func handle(
-    method name: Substring,
-    context: CallHandlerContext
-  ) -> GRPCServerHandlerProtocol? {
-    switch name {
-    case "GetCandles":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<GetCandlesRequest>(),
-        responseSerializer: ProtobufSerializer<GetCandlesResponse>(),
-        interceptors: self.interceptors?.makeGetCandlesInterceptors() ?? [],
-        userFunction: self.getCandles(request:context:)
-      )
-
-    case "GetLastPrices":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<GetLastPricesRequest>(),
-        responseSerializer: ProtobufSerializer<GetLastPricesResponse>(),
-        interceptors: self.interceptors?.makeGetLastPricesInterceptors() ?? [],
-        userFunction: self.getLastPrices(request:context:)
-      )
-
-    case "GetOrderBook":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<GetOrderBookRequest>(),
-        responseSerializer: ProtobufSerializer<GetOrderBookResponse>(),
-        interceptors: self.interceptors?.makeGetOrderBookInterceptors() ?? [],
-        userFunction: self.getOrderBook(request:context:)
-      )
-
-    case "GetTradingStatus":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<GetTradingStatusRequest>(),
-        responseSerializer: ProtobufSerializer<GetTradingStatusResponse>(),
-        interceptors: self.interceptors?.makeGetTradingStatusInterceptors() ?? [],
-        userFunction: self.getTradingStatus(request:context:)
-      )
-
-    default:
-      return nil
+extension Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceProvider {
+    internal var serviceName: Substring {
+        return Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerMetadata.serviceDescriptor.fullName[...]
     }
-  }
+    
+    /// Determines, calls and returns the appropriate request handler, depending on the request's method.
+    /// Returns nil for methods not handled by this service.
+    internal func handle(
+        method name: Substring,
+        context: CallHandlerContext
+    ) -> GRPCServerHandlerProtocol? {
+        switch name {
+        case "GetCandles":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesResponse>(),
+                interceptors: self.interceptors?.makeGetCandlesInterceptors() ?? [],
+                userFunction: self.getCandles(request:context:)
+            )
+            
+        case "GetLastPrices":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesResponse>(),
+                interceptors: self.interceptors?.makeGetLastPricesInterceptors() ?? [],
+                userFunction: self.getLastPrices(request:context:)
+            )
+            
+        case "GetOrderBook":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookResponse>(),
+                interceptors: self.interceptors?.makeGetOrderBookInterceptors() ?? [],
+                userFunction: self.getOrderBook(request:context:)
+            )
+            
+        case "GetTradingStatus":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusResponse>(),
+                interceptors: self.interceptors?.makeGetTradingStatusInterceptors() ?? [],
+                userFunction: self.getTradingStatus(request:context:)
+            )
+            
+        case "GetLastTrades":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesResponse>(),
+                interceptors: self.interceptors?.makeGetLastTradesInterceptors() ?? [],
+                userFunction: self.getLastTrades(request:context:)
+            )
+            
+        case "GetClosePrices":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesResponse>(),
+                interceptors: self.interceptors?.makeGetClosePricesInterceptors() ?? [],
+                userFunction: self.getClosePrices(request:context:)
+            )
+            
+        default:
+            return nil
+        }
+    }
 }
 
-public protocol MarketDataServiceServerInterceptorFactoryProtocol {
+#if compiler(>=5.6)
 
-  /// - Returns: Interceptors to use when handling 'getCandles'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetCandlesInterceptors() -> [ServerInterceptor<GetCandlesRequest, GetCandlesResponse>]
+///Сервис получения биржевой информации:</br> **1**. свечи;</br> **2**. стаканы;</br> **3**. торговые статусы;</br> **4**. лента сделок.
+///
+/// To implement a server, implement an object which conforms to this protocol.
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceAsyncProvider: CallHandlerProvider {
+    static var serviceDescriptor: GRPCServiceDescriptor { get }
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerInterceptorFactoryProtocol? { get }
+    
+    ///Метод запроса исторических свечей по инструменту.
+    @Sendable func getCandles(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesResponse
+    
+    ///Метод запроса последних цен по инструментам.
+    @Sendable func getLastPrices(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesResponse
+    
+    ///Метод получения стакана по инструменту.
+    @Sendable func getOrderBook(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookResponse
+    
+    ///Метод запроса статуса торгов по инструментам.
+    @Sendable func getTradingStatus(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusResponse
+    
+    ///Метод запроса обезличенных сделок за последний час.
+    @Sendable func getLastTrades(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesResponse
+    
+    ///Метод запроса цен закрытия торговой сессии по инструментам.
+    @Sendable func getClosePrices(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesResponse
+}
 
-  /// - Returns: Interceptors to use when handling 'getLastPrices'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetLastPricesInterceptors() -> [ServerInterceptor<GetLastPricesRequest, GetLastPricesResponse>]
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceAsyncProvider {
+    internal static var serviceDescriptor: GRPCServiceDescriptor {
+        return Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerMetadata.serviceDescriptor
+    }
+    
+    internal var serviceName: Substring {
+        return Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerMetadata.serviceDescriptor.fullName[...]
+    }
+    
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerInterceptorFactoryProtocol? {
+        return nil
+    }
+    
+    internal func handle(
+        method name: Substring,
+        context: CallHandlerContext
+    ) -> GRPCServerHandlerProtocol? {
+        switch name {
+        case "GetCandles":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesResponse>(),
+                interceptors: self.interceptors?.makeGetCandlesInterceptors() ?? [],
+                wrapping: self.getCandles(request:context:)
+            )
+            
+        case "GetLastPrices":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesResponse>(),
+                interceptors: self.interceptors?.makeGetLastPricesInterceptors() ?? [],
+                wrapping: self.getLastPrices(request:context:)
+            )
+            
+        case "GetOrderBook":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookResponse>(),
+                interceptors: self.interceptors?.makeGetOrderBookInterceptors() ?? [],
+                wrapping: self.getOrderBook(request:context:)
+            )
+            
+        case "GetTradingStatus":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusResponse>(),
+                interceptors: self.interceptors?.makeGetTradingStatusInterceptors() ?? [],
+                wrapping: self.getTradingStatus(request:context:)
+            )
+            
+        case "GetLastTrades":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesResponse>(),
+                interceptors: self.interceptors?.makeGetLastTradesInterceptors() ?? [],
+                wrapping: self.getLastTrades(request:context:)
+            )
+            
+        case "GetClosePrices":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesResponse>(),
+                interceptors: self.interceptors?.makeGetClosePricesInterceptors() ?? [],
+                wrapping: self.getClosePrices(request:context:)
+            )
+            
+        default:
+            return nil
+        }
+    }
+}
 
-  /// - Returns: Interceptors to use when handling 'getOrderBook'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetOrderBookInterceptors() -> [ServerInterceptor<GetOrderBookRequest, GetOrderBookResponse>]
+#endif // compiler(>=5.6)
 
-  /// - Returns: Interceptors to use when handling 'getTradingStatus'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetTradingStatusInterceptors() -> [ServerInterceptor<GetTradingStatusRequest, GetTradingStatusResponse>]
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerInterceptorFactoryProtocol {
+    
+    /// - Returns: Interceptors to use when handling 'getCandles'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetCandlesInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'getLastPrices'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetLastPricesInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'getOrderBook'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetOrderBookInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'getTradingStatus'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetTradingStatusInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'getLastTrades'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetLastTradesInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'getClosePrices'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetClosePricesInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetClosePricesResponse>]
+}
+
+internal enum Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerMetadata {
+    internal static let serviceDescriptor = GRPCServiceDescriptor(
+        name: "MarketDataService",
+        fullName: "tinkoff.public.invest.api.contract.v1.MarketDataService",
+        methods: [
+            Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerMetadata.Methods.getCandles,
+            Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerMetadata.Methods.getLastPrices,
+            Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerMetadata.Methods.getOrderBook,
+            Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerMetadata.Methods.getTradingStatus,
+            Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerMetadata.Methods.getLastTrades,
+            Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerMetadata.Methods.getClosePrices,
+        ]
+    )
+    
+    internal enum Methods {
+        internal static let getCandles = GRPCMethodDescriptor(
+            name: "GetCandles",
+            path: "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetCandles",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getLastPrices = GRPCMethodDescriptor(
+            name: "GetLastPrices",
+            path: "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetLastPrices",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getOrderBook = GRPCMethodDescriptor(
+            name: "GetOrderBook",
+            path: "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetOrderBook",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getTradingStatus = GRPCMethodDescriptor(
+            name: "GetTradingStatus",
+            path: "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetTradingStatus",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getLastTrades = GRPCMethodDescriptor(
+            name: "GetLastTrades",
+            path: "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetLastTrades",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getClosePrices = GRPCMethodDescriptor(
+            name: "GetClosePrices",
+            path: "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetClosePrices",
+            type: GRPCCallType.unary
+        )
+    }
 }
 /// To build a server, implement a class that conforms to this protocol.
-public protocol MarketDataStreamServiceProvider: CallHandlerProvider {
-  var interceptors: MarketDataStreamServiceServerInterceptorFactoryProtocol? { get }
-
-  ///Bi-directional стрим предоставления биржевой информации.
-  func marketDataStream(context: StreamingResponseCallContext<MarketDataResponse>) -> EventLoopFuture<(StreamEvent<MarketDataRequest>) -> Void>
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceProvider: CallHandlerProvider {
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceServerInterceptorFactoryProtocol? { get }
+    
+    ///Bi-directional стрим предоставления биржевой информации.
+    func marketDataStream(context: StreamingResponseCallContext<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse>) -> EventLoopFuture<(StreamEvent<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataRequest>) -> Void>
+    
+    ///Server-side стрим предоставления биржевой информации.
+    func marketDataServerSideStream(request: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServerSideStreamRequest, context: StreamingResponseCallContext<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse>) -> EventLoopFuture<GRPCStatus>
 }
 
-extension MarketDataStreamServiceProvider {
-  public var serviceName: Substring { return "tinkoff.public.invest.api.contract.v1.MarketDataStreamService" }
-
-  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
-  /// Returns nil for methods not handled by this service.
-  public func handle(
-    method name: Substring,
-    context: CallHandlerContext
-  ) -> GRPCServerHandlerProtocol? {
-    switch name {
-    case "MarketDataStream":
-      return BidirectionalStreamingServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<MarketDataRequest>(),
-        responseSerializer: ProtobufSerializer<MarketDataResponse>(),
-        interceptors: self.interceptors?.makeMarketDataStreamInterceptors() ?? [],
-        observerFactory: self.marketDataStream(context:)
-      )
-
-    default:
-      return nil
+extension Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceProvider {
+    internal var serviceName: Substring {
+        return Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceServerMetadata.serviceDescriptor.fullName[...]
     }
-  }
+    
+    /// Determines, calls and returns the appropriate request handler, depending on the request's method.
+    /// Returns nil for methods not handled by this service.
+    internal func handle(
+        method name: Substring,
+        context: CallHandlerContext
+    ) -> GRPCServerHandlerProtocol? {
+        switch name {
+        case "MarketDataStream":
+            return BidirectionalStreamingServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse>(),
+                interceptors: self.interceptors?.makeMarketDataStreamInterceptors() ?? [],
+                observerFactory: self.marketDataStream(context:)
+            )
+            
+        case "MarketDataServerSideStream":
+            return ServerStreamingServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServerSideStreamRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse>(),
+                interceptors: self.interceptors?.makeMarketDataServerSideStreamInterceptors() ?? [],
+                userFunction: self.marketDataServerSideStream(request:context:)
+            )
+            
+        default:
+            return nil
+        }
+    }
 }
 
-public protocol MarketDataStreamServiceServerInterceptorFactoryProtocol {
+#if compiler(>=5.6)
 
-  /// - Returns: Interceptors to use when handling 'marketDataStream'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeMarketDataStreamInterceptors() -> [ServerInterceptor<MarketDataRequest, MarketDataResponse>]
+/// To implement a server, implement an object which conforms to this protocol.
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceAsyncProvider: CallHandlerProvider {
+    static var serviceDescriptor: GRPCServiceDescriptor { get }
+    var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceServerInterceptorFactoryProtocol? { get }
+    
+    ///Bi-directional стрим предоставления биржевой информации.
+    @Sendable func marketDataStream(
+        requestStream: GRPCAsyncRequestStream<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataRequest>,
+        responseStream: GRPCAsyncResponseStreamWriter<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse>,
+        context: GRPCAsyncServerCallContext
+    ) async throws
+    
+    ///Server-side стрим предоставления биржевой информации.
+    @Sendable func marketDataServerSideStream(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServerSideStreamRequest,
+        responseStream: GRPCAsyncResponseStreamWriter<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse>,
+        context: GRPCAsyncServerCallContext
+    ) async throws
+}
+
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceAsyncProvider {
+    internal static var serviceDescriptor: GRPCServiceDescriptor {
+        return Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceServerMetadata.serviceDescriptor
+    }
+    
+    internal var serviceName: Substring {
+        return Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceServerMetadata.serviceDescriptor.fullName[...]
+    }
+    
+    internal var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceServerInterceptorFactoryProtocol? {
+        return nil
+    }
+    
+    internal func handle(
+        method name: Substring,
+        context: CallHandlerContext
+    ) -> GRPCServerHandlerProtocol? {
+        switch name {
+        case "MarketDataStream":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse>(),
+                interceptors: self.interceptors?.makeMarketDataStreamInterceptors() ?? [],
+                wrapping: self.marketDataStream(requestStream:responseStream:context:)
+            )
+            
+        case "MarketDataServerSideStream":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServerSideStreamRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse>(),
+                interceptors: self.interceptors?.makeMarketDataServerSideStreamInterceptors() ?? [],
+                wrapping: self.marketDataServerSideStream(request:responseStream:context:)
+            )
+            
+        default:
+            return nil
+        }
+    }
+}
+
+#endif // compiler(>=5.6)
+
+internal protocol Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceServerInterceptorFactoryProtocol {
+    
+    /// - Returns: Interceptors to use when handling 'marketDataStream'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeMarketDataStreamInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataRequest, Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse>]
+    
+    /// - Returns: Interceptors to use when handling 'marketDataServerSideStream'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeMarketDataServerSideStreamInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServerSideStreamRequest, Tinkoff_Public_Invest_Api_Contract_V1_MarketDataResponse>]
+}
+
+internal enum Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceServerMetadata {
+    internal static let serviceDescriptor = GRPCServiceDescriptor(
+        name: "MarketDataStreamService",
+        fullName: "tinkoff.public.invest.api.contract.v1.MarketDataStreamService",
+        methods: [
+            Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceServerMetadata.Methods.marketDataStream,
+            Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceServerMetadata.Methods.marketDataServerSideStream,
+        ]
+    )
+    
+    internal enum Methods {
+        internal static let marketDataStream = GRPCMethodDescriptor(
+            name: "MarketDataStream",
+            path: "/tinkoff.public.invest.api.contract.v1.MarketDataStreamService/MarketDataStream",
+            type: GRPCCallType.bidirectionalStreaming
+        )
+        
+        internal static let marketDataServerSideStream = GRPCMethodDescriptor(
+            name: "MarketDataServerSideStream",
+            path: "/tinkoff.public.invest.api.contract.v1.MarketDataStreamService/MarketDataServerSideStream",
+            type: GRPCCallType.serverStreaming
+        )
+    }
 }

@@ -7,6 +7,9 @@
 
 import Foundation
 
+public typealias MoneyValue = Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue
+public typealias Quotation = Tinkoff_Public_Invest_Api_Contract_V1_Quotation
+
 public extension MoneyValue {
     var asMoneyAmount: MoneyAmount {
         let value = Decimal(units) + Decimal(sign: nano.signum() == -1 ? .minus : .plus , exponent: -9, significand: Decimal(nano))
