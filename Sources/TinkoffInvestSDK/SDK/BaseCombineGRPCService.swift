@@ -8,6 +8,7 @@
 import CombineGRPC
 import Combine
 import GRPC
+import NIO
 
 private enum Constants {
     static let invertURL = "invest-public-api.tinkoff.ru"
@@ -18,7 +19,7 @@ class BaseCombineGRPCService {
 
     // MARK: - Private Properties
 
-    private let group = PlatformSupport.makeEventLoopGroup(loopCount: 1)
+    private let group = MultiThreadedEventLoopGroup(numberOfThreads: 1)
     private let tokenProvider: TinkoffInvestTokenProvider
     private lazy var defaulCallOptions = CurrentValueSubject<CallOptions, Never>(
         CallOptions(
