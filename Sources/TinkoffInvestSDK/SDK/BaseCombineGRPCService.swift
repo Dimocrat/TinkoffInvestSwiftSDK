@@ -34,7 +34,13 @@ class BaseCombineGRPCService {
 
     lazy var channel = try! GRPCChannelPool.with(target: .hostAndPort(Constants.invertURL, Constants.investPort),
                                                  transportSecurity: .tls(.makeClientConfigurationBackedByNIOSSL()),
-                                                 eventLoopGroup: group)
+                                                 eventLoopGroup: group) {
+        $0.idleTimeout = .minutes(30)
+        $0.keepalive = ClientConnectionKeepalive(
+            interval: .seconds(15),
+            timeout: .seconds(10)
+          )
+    }
     lazy var executor = GRPCExecutor(callOptions: defaulCallOptions)
 
     // MARK: - Initialization
