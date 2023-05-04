@@ -9,11 +9,22 @@ import CombineGRPC
 import Combine
 import GRPC
 import NIO
+import NIOHPACK
+import NIOTransportServices
 
 private enum Constants {
     static let invertURL = "invest-public-api.tinkoff.ru"
     static let investPort = 443
 }
+
+//class ConnectionStatusManager: ConnectivityStateDelegate {
+//    var connectionStateChange: ((_ from: ConnectionState, _ to: ConnectionState) -> Void)?
+//    init() { }
+//
+//    func connectivityStateDidChange(from oldState: ConnectivityState, to newState: ConnectivityState) {
+//        connectionStateChange?(oldState.toConnectionState(), newState.toConnectionState())
+//    }
+//}
 
 class BaseCombineGRPCService {
 
@@ -31,16 +42,19 @@ class BaseCombineGRPCService {
     ).eraseToAnyPublisher()
 
     // MARK: - Internal Properties
+    
+    lazy var channel = ClientConnection.usingPlatformAppropriateTLS(for: NIOTSEventLoopGroup(loopCount: 1, defaultQoS: .default)).withKeepalive(.init(interval: .seconds(15), timeout: .seconds(10)))
+        .connect(host: Constants.invertURL, port: Constants.investPort)
 
-    lazy var channel = try! GRPCChannelPool.with(target: .hostAndPort(Constants.invertURL, Constants.investPort),
-                                                 transportSecurity: .tls(.makeClientConfigurationBackedByNIOSSL()),
-                                                 eventLoopGroup: group) {
-        $0.idleTimeout = .minutes(30)
-        $0.keepalive = ClientConnectionKeepalive(
-            interval: .seconds(15),
-            timeout: .seconds(10)
-          )
-    }
+//    lazy var channel = try! GRPCChannelPool.with(target: .hostAndPort(Constants.invertURL, Constants.investPort),
+//                                                 transportSecurity: .tls(.makeClientConfigurationBackedByNIOSSL()),
+//                                                 eventLoopGroup: group) {
+//        $0.idleTimeout = .minutes(30)
+//        $0.keepalive = ClientConnectionKeepalive(
+//            interval: .seconds(15),
+//            timeout: .seconds(10)
+//          )
+//    }
     lazy var executor = GRPCExecutor(callOptions: defaulCallOptions)
 
     // MARK: - Initialization
