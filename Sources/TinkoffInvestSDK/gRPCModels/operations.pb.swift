@@ -2332,13 +2332,13 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRespons
     // methods supported on all messages.
     
     ///Признак, есть ли следующий элемент.
-    var hasNext_p: Bool = false
+    public var hasNext_p: Bool = false
     
     ///Следующий курсор.
-    var nextCursor: String = String()
+    public var nextCursor: String = String()
     
     ///Список операций.
-    var items: [Tinkoff_Public_Invest_Api_Contract_V1_OperationItem] = []
+    public var items: [Tinkoff_Public_Invest_Api_Contract_V1_OperationItem] = []
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -2346,31 +2346,31 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRespons
 }
 
 ///Данные об операции.
-struct Tinkoff_Public_Invest_Api_Contract_V1_OperationItem {
+public struct Tinkoff_Public_Invest_Api_Contract_V1_OperationItem {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
     
     ///Курсор.
-    var cursor: String {
+    public var cursor: String {
         get {return _storage._cursor}
         set {_uniqueStorage()._cursor = newValue}
     }
     
     ///Номер счета клиента.
-    var brokerAccountID: String {
+    public var brokerAccountID: String {
         get {return _storage._brokerAccountID}
         set {_uniqueStorage()._brokerAccountID = newValue}
     }
     
     ///Идентификатор операции, может меняться с течением времени.
-    var id: String {
+    public var id: String {
         get {return _storage._id}
         set {_uniqueStorage()._id = newValue}
     }
     
     ///Идентификатор родительской операции, может измениться, если изменился id родительской операции.
-    var parentOperationID: String {
+    public var parentOperationID: String {
         get {return _storage._parentOperationID}
         set {_uniqueStorage()._parentOperationID = newValue}
     }
@@ -2549,9 +2549,9 @@ struct Tinkoff_Public_Invest_Api_Contract_V1_OperationItem {
         set {_uniqueStorage()._assetUid = newValue}
     }
     
-    var unknownFields = SwiftProtobuf.UnknownStorage()
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
     
-    init() {}
+    public init() {}
     
     fileprivate var _storage = _StorageClass.defaultInstance
 }
