@@ -2271,51 +2271,51 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRequest
     // methods supported on all messages.
     
     ///Идентификатор счёта клиента. Обязательный параметр для данного метода, остальные параметры опциональны.
-    var accountID: String = String()
+    public var accountID: String = String()
     
     ///Идентификатор инструмента (Figi инструмента или uid инструмента)
-    var instrumentID: String = String()
+    public var instrumentID: String = String()
     
     ///Начало периода (по UTC).
-    var from: SwiftProtobuf.Google_Protobuf_Timestamp {
+    public var from: SwiftProtobuf.Google_Protobuf_Timestamp {
         get {return _from ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
         set {_from = newValue}
     }
     /// Returns true if `from` has been explicitly set.
-    var hasFrom: Bool {return self._from != nil}
+    public var hasFrom: Bool {return self._from != nil}
     /// Clears the value of `from`. Subsequent reads from it will return its default value.
-    mutating func clearFrom() {self._from = nil}
+    public mutating func clearFrom() {self._from = nil}
     
     ///Окончание периода (по UTC).
-    var to: SwiftProtobuf.Google_Protobuf_Timestamp {
+    public var to: SwiftProtobuf.Google_Protobuf_Timestamp {
         get {return _to ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
         set {_to = newValue}
     }
     /// Returns true if `to` has been explicitly set.
-    var hasTo: Bool {return self._to != nil}
+    public var hasTo: Bool {return self._to != nil}
     /// Clears the value of `to`. Subsequent reads from it will return its default value.
-    mutating func clearTo() {self._to = nil}
+    public mutating func clearTo() {self._to = nil}
     
     ///Идентификатор элемента, с которого начать формировать ответ.
-    var cursor: String = String()
+    public var cursor: String = String()
     
     ///Лимит количества операций. По умолчанию устанавливается значение **100**, максимальное значение 1000.
-    var limit: Int32 = 0
+    public var limit: Int32 = 0
     
     ///Тип операции. Принимает значение из списка OperationType.
-    var operationTypes: [Tinkoff_Public_Invest_Api_Contract_V1_OperationType] = []
+    public var operationTypes: [Tinkoff_Public_Invest_Api_Contract_V1_OperationType] = []
     
     ///Статус запрашиваемых операций, возможные значения указаны в OperationState.
-    var state: Tinkoff_Public_Invest_Api_Contract_V1_OperationState = .unspecified
+    public var state: Tinkoff_Public_Invest_Api_Contract_V1_OperationState = .unspecified
     
     ///Флаг возвращать ли комиссии, по умолчанию false
-    var withoutCommissions: Bool = false
+    public var withoutCommissions: Bool = false
     
     ///Флаг получения ответа без массива сделок.
-    var withoutTrades: Bool = false
+    public var withoutTrades: Bool = false
     
     ///Флаг не показывать overnight операций.
-    var withoutOvernights: Bool = false
+    public var withoutOvernights: Bool = false
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
