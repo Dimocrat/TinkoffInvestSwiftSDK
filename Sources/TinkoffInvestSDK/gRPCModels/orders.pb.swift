@@ -375,7 +375,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_OrderTrade {
     public mutating func clearDateTime() {self._dateTime = nil}
     
     ///Цена за 1 инструмент, по которой совершена сделка.
-    var price: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    public var price: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _price ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_price = newValue}
     }
@@ -385,10 +385,10 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_OrderTrade {
     public mutating func clearPrice() {self._price = nil}
     
     ///Количество штук в сделке.
-    var quantity: Int64 = 0
+    public var quantity: Int64 = 0
     
     ///Идентификатор сделки.
-    var tradeID: String = String()
+    public var tradeID: String = String()
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -405,13 +405,13 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest {
     // methods supported on all messages.
     
     ///Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
-    var figi: String = String()
+    public var figi: String = String()
     
     ///Количество лотов.
     public var quantity: Int64 = 0
     
     ///Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Игнорируется для рыночных поручений.
-    var price: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    public var price: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _price ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_price = newValue}
     }
@@ -433,7 +433,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest {
     public var orderID: String = String()
     
     ///Идентификатор инструмента, принимает значения Figi или Instrument_uid.
-    var instrumentID: String = String()
+    public var instrumentID: String = String()
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -681,7 +681,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_OrderState {
     // methods supported on all messages.
     
     ///Биржевой идентификатор заявки.
-    var orderID: String {
+    public var orderID: String {
         get {return _storage._orderID}
         set {_uniqueStorage()._orderID = newValue}
     }

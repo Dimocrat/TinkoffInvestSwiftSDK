@@ -186,7 +186,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PostStopOrderRequest {
     // methods supported on all messages.
     
     ///Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
-    var figi: String = String()
+    public var figi: String = String()
     
     ///Количество лотов.
     public var quantity: Int64 = 0

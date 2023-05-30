@@ -1135,7 +1135,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Candle {
     public var interval: Tinkoff_Public_Invest_Api_Contract_V1_SubscriptionInterval = .unspecified
     
     ///Цена открытия за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/)
-    var `open`: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    public var `open`: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _open ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_open = newValue}
     }
@@ -1145,7 +1145,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Candle {
     public mutating func clearOpen() {self._open = nil}
     
     ///Максимальная цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/)
-    var high: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    public var high: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _high ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_high = newValue}
     }
@@ -1155,7 +1155,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Candle {
     public mutating func clearHigh() {self._high = nil}
     
     ///Минимальная цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/)
-    var low: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    public var low: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _low ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_low = newValue}
     }
@@ -1165,7 +1165,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Candle {
     public mutating func clearLow() {self._low = nil}
     
     ///Цена закрытия за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/)
-    var close: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    public var close: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _close ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_close = newValue}
     }
@@ -1198,7 +1198,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Candle {
     public mutating func clearLastTradeTs() {self._lastTradeTs = nil}
     
     ///Uid инструмента
-    var instrumentUid: String = String()
+    public var instrumentUid: String = String()
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -1244,7 +1244,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_OrderBook {
     public mutating func clearTime() {self._time = nil}
     
     ///Верхний лимит цены за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/)
-    var limitUp: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    public var limitUp: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _limitUp ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_limitUp = newValue}
     }
@@ -1254,7 +1254,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_OrderBook {
     public mutating func clearLimitUp() {self._limitUp = nil}
     
     ///Нижний лимит цены за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/)
-    var limitDown: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    public var limitDown: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _limitDown ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_limitDown = newValue}
     }
@@ -1264,7 +1264,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_OrderBook {
     public mutating func clearLimitDown() {self._limitDown = nil}
     
     ///Uid инструмента
-    var instrumentUid: String = String()
+    public var instrumentUid: String = String()
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -1282,7 +1282,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Order {
     // methods supported on all messages.
     
     ///Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/)
-    var price: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    public var price: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _price ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_price = newValue}
     }
@@ -1314,7 +1314,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Trade {
     public var direction: Tinkoff_Public_Invest_Api_Contract_V1_TradeDirection = .unspecified
     
     ///Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/)
-    var price: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    public var price: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _price ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_price = newValue}
     }
@@ -1337,7 +1337,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Trade {
     public mutating func clearTime() {self._time = nil}
     
     ///Uid инструмента
-    var instrumentUid: String = String()
+    public var instrumentUid: String = String()
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -1376,7 +1376,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_TradingStatus {
     public var marketOrderAvailableFlag: Bool = false
     
     ///Uid инструмента
-    var instrumentUid: String = String()
+    public var instrumentUid: String = String()
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -1392,7 +1392,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesRequest {
     // methods supported on all messages.
     
     ///Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
-    var figi: String = String()
+    public var figi: String = String()
     
     ///Начало запрашиваемого периода в часовом поясе UTC.
     public var from: SwiftProtobuf.Google_Protobuf_Timestamp {
@@ -1418,7 +1418,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesRequest {
     public var interval: Tinkoff_Public_Invest_Api_Contract_V1_CandleInterval = .unspecified
     
     ///Идентификатор инструмента, принимает значение figi или instrument_uid.
-    var instrumentID: String = String()
+    public var instrumentID: String = String()
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -1449,7 +1449,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_HistoricCandle {
     // methods supported on all messages.
     
     ///Цена открытия за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/)
-    var `open`: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    public var `open`: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _open ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_open = newValue}
     }
@@ -1459,7 +1459,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_HistoricCandle {
     public mutating func clearOpen() {self._open = nil}
     
     ///Максимальная цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/)
-    var high: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    public var high: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _high ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_high = newValue}
     }
@@ -1469,7 +1469,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_HistoricCandle {
     public mutating func clearHigh() {self._high = nil}
     
     ///Минимальная цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/)
-    var low: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    public var low: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _low ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_low = newValue}
     }
@@ -1479,7 +1479,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_HistoricCandle {
     public mutating func clearLow() {self._low = nil}
     
     ///Цена закрытия за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/)
-    var close: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    public var close: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _close ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_close = newValue}
     }
@@ -1556,7 +1556,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_LastPrice {
     public var figi: String = String()
     
     ///Цена последней сделки за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/)
-    var price: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    public var price: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _price ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_price = newValue}
     }
@@ -1593,13 +1593,13 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookRequest {
     // methods supported on all messages.
     
     ///Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
-    var figi: String = String()
+    public var figi: String = String()
     
     ///Глубина стакана.
     public var depth: Int32 = 0
     
     ///Идентификатор инструмента, принимает значение figi или instrument_uid.
-    var instrumentID: String = String()
+    public var instrumentID: String = String()
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -1637,7 +1637,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookResponse {
     }
     
     ///Цена последней сделки за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/)
-    var lastPrice: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    public var lastPrice: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._lastPrice ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._lastPrice = newValue}
     }
@@ -1647,7 +1647,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookResponse {
     public mutating func clearLastPrice() {_uniqueStorage()._lastPrice = nil}
     
     ///Цена закрытия за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/)
-    var closePrice: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    public var closePrice: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._closePrice ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._closePrice = newValue}
     }
@@ -1657,7 +1657,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookResponse {
     public mutating func clearClosePrice() {_uniqueStorage()._closePrice = nil}
     
     ///Верхний лимит цены за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/)
-    var limitUp: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    public var limitUp: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._limitUp ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._limitUp = newValue}
     }
@@ -1667,7 +1667,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookResponse {
     public mutating func clearLimitUp() {_uniqueStorage()._limitUp = nil}
     
     ///Нижний лимит цены за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/)
-    var limitDown: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    public var limitDown: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._limitDown ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._limitDown = newValue}
     }
@@ -1707,7 +1707,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetOrderBookResponse {
     public mutating func clearOrderbookTs() {_uniqueStorage()._orderbookTs = nil}
     
     ///Uid инструмента.
-    var instrumentUid: String {
+    public var instrumentUid: String {
         get {return _storage._instrumentUid}
         set {_uniqueStorage()._instrumentUid = newValue}
     }
