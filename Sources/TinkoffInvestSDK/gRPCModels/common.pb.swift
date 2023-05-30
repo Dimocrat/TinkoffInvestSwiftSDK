@@ -20,6 +20,91 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
     typealias Version = _2
 }
 
+///Тип инструмента.
+public enum Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType: SwiftProtobuf.Enum {
+    public typealias RawValue = Int
+    case unspecified // = 0
+    
+    ///Облигация.
+    case bond // = 1
+    
+    ///Акция.
+    case share // = 2
+    
+    ///Валюта.
+    case currency // = 3
+    
+    ///Exchange-traded fund. Фонд.
+    case etf // = 4
+    
+    ///Фьючерс.
+    case futures // = 5
+    
+    ///Структурная нота.
+    case sp // = 6
+    
+    ///Опцион.
+    case option // = 7
+    
+    ///Clearing certificate.
+    case clearingCertificate // = 8
+    case UNRECOGNIZED(Int)
+    
+    public init() {
+        self = .unspecified
+    }
+    
+    public init?(rawValue: Int) {
+        switch rawValue {
+        case 0: self = .unspecified
+        case 1: self = .bond
+        case 2: self = .share
+        case 3: self = .currency
+        case 4: self = .etf
+        case 5: self = .futures
+        case 6: self = .sp
+        case 7: self = .option
+        case 8: self = .clearingCertificate
+        default: self = .UNRECOGNIZED(rawValue)
+        }
+    }
+    
+    public var rawValue: Int {
+        switch self {
+        case .unspecified: return 0
+        case .bond: return 1
+        case .share: return 2
+        case .currency: return 3
+        case .etf: return 4
+        case .futures: return 5
+        case .sp: return 6
+        case .option: return 7
+        case .clearingCertificate: return 8
+        case .UNRECOGNIZED(let i): return i
+        }
+    }
+    
+}
+
+#if swift(>=4.2)
+
+extension Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType: CaseIterable {
+    // The compiler won't synthesize support with the UNRECOGNIZED case.
+    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType] = [
+        .unspecified,
+        .bond,
+        .share,
+        .currency,
+        .etf,
+        .futures,
+        .sp,
+        .option,
+        .clearingCertificate,
+    ]
+}
+
+#endif  // swift(>=4.2)
+
 ///Режим торгов инструмента
 public enum Tinkoff_Public_Invest_Api_Contract_V1_SecurityTradingStatus: SwiftProtobuf.Enum {
     public typealias RawValue = Int
@@ -225,6 +310,20 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Ping: @unchecked Sendable {}
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "tinkoff.public.invest.api.contract.v1"
+
+extension Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType: SwiftProtobuf._ProtoNameProviding {
+    public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+        0: .same(proto: "INSTRUMENT_TYPE_UNSPECIFIED"),
+        1: .same(proto: "INSTRUMENT_TYPE_BOND"),
+        2: .same(proto: "INSTRUMENT_TYPE_SHARE"),
+        3: .same(proto: "INSTRUMENT_TYPE_CURRENCY"),
+        4: .same(proto: "INSTRUMENT_TYPE_ETF"),
+        5: .same(proto: "INSTRUMENT_TYPE_FUTURES"),
+        6: .same(proto: "INSTRUMENT_TYPE_SP"),
+        7: .same(proto: "INSTRUMENT_TYPE_OPTION"),
+        8: .same(proto: "INSTRUMENT_TYPE_CLEARING_CERTIFICATE"),
+    ]
+}
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_SecurityTradingStatus: SwiftProtobuf._ProtoNameProviding {
     public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [

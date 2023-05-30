@@ -185,8 +185,8 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PostStopOrderRequest {
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
     
-    ///Figi-идентификатор инструмента.
-    public var figi: String = String()
+    ///Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
+    var figi: String = String()
     
     ///Количество лотов.
     public var quantity: Int64 = 0
@@ -231,7 +231,10 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PostStopOrderRequest {
     /// Returns true if `expireDate` has been explicitly set.
     public var hasExpireDate: Bool {return self._expireDate != nil}
     /// Clears the value of `expireDate`. Subsequent reads from it will return its default value.
-    public mutating func clearExpireDate() {self._expireDate = nil}
+    mutating func clearExpireDate() {self._expireDate = nil}
+    
+    ///Идентификатор инструмента, принимает значения Figi или instrument_uid.
+    var instrumentID: String = String()
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -416,6 +419,12 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_StopOrder {
     /// Clears the value of `stopPrice`. Subsequent reads from it will return its default value.
     public mutating func clearStopPrice() {_uniqueStorage()._stopPrice = nil}
     
+    ///instrument_uid идентификатор инструмента.
+    var instrumentUid: String {
+        get {return _storage._instrumentUid}
+        set {_uniqueStorage()._instrumentUid = newValue}
+    }
+    
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
     public init() {}
@@ -477,6 +486,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PostStopOrderRequest: SwiftProto
         7: .standard(proto: "expiration_type"),
         8: .standard(proto: "stop_order_type"),
         9: .standard(proto: "expire_date"),
+        10: .standard(proto: "instrument_id"),
     ]
     
     public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -494,6 +504,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PostStopOrderRequest: SwiftProto
             case 7: try { try decoder.decodeSingularEnumField(value: &self.expirationType) }()
             case 8: try { try decoder.decodeSingularEnumField(value: &self.stopOrderType) }()
             case 9: try { try decoder.decodeSingularMessageField(value: &self._expireDate) }()
+            case 10: try { try decoder.decodeSingularStringField(value: &self.instrumentID) }()
             default: break
             }
         }
@@ -531,6 +542,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PostStopOrderRequest: SwiftProto
         try { if let v = self._expireDate {
             try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
         } }()
+        if !self.instrumentID.isEmpty {
+            try visitor.visitSingularStringField(value: self.instrumentID, fieldNumber: 10)
+        }
         try unknownFields.traverse(visitor: &visitor)
     }
     
@@ -544,6 +558,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PostStopOrderRequest: SwiftProto
         if lhs.expirationType != rhs.expirationType {return false}
         if lhs.stopOrderType != rhs.stopOrderType {return false}
         if lhs._expireDate != rhs._expireDate {return false}
+        if lhs.instrumentID != rhs.instrumentID {return false}
         if lhs.unknownFields != rhs.unknownFields {return false}
         return true
     }
@@ -733,9 +748,10 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_StopOrder: SwiftProtobuf.Message
         9: .standard(proto: "expiration_time"),
         10: .same(proto: "price"),
         11: .standard(proto: "stop_price"),
+        12: .standard(proto: "instrument_uid"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _stopOrderID: String = String()
         var _lotsRequested: Int64 = 0
         var _figi: String = String()
@@ -747,6 +763,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_StopOrder: SwiftProtobuf.Message
         var _expirationTime: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         var _price: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
         var _stopPrice: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
+        var _instrumentUid: String = String()
         
         static let defaultInstance = _StorageClass()
         
@@ -764,6 +781,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_StopOrder: SwiftProtobuf.Message
             _expirationTime = source._expirationTime
             _price = source._price
             _stopPrice = source._stopPrice
+            _instrumentUid = source._instrumentUid
         }
     }
     
@@ -793,6 +811,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_StopOrder: SwiftProtobuf.Message
                 case 9: try { try decoder.decodeSingularMessageField(value: &_storage._expirationTime) }()
                 case 10: try { try decoder.decodeSingularMessageField(value: &_storage._price) }()
                 case 11: try { try decoder.decodeSingularMessageField(value: &_storage._stopPrice) }()
+                case 12: try { try decoder.decodeSingularStringField(value: &_storage._instrumentUid) }()
                 default: break
                 }
             }
@@ -838,6 +857,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_StopOrder: SwiftProtobuf.Message
             try { if let v = _storage._stopPrice {
                 try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
             } }()
+            if !_storage._instrumentUid.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._instrumentUid, fieldNumber: 12)
+            }
         }
         try unknownFields.traverse(visitor: &visitor)
     }
@@ -858,6 +880,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_StopOrder: SwiftProtobuf.Message
                 if _storage._expirationTime != rhs_storage._expirationTime {return false}
                 if _storage._price != rhs_storage._price {return false}
                 if _storage._stopPrice != rhs_storage._stopPrice {return false}
+                if _storage._instrumentUid != rhs_storage._instrumentUid {return false}
                 return true
             }
             if !storagesAreEqual {return false}

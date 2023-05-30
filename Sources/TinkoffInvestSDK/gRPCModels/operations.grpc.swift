@@ -76,7 +76,8 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientProtocol 
         return "tinkoff.public.invest.api.contract.v1.OperationsService"
     }
     
-    ///Метод получения списка операций по счёту.
+    ///Метод получения списка операций по счёту.При работе с данным методом необходимо учитывать
+    /// [особенности взаимодействия](/investAPI/operations_problems) с данным методом.
     ///
     /// - Parameters:
     ///   - request: Request to send to GetOperations.
@@ -184,7 +185,8 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceClientProtocol 
         )
     }
     
-    ///Метод получения списка операций по счёту с пагинацией.
+    ///Метод получения списка операций по счёту с пагинацией. При работе с данным методом необходимо учитывать
+    /// [особенности взаимодействия](/investAPI/operations_problems) с данным методом.
     ///
     /// - Parameters:
     ///   - request: Request to send to GetOperationsByCursor.
@@ -857,7 +859,8 @@ internal enum Tinkoff_Public_Invest_Api_Contract_V1_OperationsStreamServiceClien
 internal protocol Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceProvider: CallHandlerProvider {
     var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceServerInterceptorFactoryProtocol? { get }
     
-    ///Метод получения списка операций по счёту.
+    ///Метод получения списка операций по счёту.При работе с данным методом необходимо учитывать
+    /// [особенности взаимодействия](/investAPI/operations_problems) с данным методом.
     func getOperations(request: Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse>
     
     ///Метод получения портфеля по счёту.
@@ -875,7 +878,8 @@ internal protocol Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceProvide
     ///Метод получения отчёта "Справка о доходах за пределами РФ".
     func getDividendsForeignIssuer(request: Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerResponse>
     
-    ///Метод получения списка операций по счёту с пагинацией.
+    ///Метод получения списка операций по счёту с пагинацией. При работе с данным методом необходимо учитывать
+    /// [особенности взаимодействия](/investAPI/operations_problems) с данным методом.
     func getOperationsByCursor(request: Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorResponse>
 }
 
@@ -972,7 +976,8 @@ internal protocol Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceAsyncPr
     static var serviceDescriptor: GRPCServiceDescriptor { get }
     var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceServerInterceptorFactoryProtocol? { get }
     
-    ///Метод получения списка операций по счёту.
+    ///Метод получения списка операций по счёту.При работе с данным методом необходимо учитывать
+    /// [особенности взаимодействия](/investAPI/operations_problems) с данным методом.
     @Sendable func getOperations(
         request: Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest,
         context: GRPCAsyncServerCallContext
@@ -1008,7 +1013,8 @@ internal protocol Tinkoff_Public_Invest_Api_Contract_V1_OperationsServiceAsyncPr
         context: GRPCAsyncServerCallContext
     ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetDividendsForeignIssuerResponse
     
-    ///Метод получения списка операций по счёту с пагинацией.
+    ///Метод получения списка операций по счёту с пагинацией. При работе с данным методом необходимо учитывать
+    /// [особенности взаимодействия](/investAPI/operations_problems) с данным методом.
     @Sendable func getOperationsByCursor(
         request: Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRequest,
         context: GRPCAsyncServerCallContext

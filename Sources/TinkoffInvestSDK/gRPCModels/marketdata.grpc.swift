@@ -53,6 +53,11 @@ internal protocol Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientP
         callOptions: CallOptions?
     ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusResponse>
     
+    func getTradingStatuses(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesResponse>
+    
     func getLastTrades(
         _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesRequest,
         callOptions: CallOptions?
@@ -87,7 +92,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientProtocol 
         )
     }
     
-    ///Метод запроса последних цен по инструментам.
+    ///Метод запроса цен последних сделок по инструментам.
     ///
     /// - Parameters:
     ///   - request: Request to send to GetLastPrices.
@@ -138,6 +143,24 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientProtocol 
             request: request,
             callOptions: callOptions ?? self.defaultCallOptions,
             interceptors: self.interceptors?.makeGetTradingStatusInterceptors() ?? []
+        )
+    }
+    
+    ///Метод запроса статуса торгов по инструментам.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to GetTradingStatuses.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func getTradingStatuses(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getTradingStatuses.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetTradingStatusesInterceptors() ?? []
         )
     }
     
@@ -264,6 +287,11 @@ internal protocol Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceAsyncCl
         callOptions: CallOptions?
     ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusResponse>
     
+    func makeGetTradingStatusesCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesResponse>
+    
     func makeGetLastTradesCall(
         _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesRequest,
         callOptions: CallOptions?
@@ -330,6 +358,18 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceAsyncClientProt
             request: request,
             callOptions: callOptions ?? self.defaultCallOptions,
             interceptors: self.interceptors?.makeGetTradingStatusInterceptors() ?? []
+        )
+    }
+    
+    internal func makeGetTradingStatusesCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getTradingStatuses.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetTradingStatusesInterceptors() ?? []
         )
     }
     
@@ -408,6 +448,18 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceAsyncClientProt
         )
     }
     
+    internal func getTradingStatuses(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getTradingStatuses.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeGetTradingStatusesInterceptors() ?? []
+        )
+    }
+    
     internal func getLastTrades(
         _ request: Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesRequest,
         callOptions: CallOptions? = nil
@@ -466,6 +518,9 @@ public protocol Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientInt
     /// - Returns: Interceptors to use when invoking 'getTradingStatus'.
     func makeGetTradingStatusInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusResponse>]
     
+    /// - Returns: Interceptors to use when invoking 'getTradingStatuses'.
+    func makeGetTradingStatusesInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesResponse>]
+    
     /// - Returns: Interceptors to use when invoking 'getLastTrades'.
     func makeGetLastTradesInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesResponse>]
     
@@ -482,6 +537,7 @@ internal enum Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetad
             Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getLastPrices,
             Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getOrderBook,
             Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getTradingStatus,
+            Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getTradingStatuses,
             Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getLastTrades,
             Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetadata.Methods.getClosePrices,
         ]
@@ -509,6 +565,12 @@ internal enum Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceClientMetad
         internal static let getTradingStatus = GRPCMethodDescriptor(
             name: "GetTradingStatus",
             path: "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetTradingStatus",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getTradingStatuses = GRPCMethodDescriptor(
+            name: "GetTradingStatuses",
+            path: "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetTradingStatuses",
             type: GRPCCallType.unary
         )
         
@@ -630,7 +692,7 @@ internal final class Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServi
 
 public struct Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceNIOClient: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientProtocol {
     public var channel: GRPCChannel
-    public  var defaultCallOptions: CallOptions
+    public var defaultCallOptions: CallOptions
     public var interceptors: Tinkoff_Public_Invest_Api_Contract_V1_MarketDataStreamServiceClientInterceptorFactoryProtocol?
     
     /// Creates a client for the tinkoff.public.invest.api.contract.v1.MarketDataStreamService service.
@@ -800,7 +862,7 @@ internal protocol Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceProvide
     ///Метод запроса исторических свечей по инструменту.
     func getCandles(request: Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesResponse>
     
-    ///Метод запроса последних цен по инструментам.
+    ///Метод запроса цен последних сделок по инструментам.
     func getLastPrices(request: Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesResponse>
     
     ///Метод получения стакана по инструменту.
@@ -808,6 +870,9 @@ internal protocol Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceProvide
     
     ///Метод запроса статуса торгов по инструментам.
     func getTradingStatus(request: Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusResponse>
+    
+    ///Метод запроса статуса торгов по инструментам.
+    func getTradingStatuses(request: Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesResponse>
     
     ///Метод запроса обезличенных сделок за последний час.
     func getLastTrades(request: Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesResponse>
@@ -864,6 +929,15 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceProvider {
                 userFunction: self.getTradingStatus(request:context:)
             )
             
+        case "GetTradingStatuses":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesResponse>(),
+                interceptors: self.interceptors?.makeGetTradingStatusesInterceptors() ?? [],
+                userFunction: self.getTradingStatuses(request:context:)
+            )
+            
         case "GetLastTrades":
             return UnaryServerHandler(
                 context: context,
@@ -904,7 +978,7 @@ internal protocol Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceAsyncPr
         context: GRPCAsyncServerCallContext
     ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetCandlesResponse
     
-    ///Метод запроса последних цен по инструментам.
+    ///Метод запроса цен последних сделок по инструментам.
     @Sendable func getLastPrices(
         request: Tinkoff_Public_Invest_Api_Contract_V1_GetLastPricesRequest,
         context: GRPCAsyncServerCallContext
@@ -921,6 +995,12 @@ internal protocol Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceAsyncPr
         request: Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest,
         context: GRPCAsyncServerCallContext
     ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusResponse
+    
+    ///Метод запроса статуса торгов по инструментам.
+    @Sendable func getTradingStatuses(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesResponse
     
     ///Метод запроса обезличенных сделок за последний час.
     @Sendable func getLastTrades(
@@ -990,6 +1070,15 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceAsyncProvider {
                 wrapping: self.getTradingStatus(request:context:)
             )
             
+        case "GetTradingStatuses":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesResponse>(),
+                interceptors: self.interceptors?.makeGetTradingStatusesInterceptors() ?? [],
+                wrapping: self.getTradingStatuses(request:context:)
+            )
+            
         case "GetLastTrades":
             return GRPCAsyncServerHandler(
                 context: context,
@@ -1034,6 +1123,10 @@ internal protocol Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerI
     ///   Defaults to calling `self.makeInterceptors()`.
     func makeGetTradingStatusInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusResponse>]
     
+    /// - Returns: Interceptors to use when handling 'getTradingStatuses'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeGetTradingStatusesInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetTradingStatusesResponse>]
+    
     /// - Returns: Interceptors to use when handling 'getLastTrades'.
     ///   Defaults to calling `self.makeInterceptors()`.
     func makeGetLastTradesInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetLastTradesResponse>]
@@ -1052,6 +1145,7 @@ internal enum Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerMetad
             Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerMetadata.Methods.getLastPrices,
             Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerMetadata.Methods.getOrderBook,
             Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerMetadata.Methods.getTradingStatus,
+            Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerMetadata.Methods.getTradingStatuses,
             Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerMetadata.Methods.getLastTrades,
             Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerMetadata.Methods.getClosePrices,
         ]
@@ -1079,6 +1173,12 @@ internal enum Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServiceServerMetad
         internal static let getTradingStatus = GRPCMethodDescriptor(
             name: "GetTradingStatus",
             path: "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetTradingStatus",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let getTradingStatuses = GRPCMethodDescriptor(
+            name: "GetTradingStatuses",
+            path: "/tinkoff.public.invest.api.contract.v1.MarketDataService/GetTradingStatuses",
             type: GRPCCallType.unary
         )
         

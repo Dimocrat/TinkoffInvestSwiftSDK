@@ -104,8 +104,14 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_CouponType: CaseIterable {
 ///Тип опциона по направлению сделки.
 public enum Tinkoff_Public_Invest_Api_Contract_V1_OptionDirection: SwiftProtobuf.Enum {
     public typealias RawValue = Int
+    
+    ///Тип не определен.
     case unspecified // = 0
+    
+    ///Опцион на продажу.
     case put // = 1
+    
+    ///Опцион на покупку.
     case call // = 2
     case UNRECOGNIZED(Int)
     
@@ -149,8 +155,14 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OptionDirection: CaseIterable {
 ///Тип расчетов по опциону.
 public enum Tinkoff_Public_Invest_Api_Contract_V1_OptionPaymentType: SwiftProtobuf.Enum {
     public typealias RawValue = Int
+    
+    ///Тип не определен.
     case unspecified // = 0
+    
+    ///Опционы с использованием премии в расчетах.
     case premium // = 1
+    
+    ///Маржируемые опционы.
     case marginal // = 2
     case UNRECOGNIZED(Int)
     
@@ -194,8 +206,14 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OptionPaymentType: CaseIterable 
 ///Тип опциона по стилю.
 public enum Tinkoff_Public_Invest_Api_Contract_V1_OptionStyle: SwiftProtobuf.Enum {
     public typealias RawValue = Int
+    
+    ///Тип не определен.
     case unspecified // = 0
+    
+    ///Американский опцион.
     case american // = 1
+    
+    ///Европейский опцион.
     case european // = 2
     case UNRECOGNIZED(Int)
     
@@ -239,8 +257,14 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OptionStyle: CaseIterable {
 ///Тип опциона по способу исполнения.
 public enum Tinkoff_Public_Invest_Api_Contract_V1_OptionSettlementType: SwiftProtobuf.Enum {
     public typealias RawValue = Int
+    
+    ///Тип не определен.
     case optionExecutionTypeUnspecified // = 0
+    
+    /// Поставочный тип опциона.
     case optionExecutionTypePhysicalDelivery // = 1
+    
+    ///Расчетный тип опциона.
     case optionExecutionTypeCashSettlement // = 2
     case UNRECOGNIZED(Int)
     
@@ -704,6 +728,61 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_RealExchange: CaseIterable {
 
 #endif  // swift(>=4.2)
 
+///Уровень риска облигации.
+public enum Tinkoff_Public_Invest_Api_Contract_V1_RiskLevel: SwiftProtobuf.Enum {
+    public typealias RawValue = Int
+    case unspecified // = 0
+    
+    ///Низкий уровень риска
+    case low // = 1
+    
+    ///Средний уровень риска
+    case moderate // = 2
+    
+    ///Высокий уровень риска
+    case high // = 3
+    case UNRECOGNIZED(Int)
+    
+    public init() {
+        self = .unspecified
+    }
+    
+    public init?(rawValue: Int) {
+        switch rawValue {
+        case 0: self = .unspecified
+        case 1: self = .low
+        case 2: self = .moderate
+        case 3: self = .high
+        default: self = .UNRECOGNIZED(rawValue)
+        }
+    }
+    
+    public var rawValue: Int {
+        switch self {
+        case .unspecified: return 0
+        case .low: return 1
+        case .moderate: return 2
+        case .high: return 3
+        case .UNRECOGNIZED(let i): return i
+        }
+    }
+    
+}
+
+#if swift(>=4.2)
+
+extension Tinkoff_Public_Invest_Api_Contract_V1_RiskLevel: CaseIterable {
+    // The compiler won't synthesize support with the UNRECOGNIZED case.
+    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_RiskLevel] = [
+        .unspecified,
+        .low,
+        .moderate,
+        .high,
+    ]
+}
+
+#endif  // swift(>=4.2)
+
 ///Запрос расписания торгов.
 public struct Tinkoff_Public_Invest_Api_Contract_V1_TradingSchedulesRequest {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -904,6 +983,26 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_TradingDay {
     /// Clears the value of `premarketEndTime`. Subsequent reads from it will return its default value.
     public mutating func clearPremarketEndTime() {_uniqueStorage()._premarketEndTime = nil}
     
+    /// Время начала аукциона закрытия в часовом поясе UTC.
+    public var closingAuctionStartTime: SwiftProtobuf.Google_Protobuf_Timestamp {
+        get {return _storage._closingAuctionStartTime ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
+        set {_uniqueStorage()._closingAuctionStartTime = newValue}
+    }
+    /// Returns true if `closingAuctionStartTime` has been explicitly set.
+    public var hasClosingAuctionStartTime: Bool {return _storage._closingAuctionStartTime != nil}
+    /// Clears the value of `closingAuctionStartTime`. Subsequent reads from it will return its default value.
+    public mutating func clearClosingAuctionStartTime() {_uniqueStorage()._closingAuctionStartTime = nil}
+    
+    /// Время окончания аукциона открытия в часовом поясе UTC.
+    public var openingAuctionEndTime: SwiftProtobuf.Google_Protobuf_Timestamp {
+        get {return _storage._openingAuctionEndTime ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
+        set {_uniqueStorage()._openingAuctionEndTime = newValue}
+    }
+    /// Returns true if `openingAuctionEndTime` has been explicitly set.
+    public var hasOpeningAuctionEndTime: Bool {return _storage._openingAuctionEndTime != nil}
+    /// Clears the value of `openingAuctionEndTime`. Subsequent reads from it will return its default value.
+    public mutating func clearOpeningAuctionEndTime() {_uniqueStorage()._openingAuctionEndTime = nil}
+    
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
     public init() {}
@@ -939,6 +1038,23 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsRequest {
     
     ///Статус запрашиваемых инструментов. Возможные значения: [InstrumentStatus](#instrumentstatus)
     public var instrumentStatus: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentStatus = .unspecified
+    
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+    
+    public init() {}
+}
+
+///Параметры фильтрации опционов
+public struct Tinkoff_Public_Invest_Api_Contract_V1_FilterOptionsRequest {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+    
+    ///Идентификатор базового актива опциона.  Обязательный параметр.
+    public var basicAssetUid: String = String()
+    
+    ///Идентификатор позиции базового актива опциона
+    public var basicAssetPositionUid: String = String()
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -1561,6 +1677,30 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Option {
         set {_uniqueStorage()._sellAvailableFlag = newValue}
     }
     
+    ///Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов.
+    public var forQualInvestorFlag: Bool {
+        get {return _storage._forQualInvestorFlag}
+        set {_uniqueStorage()._forQualInvestorFlag = newValue}
+    }
+    
+    ///Флаг отображающий доступность торговли инструментом по выходным.
+    public var weekendFlag: Bool {
+        get {return _storage._weekendFlag}
+        set {_uniqueStorage()._weekendFlag = newValue}
+    }
+    
+    ///Флаг заблокированного ТКС.
+    public var blockedTcaFlag: Bool {
+        get {return _storage._blockedTcaFlag}
+        set {_uniqueStorage()._blockedTcaFlag = newValue}
+    }
+    
+    ///Параметр указывает на возможность торговать инструментом через API.
+    public var apiTradeAvailableFlag: Bool {
+        get {return _storage._apiTradeAvailableFlag}
+        set {_uniqueStorage()._apiTradeAvailableFlag = newValue}
+    }
+    
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
     public init() {}
@@ -1751,6 +1891,16 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Bond {
     /// Clears the value of `nominal`. Subsequent reads from it will return its default value.
     public mutating func clearNominal() {_uniqueStorage()._nominal = nil}
     
+    ///Первоначальный номинал облигации.
+    public var initialNominal: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
+        get {return _storage._initialNominal ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
+        set {_uniqueStorage()._initialNominal = newValue}
+    }
+    /// Returns true if `initialNominal` has been explicitly set.
+    public var hasInitialNominal: Bool {return _storage._initialNominal != nil}
+    /// Clears the value of `initialNominal`. Subsequent reads from it will return its default value.
+    public mutating func clearInitialNominal() {_uniqueStorage()._initialNominal = nil}
+    
     ///Дата выпуска облигации в часовом поясе UTC.
     public var stateRegDate: SwiftProtobuf.Google_Protobuf_Timestamp {
         get {return _storage._stateRegDate ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
@@ -1879,7 +2029,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Bond {
     /// Clears the value of `minPriceIncrement`. Subsequent reads from it will return its default value.
     public mutating func clearMinPriceIncrement() {_uniqueStorage()._minPriceIncrement = nil}
     
-    ///Признак доступности торгов через API.
+    ///Параметр указывает на возможность торговать инструментом через API.
     public var apiTradeAvailableFlag: Bool {
         get {return _storage._apiTradeAvailableFlag}
         set {_uniqueStorage()._apiTradeAvailableFlag = newValue}
@@ -1909,6 +2059,36 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Bond {
         set {_uniqueStorage()._forIisFlag = newValue}
     }
     
+    ///Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов.
+    public var forQualInvestorFlag: Bool {
+        get {return _storage._forQualInvestorFlag}
+        set {_uniqueStorage()._forQualInvestorFlag = newValue}
+    }
+    
+    ///Флаг отображающий доступность торговли инструментом по выходным
+    public var weekendFlag: Bool {
+        get {return _storage._weekendFlag}
+        set {_uniqueStorage()._weekendFlag = newValue}
+    }
+    
+    ///Флаг заблокированного ТКС
+    public var blockedTcaFlag: Bool {
+        get {return _storage._blockedTcaFlag}
+        set {_uniqueStorage()._blockedTcaFlag = newValue}
+    }
+    
+    ///Признак субординированной облигации.
+    public var subordinatedFlag: Bool {
+        get {return _storage._subordinatedFlag}
+        set {_uniqueStorage()._subordinatedFlag = newValue}
+    }
+    
+    ///Флаг достаточной ликвидности
+    public var liquidityFlag: Bool {
+        get {return _storage._liquidityFlag}
+        set {_uniqueStorage()._liquidityFlag = newValue}
+    }
+    
     ///Дата первой минутной свечи.
     public var first1MinCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp {
         get {return _storage._first1MinCandleDate ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
@@ -1928,6 +2108,12 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Bond {
     public var hasFirst1DayCandleDate: Bool {return _storage._first1DayCandleDate != nil}
     /// Clears the value of `first1DayCandleDate`. Subsequent reads from it will return its default value.
     public mutating func clearFirst1DayCandleDate() {_uniqueStorage()._first1DayCandleDate = nil}
+    
+    ///Уровень риска.
+    public var riskLevel: Tinkoff_Public_Invest_Api_Contract_V1_RiskLevel {
+        get {return _storage._riskLevel}
+        set {_uniqueStorage()._riskLevel = newValue}
+    }
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -2118,7 +2304,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Currency {
     /// Clears the value of `minPriceIncrement`. Subsequent reads from it will return its default value.
     public mutating func clearMinPriceIncrement() {_uniqueStorage()._minPriceIncrement = nil}
     
-    ///Признак доступности торгов через API.
+    ///Параметр указывает на возможность торговать инструментом через API.
     public var apiTradeAvailableFlag: Bool {
         get {return _storage._apiTradeAvailableFlag}
         set {_uniqueStorage()._apiTradeAvailableFlag = newValue}
@@ -2146,6 +2332,24 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Currency {
     public var forIisFlag: Bool {
         get {return _storage._forIisFlag}
         set {_uniqueStorage()._forIisFlag = newValue}
+    }
+    
+    ///Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов.
+    public var forQualInvestorFlag: Bool {
+        get {return _storage._forQualInvestorFlag}
+        set {_uniqueStorage()._forQualInvestorFlag = newValue}
+    }
+    
+    ///Флаг отображающий доступность торговли инструментом по выходным.
+    public var weekendFlag: Bool {
+        get {return _storage._weekendFlag}
+        set {_uniqueStorage()._weekendFlag = newValue}
+    }
+    
+    ///Флаг заблокированного ТКС.
+    public var blockedTcaFlag: Bool {
+        get {return _storage._blockedTcaFlag}
+        set {_uniqueStorage()._blockedTcaFlag = newValue}
     }
     
     ///Дата первой минутной свечи.
@@ -2389,8 +2593,8 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Etf {
     /// Clears the value of `minPriceIncrement`. Subsequent reads from it will return its default value.
     public mutating func clearMinPriceIncrement() {_uniqueStorage()._minPriceIncrement = nil}
     
-    ///Признак доступности торгов через API.
-    public var apiTradeAvailableFlag: Bool {
+    ///Параметр указывает на возможность торговать инструментом через API.
+    var apiTradeAvailableFlag: Bool {
         get {return _storage._apiTradeAvailableFlag}
         set {_uniqueStorage()._apiTradeAvailableFlag = newValue}
     }
@@ -2417,6 +2621,30 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Etf {
     public var forIisFlag: Bool {
         get {return _storage._forIisFlag}
         set {_uniqueStorage()._forIisFlag = newValue}
+    }
+    
+    ///Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов.
+    public var forQualInvestorFlag: Bool {
+        get {return _storage._forQualInvestorFlag}
+        set {_uniqueStorage()._forQualInvestorFlag = newValue}
+    }
+    
+    ///Флаг отображающий доступность торговли инструментом по выходным.
+    public var weekendFlag: Bool {
+        get {return _storage._weekendFlag}
+        set {_uniqueStorage()._weekendFlag = newValue}
+    }
+    
+    ///Флаг заблокированного ТКС.
+    public var blockedTcaFlag: Bool {
+        get {return _storage._blockedTcaFlag}
+        set {_uniqueStorage()._blockedTcaFlag = newValue}
+    }
+    
+    ///Флаг достаточной ликвидности
+    public var liquidityFlag: Bool {
+        get {return _storage._liquidityFlag}
+        set {_uniqueStorage()._liquidityFlag = newValue}
     }
     
     ///Дата первой минутной свечи.
@@ -2670,8 +2898,8 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Future {
     /// Clears the value of `minPriceIncrement`. Subsequent reads from it will return its default value.
     public mutating func clearMinPriceIncrement() {_uniqueStorage()._minPriceIncrement = nil}
     
-    ///Признак доступности торгов через API.
-    public var apiTradeAvailableFlag: Bool {
+    ///Параметр указывает на возможность торговать инструментом через API.
+    var apiTradeAvailableFlag: Bool {
         get {return _storage._apiTradeAvailableFlag}
         set {_uniqueStorage()._apiTradeAvailableFlag = newValue}
     }
@@ -2704,6 +2932,24 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Future {
     public var forIisFlag: Bool {
         get {return _storage._forIisFlag}
         set {_uniqueStorage()._forIisFlag = newValue}
+    }
+    
+    ///Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов.
+    public var forQualInvestorFlag: Bool {
+        get {return _storage._forQualInvestorFlag}
+        set {_uniqueStorage()._forQualInvestorFlag = newValue}
+    }
+    
+    ///Флаг отображающий доступность торговли инструментом по выходным.
+    public var weekendFlag: Bool {
+        get {return _storage._weekendFlag}
+        set {_uniqueStorage()._weekendFlag = newValue}
+    }
+    
+    ///Флаг заблокированного ТКС.
+    public var blockedTcaFlag: Bool {
+        get {return _storage._blockedTcaFlag}
+        set {_uniqueStorage()._blockedTcaFlag = newValue}
     }
     
     ///Дата первой минутной свечи.
@@ -2949,7 +3195,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Share {
     /// Clears the value of `minPriceIncrement`. Subsequent reads from it will return its default value.
     public mutating func clearMinPriceIncrement() {_uniqueStorage()._minPriceIncrement = nil}
     
-    ///Признак доступности торгов через API.
+    ///Параметр указывает на возможность торговать инструментом через API.
     public var apiTradeAvailableFlag: Bool {
         get {return _storage._apiTradeAvailableFlag}
         set {_uniqueStorage()._apiTradeAvailableFlag = newValue}
@@ -2977,6 +3223,30 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Share {
     public var forIisFlag: Bool {
         get {return _storage._forIisFlag}
         set {_uniqueStorage()._forIisFlag = newValue}
+    }
+    
+    ///Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов.
+    public var forQualInvestorFlag: Bool {
+        get {return _storage._forQualInvestorFlag}
+        set {_uniqueStorage()._forQualInvestorFlag = newValue}
+    }
+    
+    ///Флаг отображающий доступность торговли инструментом по выходным
+    public var weekendFlag: Bool {
+        get {return _storage._weekendFlag}
+        set {_uniqueStorage()._weekendFlag = newValue}
+    }
+    
+    ///Флаг заблокированного ТКС
+    public var blockedTcaFlag: Bool {
+        get {return _storage._blockedTcaFlag}
+        set {_uniqueStorage()._blockedTcaFlag = newValue}
+    }
+    
+    ///Флаг достаточной ликвидности
+    public var liquidityFlag: Bool {
+        get {return _storage._liquidityFlag}
+        set {_uniqueStorage()._liquidityFlag = newValue}
     }
     
     ///Дата первой минутной свечи.
@@ -3378,7 +3648,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Instrument {
     /// Clears the value of `minPriceIncrement`. Subsequent reads from it will return its default value.
     public mutating func clearMinPriceIncrement() {_uniqueStorage()._minPriceIncrement = nil}
     
-    ///Признак доступности торгов через API.
+    ///Параметр указывает на возможность торговать инструментом через API.
     public var apiTradeAvailableFlag: Bool {
         get {return _storage._apiTradeAvailableFlag}
         set {_uniqueStorage()._apiTradeAvailableFlag = newValue}
@@ -3408,6 +3678,30 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Instrument {
         set {_uniqueStorage()._forIisFlag = newValue}
     }
     
+    ///Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов.
+    public var forQualInvestorFlag: Bool {
+        get {return _storage._forQualInvestorFlag}
+        set {_uniqueStorage()._forQualInvestorFlag = newValue}
+    }
+    
+    ///Флаг отображающий доступность торговли инструментом по выходным
+    public var weekendFlag: Bool {
+        get {return _storage._weekendFlag}
+        set {_uniqueStorage()._weekendFlag = newValue}
+    }
+    
+    ///Флаг заблокированного ТКС
+    public var blockedTcaFlag: Bool {
+        get {return _storage._blockedTcaFlag}
+        set {_uniqueStorage()._blockedTcaFlag = newValue}
+    }
+    
+    ///Тип инструмента.
+    public var instrumentKind: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType {
+        get {return _storage._instrumentKind}
+        set {_uniqueStorage()._instrumentKind = newValue}
+    }
+    
     ///Дата первой минутной свечи.
     public var first1MinCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp {
         get {return _storage._first1MinCandleDate ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
@@ -3432,7 +3726,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Instrument {
     
     public init() {}
     
-    fileprivate var _storage = _StorageClass.defaultInstance
+    public var _storage = _StorageClass.defaultInstance
 }
 
 ///Запрос дивидендов.
@@ -3632,6 +3926,8 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_AssetsRequest {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
+    
+    var instrumentType: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType = .unspecified
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -3870,10 +4166,13 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_AssetSecurity {
     ///Тип ценной бумаги.
     public var type: String = String()
     
-    public var ext: Tinkoff_Public_Invest_Api_Contract_V1_AssetSecurity.OneOf_Ext? = nil
+    ///Тип инструмента.
+    var instrumentKind: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType = .unspecified
+    
+    var ext: Tinkoff_Public_Invest_Api_Contract_V1_AssetSecurity.OneOf_Ext? = nil
     
     ///Акция. Заполняется только для акций (тип актива asset.type = "ASSET_TYPE_SECURITY" и security.type = share).
-    public var share: Tinkoff_Public_Invest_Api_Contract_V1_AssetShare {
+    var share: Tinkoff_Public_Invest_Api_Contract_V1_AssetShare {
         get {
             if case .share(let v)? = ext {return v}
             return Tinkoff_Public_Invest_Api_Contract_V1_AssetShare()
@@ -3882,7 +4181,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_AssetSecurity {
     }
     
     ///Облигация. Заполняется только для облигаций (тип актива asset.type = "ASSET_TYPE_SECURITY" и security.type = bond).
-    public var bond: Tinkoff_Public_Invest_Api_Contract_V1_AssetBond {
+    var bond: Tinkoff_Public_Invest_Api_Contract_V1_AssetBond {
         get {
             if case .bond(let v)? = ext {return v}
             return Tinkoff_Public_Invest_Api_Contract_V1_AssetBond()
@@ -4719,6 +5018,12 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_AssetInstrument {
     ///Массив связанных инструментов.
     public var links: [Tinkoff_Public_Invest_Api_Contract_V1_InstrumentLink] = []
     
+    ///Тип инструмента.
+    var instrumentKind: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType = .unspecified
+    
+    ///id позиции.
+    var positionUid: String = String()
+    
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
     public init() {}
@@ -4790,8 +5095,11 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_FavoriteInstrument {
     ///Признак внебиржевой ценной бумаги.
     public var otcFlag: Bool = false
     
-    ///Признак доступности торгов через API.
-    public var apiTradeAvailableFlag: Bool = false
+    ///Параметр указывает на возможность торговать инструментом через API.
+    var apiTradeAvailableFlag: Bool = false
+    
+    ///Тип инструмента.
+    var instrumentKind: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType = .unspecified
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -4900,6 +5208,12 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_FindInstrumentRequest {
     ///Строка поиска.
     public var query: String = String()
     
+    ///Фильтр по типу инструмента.
+    var instrumentKind: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType = .unspecified
+    
+    ///Фильтр для отображения только торговых инструментов.
+    var apiTradeAvailableFlag: Bool = false
+    
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
     public init() {}
@@ -4926,61 +5240,114 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_InstrumentShort {
     // methods supported on all messages.
     
     ///Isin инструмента.
-    public var isin: String = String()
+    var isin: String {
+        get {return _storage._isin}
+        set {_uniqueStorage()._isin = newValue}
+    }
     
     ///Figi инструмента.
-    public var figi: String = String()
+    var figi: String {
+        get {return _storage._figi}
+        set {_uniqueStorage()._figi = newValue}
+    }
     
     ///Ticker инструмента.
-    public var ticker: String = String()
+    var ticker: String {
+        get {return _storage._ticker}
+        set {_uniqueStorage()._ticker = newValue}
+    }
     
     ///ClassCode инструмента.
-    public var classCode: String = String()
+    var classCode: String {
+        get {return _storage._classCode}
+        set {_uniqueStorage()._classCode = newValue}
+    }
     
     ///Тип инструмента.
-    public var instrumentType: String = String()
+    var instrumentType: String {
+        get {return _storage._instrumentType}
+        set {_uniqueStorage()._instrumentType = newValue}
+    }
     
     ///Название инструмента.
-    public var name: String = String()
+    var name: String {
+        get {return _storage._name}
+        set {_uniqueStorage()._name = newValue}
+    }
     
     ///Уникальный идентификатор инструмента.
-    public var uid: String = String()
+    var uid: String {
+        get {return _storage._uid}
+        set {_uniqueStorage()._uid = newValue}
+    }
     
     ///Уникальный идентификатор позиции инструмента.
-    public var positionUid: String = String()
+    var positionUid: String {
+        get {return _storage._positionUid}
+        set {_uniqueStorage()._positionUid = newValue}
+    }
     
-    ///Признак доступности торгов через API.
-    public var apiTradeAvailableFlag: Bool = false
+    ///Тип инструмента.
+    var instrumentKind: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType {
+        get {return _storage._instrumentKind}
+        set {_uniqueStorage()._instrumentKind = newValue}
+    }
+    
+    ///Параметр указывает на возможность торговать инструментом через API.
+    var apiTradeAvailableFlag: Bool {
+        get {return _storage._apiTradeAvailableFlag}
+        set {_uniqueStorage()._apiTradeAvailableFlag = newValue}
+    }
     
     ///Признак доступности для ИИС.
-    public var forIisFlag: Bool = false
+    var forIisFlag: Bool {
+        get {return _storage._forIisFlag}
+        set {_uniqueStorage()._forIisFlag = newValue}
+    }
     
     ///Дата первой минутной свечи.
-    public var first1MinCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp {
-        get {return _first1MinCandleDate ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
-        set {_first1MinCandleDate = newValue}
+    var first1MinCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp {
+        get {return _storage._first1MinCandleDate ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
+        set {_uniqueStorage()._first1MinCandleDate = newValue}
     }
     /// Returns true if `first1MinCandleDate` has been explicitly set.
-    public var hasFirst1MinCandleDate: Bool {return self._first1MinCandleDate != nil}
+    var hasFirst1MinCandleDate: Bool {return _storage._first1MinCandleDate != nil}
     /// Clears the value of `first1MinCandleDate`. Subsequent reads from it will return its default value.
-    public mutating func clearFirst1MinCandleDate() {self._first1MinCandleDate = nil}
+    mutating func clearFirst1MinCandleDate() {_uniqueStorage()._first1MinCandleDate = nil}
     
     ///Дата первой дневной свечи.
-    public var first1DayCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp {
-        get {return _first1DayCandleDate ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
-        set {_first1DayCandleDate = newValue}
+    var first1DayCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp {
+        get {return _storage._first1DayCandleDate ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
+        set {_uniqueStorage()._first1DayCandleDate = newValue}
     }
     /// Returns true if `first1DayCandleDate` has been explicitly set.
-    public var hasFirst1DayCandleDate: Bool {return self._first1DayCandleDate != nil}
+    var hasFirst1DayCandleDate: Bool {return _storage._first1DayCandleDate != nil}
     /// Clears the value of `first1DayCandleDate`. Subsequent reads from it will return its default value.
-    public mutating func clearFirst1DayCandleDate() {self._first1DayCandleDate = nil}
+    mutating func clearFirst1DayCandleDate() {_uniqueStorage()._first1DayCandleDate = nil}
+    
+    ///Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов.
+    var forQualInvestorFlag: Bool {
+        get {return _storage._forQualInvestorFlag}
+        set {_uniqueStorage()._forQualInvestorFlag = newValue}
+    }
+    
+    ///Флаг отображающий доступность торговли инструментом по выходным
+    var weekendFlag: Bool {
+        get {return _storage._weekendFlag}
+        set {_uniqueStorage()._weekendFlag = newValue}
+    }
+    
+    ///Флаг заблокированного ТКС
+    var blockedTcaFlag: Bool {
+        get {return _storage._blockedTcaFlag}
+        set {_uniqueStorage()._blockedTcaFlag = newValue}
+    }
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
     public init() {}
     
-    fileprivate var _first1MinCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
-    fileprivate var _first1DayCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
+    fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 ///Запрос списка брендов.
@@ -5035,12 +5402,14 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AssetType: @unchecked Sendable {
 extension Tinkoff_Public_Invest_Api_Contract_V1_StructuredProductType: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_EditFavoritesActionType: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_RealExchange: @unchecked Sendable {}
+extension Tinkoff_Public_Invest_Api_Contract_V1_RiskLevel: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_TradingSchedulesRequest: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_TradingSchedulesResponse: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_TradingSchedule: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_TradingDay: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_InstrumentRequest: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsRequest: @unchecked Sendable {}
+extension Tinkoff_Public_Invest_Api_Contract_V1_FilterOptionsRequest: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_BondResponse: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_BondsResponse: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_GetBondCouponsRequest: @unchecked Sendable {}
@@ -5223,6 +5592,15 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_RealExchange: SwiftProtobuf._Pro
     ]
 }
 
+extension Tinkoff_Public_Invest_Api_Contract_V1_RiskLevel: SwiftProtobuf._ProtoNameProviding {
+    public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+        0: .same(proto: "RISK_LEVEL_UNSPECIFIED"),
+        1: .same(proto: "RISK_LEVEL_LOW"),
+        2: .same(proto: "RISK_LEVEL_MODERATE"),
+        3: .same(proto: "RISK_LEVEL_HIGH"),
+    ]
+}
+
 extension Tinkoff_Public_Invest_Api_Contract_V1_TradingSchedulesRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
     public static let protoMessageName: String = _protobuf_package + ".TradingSchedulesRequest"
     public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -5357,9 +5735,11 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_TradingDay: SwiftProtobuf.Messag
         13: .standard(proto: "clearing_end_time"),
         14: .standard(proto: "premarket_start_time"),
         15: .standard(proto: "premarket_end_time"),
+        16: .standard(proto: "closing_auction_start_time"),
+        17: .standard(proto: "opening_auction_end_time"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _date: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         var _isTradingDay: Bool = false
         var _startTime: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
@@ -5373,6 +5753,8 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_TradingDay: SwiftProtobuf.Messag
         var _clearingEndTime: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         var _premarketStartTime: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         var _premarketEndTime: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
+        var _closingAuctionStartTime: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
+        var _openingAuctionEndTime: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         
         static let defaultInstance = _StorageClass()
         
@@ -5392,10 +5774,12 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_TradingDay: SwiftProtobuf.Messag
             _clearingEndTime = source._clearingEndTime
             _premarketStartTime = source._premarketStartTime
             _premarketEndTime = source._premarketEndTime
+            _closingAuctionStartTime = source._closingAuctionStartTime
+            _openingAuctionEndTime = source._openingAuctionEndTime
         }
     }
     
-    fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    public mutating func _uniqueStorage() -> _StorageClass {
         if !isKnownUniquelyReferenced(&_storage) {
             _storage = _StorageClass(copying: _storage)
         }
@@ -5423,6 +5807,8 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_TradingDay: SwiftProtobuf.Messag
                 case 13: try { try decoder.decodeSingularMessageField(value: &_storage._clearingEndTime) }()
                 case 14: try { try decoder.decodeSingularMessageField(value: &_storage._premarketStartTime) }()
                 case 15: try { try decoder.decodeSingularMessageField(value: &_storage._premarketEndTime) }()
+                case 16: try { try decoder.decodeSingularMessageField(value: &_storage._closingAuctionStartTime) }()
+                case 17: try { try decoder.decodeSingularMessageField(value: &_storage._openingAuctionEndTime) }()
                 default: break
                 }
             }
@@ -5474,6 +5860,12 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_TradingDay: SwiftProtobuf.Messag
             try { if let v = _storage._premarketEndTime {
                 try visitor.visitSingularMessageField(value: v, fieldNumber: 15)
             } }()
+            try { if let v = _storage._closingAuctionStartTime {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 16)
+            } }()
+            try { if let v = _storage._openingAuctionEndTime {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 17)
+            } }()
         }
         try unknownFields.traverse(visitor: &visitor)
     }
@@ -5496,6 +5888,8 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_TradingDay: SwiftProtobuf.Messag
                 if _storage._clearingEndTime != rhs_storage._clearingEndTime {return false}
                 if _storage._premarketStartTime != rhs_storage._premarketStartTime {return false}
                 if _storage._premarketEndTime != rhs_storage._premarketEndTime {return false}
+                if _storage._closingAuctionStartTime != rhs_storage._closingAuctionStartTime {return false}
+                if _storage._openingAuctionEndTime != rhs_storage._openingAuctionEndTime {return false}
                 return true
             }
             if !storagesAreEqual {return false}
@@ -5576,6 +5970,44 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsRequest: SwiftProtobu
     
     public static func ==(lhs: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsRequest, rhs: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsRequest) -> Bool {
         if lhs.instrumentStatus != rhs.instrumentStatus {return false}
+        if lhs.unknownFields != rhs.unknownFields {return false}
+        return true
+    }
+}
+
+extension Tinkoff_Public_Invest_Api_Contract_V1_FilterOptionsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+    public static let protoMessageName: String = _protobuf_package + ".FilterOptionsRequest"
+    public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+        1: .standard(proto: "basic_asset_uid"),
+        2: .standard(proto: "basic_asset_position_uid"),
+    ]
+    
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+        while let fieldNumber = try decoder.nextFieldNumber() {
+            // The use of inline closures is to circumvent an issue where the compiler
+            // allocates stack space for every case branch when no optimizations are
+            // enabled. https://github.com/apple/swift-protobuf/issues/1034
+            switch fieldNumber {
+            case 1: try { try decoder.decodeSingularStringField(value: &self.basicAssetUid) }()
+            case 2: try { try decoder.decodeSingularStringField(value: &self.basicAssetPositionUid) }()
+            default: break
+            }
+        }
+    }
+    
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+        if !self.basicAssetUid.isEmpty {
+            try visitor.visitSingularStringField(value: self.basicAssetUid, fieldNumber: 1)
+        }
+        if !self.basicAssetPositionUid.isEmpty {
+            try visitor.visitSingularStringField(value: self.basicAssetPositionUid, fieldNumber: 2)
+        }
+        try unknownFields.traverse(visitor: &visitor)
+    }
+    
+    public static func ==(lhs: Tinkoff_Public_Invest_Api_Contract_V1_FilterOptionsRequest, rhs: Tinkoff_Public_Invest_Api_Contract_V1_FilterOptionsRequest) -> Bool {
+        if lhs.basicAssetUid != rhs.basicAssetUid {return false}
+        if lhs.basicAssetPositionUid != rhs.basicAssetPositionUid {return false}
         if lhs.unknownFields != rhs.unknownFields {return false}
         return true
     }
@@ -6128,9 +6560,13 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Option: SwiftProtobuf.Message, S
         403: .standard(proto: "otc_flag"),
         404: .standard(proto: "buy_available_flag"),
         405: .standard(proto: "sell_available_flag"),
+        406: .standard(proto: "for_qual_investor_flag"),
+        407: .standard(proto: "weekend_flag"),
+        408: .standard(proto: "blocked_tca_flag"),
+        409: .standard(proto: "api_trade_available_flag"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _uid: String = String()
         var _positionUid: String = String()
         var _ticker: String = String()
@@ -6171,6 +6607,10 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Option: SwiftProtobuf.Message, S
         var _otcFlag: Bool = false
         var _buyAvailableFlag: Bool = false
         var _sellAvailableFlag: Bool = false
+        var _forQualInvestorFlag: Bool = false
+        var _weekendFlag: Bool = false
+        var _blockedTcaFlag: Bool = false
+        var _apiTradeAvailableFlag: Bool = false
         
         public static let defaultInstance = _StorageClass()
         
@@ -6217,10 +6657,14 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Option: SwiftProtobuf.Message, S
             _otcFlag = source._otcFlag
             _buyAvailableFlag = source._buyAvailableFlag
             _sellAvailableFlag = source._sellAvailableFlag
+            _forQualInvestorFlag = source._forQualInvestorFlag
+            _weekendFlag = source._weekendFlag
+            _blockedTcaFlag = source._blockedTcaFlag
+            _apiTradeAvailableFlag = source._apiTradeAvailableFlag
         }
     }
     
-    fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    public mutating func _uniqueStorage() -> _StorageClass {
         if !isKnownUniquelyReferenced(&_storage) {
             _storage = _StorageClass(copying: _storage)
         }
@@ -6275,6 +6719,10 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Option: SwiftProtobuf.Message, S
                 case 403: try { try decoder.decodeSingularBoolField(value: &_storage._otcFlag) }()
                 case 404: try { try decoder.decodeSingularBoolField(value: &_storage._buyAvailableFlag) }()
                 case 405: try { try decoder.decodeSingularBoolField(value: &_storage._sellAvailableFlag) }()
+                case 406: try { try decoder.decodeSingularBoolField(value: &_storage._forQualInvestorFlag) }()
+                case 407: try { try decoder.decodeSingularBoolField(value: &_storage._weekendFlag) }()
+                case 408: try { try decoder.decodeSingularBoolField(value: &_storage._blockedTcaFlag) }()
+                case 409: try { try decoder.decodeSingularBoolField(value: &_storage._apiTradeAvailableFlag) }()
                 default: break
                 }
             }
@@ -6407,6 +6855,18 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Option: SwiftProtobuf.Message, S
             if _storage._sellAvailableFlag != false {
                 try visitor.visitSingularBoolField(value: _storage._sellAvailableFlag, fieldNumber: 405)
             }
+            if _storage._forQualInvestorFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._forQualInvestorFlag, fieldNumber: 406)
+            }
+            if _storage._weekendFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._weekendFlag, fieldNumber: 407)
+            }
+            if _storage._blockedTcaFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._blockedTcaFlag, fieldNumber: 408)
+            }
+            if _storage._apiTradeAvailableFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._apiTradeAvailableFlag, fieldNumber: 409)
+            }
         }
         try unknownFields.traverse(visitor: &visitor)
     }
@@ -6456,6 +6916,10 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Option: SwiftProtobuf.Message, S
                 if _storage._otcFlag != rhs_storage._otcFlag {return false}
                 if _storage._buyAvailableFlag != rhs_storage._buyAvailableFlag {return false}
                 if _storage._sellAvailableFlag != rhs_storage._sellAvailableFlag {return false}
+                if _storage._forQualInvestorFlag != rhs_storage._forQualInvestorFlag {return false}
+                if _storage._weekendFlag != rhs_storage._weekendFlag {return false}
+                if _storage._blockedTcaFlag != rhs_storage._blockedTcaFlag {return false}
+                if _storage._apiTradeAvailableFlag != rhs_storage._apiTradeAvailableFlag {return false}
                 return true
             }
             if !storagesAreEqual {return false}
@@ -6554,6 +7018,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Bond: SwiftProtobuf.Message, Swi
         17: .standard(proto: "coupon_quantity_per_year"),
         18: .standard(proto: "maturity_date"),
         19: .same(proto: "nominal"),
+        20: .standard(proto: "initial_nominal"),
         21: .standard(proto: "state_reg_date"),
         22: .standard(proto: "placement_date"),
         23: .standard(proto: "placement_price"),
@@ -6577,11 +7042,17 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Bond: SwiftProtobuf.Message, Swi
         41: .standard(proto: "real_exchange"),
         42: .standard(proto: "position_uid"),
         51: .standard(proto: "for_iis_flag"),
+        52: .standard(proto: "for_qual_investor_flag"),
+        53: .standard(proto: "weekend_flag"),
+        54: .standard(proto: "blocked_tca_flag"),
+        55: .standard(proto: "subordinated_flag"),
+        56: .standard(proto: "liquidity_flag"),
         61: .standard(proto: "first_1min_candle_date"),
         62: .standard(proto: "first_1day_candle_date"),
+        63: .standard(proto: "risk_level"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _figi: String = String()
         var _ticker: String = String()
         var _classCode: String = String()
@@ -6600,6 +7071,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Bond: SwiftProtobuf.Message, Swi
         var _couponQuantityPerYear: Int32 = 0
         var _maturityDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         var _nominal: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
+        var _initialNominal: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
         var _stateRegDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         var _placementDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         var _placementPrice: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
@@ -6623,8 +7095,14 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Bond: SwiftProtobuf.Message, Swi
         var _realExchange: Tinkoff_Public_Invest_Api_Contract_V1_RealExchange = .unspecified
         var _positionUid: String = String()
         var _forIisFlag: Bool = false
+        var _forQualInvestorFlag: Bool = false
+        var _weekendFlag: Bool = false
+        var _blockedTcaFlag: Bool = false
+        var _subordinatedFlag: Bool = false
+        var _liquidityFlag: Bool = false
         var _first1MinCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         var _first1DayCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
+        var _riskLevel: Tinkoff_Public_Invest_Api_Contract_V1_RiskLevel = .unspecified
         
         public static let defaultInstance = _StorageClass()
         
@@ -6649,6 +7127,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Bond: SwiftProtobuf.Message, Swi
             _couponQuantityPerYear = source._couponQuantityPerYear
             _maturityDate = source._maturityDate
             _nominal = source._nominal
+            _initialNominal = source._initialNominal
             _stateRegDate = source._stateRegDate
             _placementDate = source._placementDate
             _placementPrice = source._placementPrice
@@ -6672,12 +7151,18 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Bond: SwiftProtobuf.Message, Swi
             _realExchange = source._realExchange
             _positionUid = source._positionUid
             _forIisFlag = source._forIisFlag
+            _forQualInvestorFlag = source._forQualInvestorFlag
+            _weekendFlag = source._weekendFlag
+            _blockedTcaFlag = source._blockedTcaFlag
+            _subordinatedFlag = source._subordinatedFlag
+            _liquidityFlag = source._liquidityFlag
             _first1MinCandleDate = source._first1MinCandleDate
             _first1DayCandleDate = source._first1DayCandleDate
+            _riskLevel = source._riskLevel
         }
     }
     
-    fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    public mutating func _uniqueStorage() -> _StorageClass {
         if !isKnownUniquelyReferenced(&_storage) {
             _storage = _StorageClass(copying: _storage)
         }
@@ -6710,6 +7195,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Bond: SwiftProtobuf.Message, Swi
                 case 17: try { try decoder.decodeSingularInt32Field(value: &_storage._couponQuantityPerYear) }()
                 case 18: try { try decoder.decodeSingularMessageField(value: &_storage._maturityDate) }()
                 case 19: try { try decoder.decodeSingularMessageField(value: &_storage._nominal) }()
+                case 20: try { try decoder.decodeSingularMessageField(value: &_storage._initialNominal) }()
                 case 21: try { try decoder.decodeSingularMessageField(value: &_storage._stateRegDate) }()
                 case 22: try { try decoder.decodeSingularMessageField(value: &_storage._placementDate) }()
                 case 23: try { try decoder.decodeSingularMessageField(value: &_storage._placementPrice) }()
@@ -6733,8 +7219,14 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Bond: SwiftProtobuf.Message, Swi
                 case 41: try { try decoder.decodeSingularEnumField(value: &_storage._realExchange) }()
                 case 42: try { try decoder.decodeSingularStringField(value: &_storage._positionUid) }()
                 case 51: try { try decoder.decodeSingularBoolField(value: &_storage._forIisFlag) }()
+                case 52: try { try decoder.decodeSingularBoolField(value: &_storage._forQualInvestorFlag) }()
+                case 53: try { try decoder.decodeSingularBoolField(value: &_storage._weekendFlag) }()
+                case 54: try { try decoder.decodeSingularBoolField(value: &_storage._blockedTcaFlag) }()
+                case 55: try { try decoder.decodeSingularBoolField(value: &_storage._subordinatedFlag) }()
+                case 56: try { try decoder.decodeSingularBoolField(value: &_storage._liquidityFlag) }()
                 case 61: try { try decoder.decodeSingularMessageField(value: &_storage._first1MinCandleDate) }()
                 case 62: try { try decoder.decodeSingularMessageField(value: &_storage._first1DayCandleDate) }()
+                case 63: try { try decoder.decodeSingularEnumField(value: &_storage._riskLevel) }()
                 default: break
                 }
             }
@@ -6800,6 +7292,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Bond: SwiftProtobuf.Message, Swi
             } }()
             try { if let v = _storage._nominal {
                 try visitor.visitSingularMessageField(value: v, fieldNumber: 19)
+            } }()
+            try { if let v = _storage._initialNominal {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 20)
             } }()
             try { if let v = _storage._stateRegDate {
                 try visitor.visitSingularMessageField(value: v, fieldNumber: 21)
@@ -6870,12 +7365,30 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Bond: SwiftProtobuf.Message, Swi
             if _storage._forIisFlag != false {
                 try visitor.visitSingularBoolField(value: _storage._forIisFlag, fieldNumber: 51)
             }
+            if _storage._forQualInvestorFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._forQualInvestorFlag, fieldNumber: 52)
+            }
+            if _storage._weekendFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._weekendFlag, fieldNumber: 53)
+            }
+            if _storage._blockedTcaFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._blockedTcaFlag, fieldNumber: 54)
+            }
+            if _storage._subordinatedFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._subordinatedFlag, fieldNumber: 55)
+            }
+            if _storage._liquidityFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._liquidityFlag, fieldNumber: 56)
+            }
             try { if let v = _storage._first1MinCandleDate {
                 try visitor.visitSingularMessageField(value: v, fieldNumber: 61)
             } }()
             try { if let v = _storage._first1DayCandleDate {
                 try visitor.visitSingularMessageField(value: v, fieldNumber: 62)
             } }()
+            if _storage._riskLevel != .unspecified {
+                try visitor.visitSingularEnumField(value: _storage._riskLevel, fieldNumber: 63)
+            }
         }
         try unknownFields.traverse(visitor: &visitor)
     }
@@ -6903,6 +7416,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Bond: SwiftProtobuf.Message, Swi
                 if _storage._couponQuantityPerYear != rhs_storage._couponQuantityPerYear {return false}
                 if _storage._maturityDate != rhs_storage._maturityDate {return false}
                 if _storage._nominal != rhs_storage._nominal {return false}
+                if _storage._initialNominal != rhs_storage._initialNominal {return false}
                 if _storage._stateRegDate != rhs_storage._stateRegDate {return false}
                 if _storage._placementDate != rhs_storage._placementDate {return false}
                 if _storage._placementPrice != rhs_storage._placementPrice {return false}
@@ -6926,8 +7440,14 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Bond: SwiftProtobuf.Message, Swi
                 if _storage._realExchange != rhs_storage._realExchange {return false}
                 if _storage._positionUid != rhs_storage._positionUid {return false}
                 if _storage._forIisFlag != rhs_storage._forIisFlag {return false}
+                if _storage._forQualInvestorFlag != rhs_storage._forQualInvestorFlag {return false}
+                if _storage._weekendFlag != rhs_storage._weekendFlag {return false}
+                if _storage._blockedTcaFlag != rhs_storage._blockedTcaFlag {return false}
+                if _storage._subordinatedFlag != rhs_storage._subordinatedFlag {return false}
+                if _storage._liquidityFlag != rhs_storage._liquidityFlag {return false}
                 if _storage._first1MinCandleDate != rhs_storage._first1MinCandleDate {return false}
                 if _storage._first1DayCandleDate != rhs_storage._first1DayCandleDate {return false}
+                if _storage._riskLevel != rhs_storage._riskLevel {return false}
                 return true
             }
             if !storagesAreEqual {return false}
@@ -6969,11 +7489,14 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Currency: SwiftProtobuf.Message,
         28: .standard(proto: "real_exchange"),
         29: .standard(proto: "position_uid"),
         41: .standard(proto: "for_iis_flag"),
+        52: .standard(proto: "for_qual_investor_flag"),
+        53: .standard(proto: "weekend_flag"),
+        54: .standard(proto: "blocked_tca_flag"),
         56: .standard(proto: "first_1min_candle_date"),
         57: .standard(proto: "first_1day_candle_date"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _figi: String = String()
         var _ticker: String = String()
         var _classCode: String = String()
@@ -7003,6 +7526,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Currency: SwiftProtobuf.Message,
         var _realExchange: Tinkoff_Public_Invest_Api_Contract_V1_RealExchange = .unspecified
         var _positionUid: String = String()
         var _forIisFlag: Bool = false
+        var _forQualInvestorFlag: Bool = false
+        var _weekendFlag: Bool = false
+        var _blockedTcaFlag: Bool = false
         var _first1MinCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         var _first1DayCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         
@@ -7040,12 +7566,15 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Currency: SwiftProtobuf.Message,
             _realExchange = source._realExchange
             _positionUid = source._positionUid
             _forIisFlag = source._forIisFlag
+            _forQualInvestorFlag = source._forQualInvestorFlag
+            _weekendFlag = source._weekendFlag
+            _blockedTcaFlag = source._blockedTcaFlag
             _first1MinCandleDate = source._first1MinCandleDate
             _first1DayCandleDate = source._first1DayCandleDate
         }
     }
     
-    fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    public mutating func _uniqueStorage() -> _StorageClass {
         if !isKnownUniquelyReferenced(&_storage) {
             _storage = _StorageClass(copying: _storage)
         }
@@ -7089,6 +7618,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Currency: SwiftProtobuf.Message,
                 case 28: try { try decoder.decodeSingularEnumField(value: &_storage._realExchange) }()
                 case 29: try { try decoder.decodeSingularStringField(value: &_storage._positionUid) }()
                 case 41: try { try decoder.decodeSingularBoolField(value: &_storage._forIisFlag) }()
+                case 52: try { try decoder.decodeSingularBoolField(value: &_storage._forQualInvestorFlag) }()
+                case 53: try { try decoder.decodeSingularBoolField(value: &_storage._weekendFlag) }()
+                case 54: try { try decoder.decodeSingularBoolField(value: &_storage._blockedTcaFlag) }()
                 case 56: try { try decoder.decodeSingularMessageField(value: &_storage._first1MinCandleDate) }()
                 case 57: try { try decoder.decodeSingularMessageField(value: &_storage._first1DayCandleDate) }()
                 default: break
@@ -7190,6 +7722,15 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Currency: SwiftProtobuf.Message,
             if _storage._forIisFlag != false {
                 try visitor.visitSingularBoolField(value: _storage._forIisFlag, fieldNumber: 41)
             }
+            if _storage._forQualInvestorFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._forQualInvestorFlag, fieldNumber: 52)
+            }
+            if _storage._weekendFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._weekendFlag, fieldNumber: 53)
+            }
+            if _storage._blockedTcaFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._blockedTcaFlag, fieldNumber: 54)
+            }
             try { if let v = _storage._first1MinCandleDate {
                 try visitor.visitSingularMessageField(value: v, fieldNumber: 56)
             } }()
@@ -7234,6 +7775,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Currency: SwiftProtobuf.Message,
                 if _storage._realExchange != rhs_storage._realExchange {return false}
                 if _storage._positionUid != rhs_storage._positionUid {return false}
                 if _storage._forIisFlag != rhs_storage._forIisFlag {return false}
+                if _storage._forQualInvestorFlag != rhs_storage._forQualInvestorFlag {return false}
+                if _storage._weekendFlag != rhs_storage._weekendFlag {return false}
+                if _storage._blockedTcaFlag != rhs_storage._blockedTcaFlag {return false}
                 if _storage._first1MinCandleDate != rhs_storage._first1MinCandleDate {return false}
                 if _storage._first1DayCandleDate != rhs_storage._first1DayCandleDate {return false}
                 return true
@@ -7281,11 +7825,15 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Etf: SwiftProtobuf.Message, Swif
         32: .standard(proto: "real_exchange"),
         33: .standard(proto: "position_uid"),
         41: .standard(proto: "for_iis_flag"),
+        42: .standard(proto: "for_qual_investor_flag"),
+        43: .standard(proto: "weekend_flag"),
+        44: .standard(proto: "blocked_tca_flag"),
+        45: .standard(proto: "liquidity_flag"),
         56: .standard(proto: "first_1min_candle_date"),
         57: .standard(proto: "first_1day_candle_date"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _figi: String = String()
         var _ticker: String = String()
         var _classCode: String = String()
@@ -7319,6 +7867,10 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Etf: SwiftProtobuf.Message, Swif
         var _realExchange: Tinkoff_Public_Invest_Api_Contract_V1_RealExchange = .unspecified
         var _positionUid: String = String()
         var _forIisFlag: Bool = false
+        var _forQualInvestorFlag: Bool = false
+        var _weekendFlag: Bool = false
+        var _blockedTcaFlag: Bool = false
+        var _liquidityFlag: Bool = false
         var _first1MinCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         var _first1DayCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         
@@ -7360,12 +7912,16 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Etf: SwiftProtobuf.Message, Swif
             _realExchange = source._realExchange
             _positionUid = source._positionUid
             _forIisFlag = source._forIisFlag
+            _forQualInvestorFlag = source._forQualInvestorFlag
+            _weekendFlag = source._weekendFlag
+            _blockedTcaFlag = source._blockedTcaFlag
+            _liquidityFlag = source._liquidityFlag
             _first1MinCandleDate = source._first1MinCandleDate
             _first1DayCandleDate = source._first1DayCandleDate
         }
     }
     
-    fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    public mutating func _uniqueStorage() -> _StorageClass {
         if !isKnownUniquelyReferenced(&_storage) {
             _storage = _StorageClass(copying: _storage)
         }
@@ -7413,6 +7969,10 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Etf: SwiftProtobuf.Message, Swif
                 case 32: try { try decoder.decodeSingularEnumField(value: &_storage._realExchange) }()
                 case 33: try { try decoder.decodeSingularStringField(value: &_storage._positionUid) }()
                 case 41: try { try decoder.decodeSingularBoolField(value: &_storage._forIisFlag) }()
+                case 42: try { try decoder.decodeSingularBoolField(value: &_storage._forQualInvestorFlag) }()
+                case 43: try { try decoder.decodeSingularBoolField(value: &_storage._weekendFlag) }()
+                case 44: try { try decoder.decodeSingularBoolField(value: &_storage._blockedTcaFlag) }()
+                case 45: try { try decoder.decodeSingularBoolField(value: &_storage._liquidityFlag) }()
                 case 56: try { try decoder.decodeSingularMessageField(value: &_storage._first1MinCandleDate) }()
                 case 57: try { try decoder.decodeSingularMessageField(value: &_storage._first1DayCandleDate) }()
                 default: break
@@ -7526,6 +8086,18 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Etf: SwiftProtobuf.Message, Swif
             if _storage._forIisFlag != false {
                 try visitor.visitSingularBoolField(value: _storage._forIisFlag, fieldNumber: 41)
             }
+            if _storage._forQualInvestorFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._forQualInvestorFlag, fieldNumber: 42)
+            }
+            if _storage._weekendFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._weekendFlag, fieldNumber: 43)
+            }
+            if _storage._blockedTcaFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._blockedTcaFlag, fieldNumber: 44)
+            }
+            if _storage._liquidityFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._liquidityFlag, fieldNumber: 45)
+            }
             try { if let v = _storage._first1MinCandleDate {
                 try visitor.visitSingularMessageField(value: v, fieldNumber: 56)
             } }()
@@ -7574,6 +8146,10 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Etf: SwiftProtobuf.Message, Swif
                 if _storage._realExchange != rhs_storage._realExchange {return false}
                 if _storage._positionUid != rhs_storage._positionUid {return false}
                 if _storage._forIisFlag != rhs_storage._forIisFlag {return false}
+                if _storage._forQualInvestorFlag != rhs_storage._forQualInvestorFlag {return false}
+                if _storage._weekendFlag != rhs_storage._weekendFlag {return false}
+                if _storage._blockedTcaFlag != rhs_storage._blockedTcaFlag {return false}
+                if _storage._liquidityFlag != rhs_storage._liquidityFlag {return false}
                 if _storage._first1MinCandleDate != rhs_storage._first1MinCandleDate {return false}
                 if _storage._first1DayCandleDate != rhs_storage._first1DayCandleDate {return false}
                 return true
@@ -7623,11 +8199,14 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Future: SwiftProtobuf.Message, S
         33: .standard(proto: "position_uid"),
         34: .standard(proto: "basic_asset_position_uid"),
         41: .standard(proto: "for_iis_flag"),
+        42: .standard(proto: "for_qual_investor_flag"),
+        43: .standard(proto: "weekend_flag"),
+        44: .standard(proto: "blocked_tca_flag"),
         56: .standard(proto: "first_1min_candle_date"),
         57: .standard(proto: "first_1day_candle_date"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _figi: String = String()
         var _ticker: String = String()
         var _classCode: String = String()
@@ -7663,6 +8242,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Future: SwiftProtobuf.Message, S
         var _positionUid: String = String()
         var _basicAssetPositionUid: String = String()
         var _forIisFlag: Bool = false
+        var _forQualInvestorFlag: Bool = false
+        var _weekendFlag: Bool = false
+        var _blockedTcaFlag: Bool = false
         var _first1MinCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         var _first1DayCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         
@@ -7706,12 +8288,15 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Future: SwiftProtobuf.Message, S
             _positionUid = source._positionUid
             _basicAssetPositionUid = source._basicAssetPositionUid
             _forIisFlag = source._forIisFlag
+            _forQualInvestorFlag = source._forQualInvestorFlag
+            _weekendFlag = source._weekendFlag
+            _blockedTcaFlag = source._blockedTcaFlag
             _first1MinCandleDate = source._first1MinCandleDate
             _first1DayCandleDate = source._first1DayCandleDate
         }
     }
     
-    fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    public mutating func _uniqueStorage() -> _StorageClass {
         if !isKnownUniquelyReferenced(&_storage) {
             _storage = _StorageClass(copying: _storage)
         }
@@ -7761,6 +8346,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Future: SwiftProtobuf.Message, S
                 case 33: try { try decoder.decodeSingularStringField(value: &_storage._positionUid) }()
                 case 34: try { try decoder.decodeSingularStringField(value: &_storage._basicAssetPositionUid) }()
                 case 41: try { try decoder.decodeSingularBoolField(value: &_storage._forIisFlag) }()
+                case 42: try { try decoder.decodeSingularBoolField(value: &_storage._forQualInvestorFlag) }()
+                case 43: try { try decoder.decodeSingularBoolField(value: &_storage._weekendFlag) }()
+                case 44: try { try decoder.decodeSingularBoolField(value: &_storage._blockedTcaFlag) }()
                 case 56: try { try decoder.decodeSingularMessageField(value: &_storage._first1MinCandleDate) }()
                 case 57: try { try decoder.decodeSingularMessageField(value: &_storage._first1DayCandleDate) }()
                 default: break
@@ -7880,6 +8468,15 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Future: SwiftProtobuf.Message, S
             if _storage._forIisFlag != false {
                 try visitor.visitSingularBoolField(value: _storage._forIisFlag, fieldNumber: 41)
             }
+            if _storage._forQualInvestorFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._forQualInvestorFlag, fieldNumber: 42)
+            }
+            if _storage._weekendFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._weekendFlag, fieldNumber: 43)
+            }
+            if _storage._blockedTcaFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._blockedTcaFlag, fieldNumber: 44)
+            }
             try { if let v = _storage._first1MinCandleDate {
                 try visitor.visitSingularMessageField(value: v, fieldNumber: 56)
             } }()
@@ -7930,6 +8527,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Future: SwiftProtobuf.Message, S
                 if _storage._positionUid != rhs_storage._positionUid {return false}
                 if _storage._basicAssetPositionUid != rhs_storage._basicAssetPositionUid {return false}
                 if _storage._forIisFlag != rhs_storage._forIisFlag {return false}
+                if _storage._forQualInvestorFlag != rhs_storage._forQualInvestorFlag {return false}
+                if _storage._weekendFlag != rhs_storage._weekendFlag {return false}
+                if _storage._blockedTcaFlag != rhs_storage._blockedTcaFlag {return false}
                 if _storage._first1MinCandleDate != rhs_storage._first1MinCandleDate {return false}
                 if _storage._first1DayCandleDate != rhs_storage._first1DayCandleDate {return false}
                 return true
@@ -7978,11 +8578,15 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Share: SwiftProtobuf.Message, Sw
         34: .standard(proto: "real_exchange"),
         35: .standard(proto: "position_uid"),
         46: .standard(proto: "for_iis_flag"),
+        47: .standard(proto: "for_qual_investor_flag"),
+        48: .standard(proto: "weekend_flag"),
+        49: .standard(proto: "blocked_tca_flag"),
+        50: .standard(proto: "liquidity_flag"),
         56: .standard(proto: "first_1min_candle_date"),
         57: .standard(proto: "first_1day_candle_date"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _figi: String = String()
         var _ticker: String = String()
         var _classCode: String = String()
@@ -8017,6 +8621,10 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Share: SwiftProtobuf.Message, Sw
         var _realExchange: Tinkoff_Public_Invest_Api_Contract_V1_RealExchange = .unspecified
         var _positionUid: String = String()
         var _forIisFlag: Bool = false
+        var _forQualInvestorFlag: Bool = false
+        var _weekendFlag: Bool = false
+        var _blockedTcaFlag: Bool = false
+        var _liquidityFlag: Bool = false
         var _first1MinCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         var _first1DayCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         
@@ -8059,12 +8667,16 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Share: SwiftProtobuf.Message, Sw
             _realExchange = source._realExchange
             _positionUid = source._positionUid
             _forIisFlag = source._forIisFlag
+            _forQualInvestorFlag = source._forQualInvestorFlag
+            _weekendFlag = source._weekendFlag
+            _blockedTcaFlag = source._blockedTcaFlag
+            _liquidityFlag = source._liquidityFlag
             _first1MinCandleDate = source._first1MinCandleDate
             _first1DayCandleDate = source._first1DayCandleDate
         }
     }
     
-    fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    public mutating func _uniqueStorage() -> _StorageClass {
         if !isKnownUniquelyReferenced(&_storage) {
             _storage = _StorageClass(copying: _storage)
         }
@@ -8113,6 +8725,10 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Share: SwiftProtobuf.Message, Sw
                 case 34: try { try decoder.decodeSingularEnumField(value: &_storage._realExchange) }()
                 case 35: try { try decoder.decodeSingularStringField(value: &_storage._positionUid) }()
                 case 46: try { try decoder.decodeSingularBoolField(value: &_storage._forIisFlag) }()
+                case 47: try { try decoder.decodeSingularBoolField(value: &_storage._forQualInvestorFlag) }()
+                case 48: try { try decoder.decodeSingularBoolField(value: &_storage._weekendFlag) }()
+                case 49: try { try decoder.decodeSingularBoolField(value: &_storage._blockedTcaFlag) }()
+                case 50: try { try decoder.decodeSingularBoolField(value: &_storage._liquidityFlag) }()
                 case 56: try { try decoder.decodeSingularMessageField(value: &_storage._first1MinCandleDate) }()
                 case 57: try { try decoder.decodeSingularMessageField(value: &_storage._first1DayCandleDate) }()
                 default: break
@@ -8229,6 +8845,18 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Share: SwiftProtobuf.Message, Sw
             if _storage._forIisFlag != false {
                 try visitor.visitSingularBoolField(value: _storage._forIisFlag, fieldNumber: 46)
             }
+            if _storage._forQualInvestorFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._forQualInvestorFlag, fieldNumber: 47)
+            }
+            if _storage._weekendFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._weekendFlag, fieldNumber: 48)
+            }
+            if _storage._blockedTcaFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._blockedTcaFlag, fieldNumber: 49)
+            }
+            if _storage._liquidityFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._liquidityFlag, fieldNumber: 50)
+            }
             try { if let v = _storage._first1MinCandleDate {
                 try visitor.visitSingularMessageField(value: v, fieldNumber: 56)
             } }()
@@ -8278,6 +8906,10 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Share: SwiftProtobuf.Message, Sw
                 if _storage._realExchange != rhs_storage._realExchange {return false}
                 if _storage._positionUid != rhs_storage._positionUid {return false}
                 if _storage._forIisFlag != rhs_storage._forIisFlag {return false}
+                if _storage._forQualInvestorFlag != rhs_storage._forQualInvestorFlag {return false}
+                if _storage._weekendFlag != rhs_storage._weekendFlag {return false}
+                if _storage._blockedTcaFlag != rhs_storage._blockedTcaFlag {return false}
+                if _storage._liquidityFlag != rhs_storage._liquidityFlag {return false}
                 if _storage._first1MinCandleDate != rhs_storage._first1MinCandleDate {return false}
                 if _storage._first1DayCandleDate != rhs_storage._first1DayCandleDate {return false}
                 return true
@@ -8576,11 +9208,15 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Instrument: SwiftProtobuf.Messag
         26: .standard(proto: "real_exchange"),
         27: .standard(proto: "position_uid"),
         36: .standard(proto: "for_iis_flag"),
+        37: .standard(proto: "for_qual_investor_flag"),
+        38: .standard(proto: "weekend_flag"),
+        39: .standard(proto: "blocked_tca_flag"),
+        40: .standard(proto: "instrument_kind"),
         56: .standard(proto: "first_1min_candle_date"),
         57: .standard(proto: "first_1day_candle_date"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _figi: String = String()
         var _ticker: String = String()
         var _classCode: String = String()
@@ -8609,6 +9245,10 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Instrument: SwiftProtobuf.Messag
         var _realExchange: Tinkoff_Public_Invest_Api_Contract_V1_RealExchange = .unspecified
         var _positionUid: String = String()
         var _forIisFlag: Bool = false
+        var _forQualInvestorFlag: Bool = false
+        var _weekendFlag: Bool = false
+        var _blockedTcaFlag: Bool = false
+        var _instrumentKind: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType = .unspecified
         var _first1MinCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         var _first1DayCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         
@@ -8645,12 +9285,16 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Instrument: SwiftProtobuf.Messag
             _realExchange = source._realExchange
             _positionUid = source._positionUid
             _forIisFlag = source._forIisFlag
+            _forQualInvestorFlag = source._forQualInvestorFlag
+            _weekendFlag = source._weekendFlag
+            _blockedTcaFlag = source._blockedTcaFlag
+            _instrumentKind = source._instrumentKind
             _first1MinCandleDate = source._first1MinCandleDate
             _first1DayCandleDate = source._first1DayCandleDate
         }
     }
     
-    fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    public mutating func _uniqueStorage() -> _StorageClass {
         if !isKnownUniquelyReferenced(&_storage) {
             _storage = _StorageClass(copying: _storage)
         }
@@ -8693,6 +9337,10 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Instrument: SwiftProtobuf.Messag
                 case 26: try { try decoder.decodeSingularEnumField(value: &_storage._realExchange) }()
                 case 27: try { try decoder.decodeSingularStringField(value: &_storage._positionUid) }()
                 case 36: try { try decoder.decodeSingularBoolField(value: &_storage._forIisFlag) }()
+                case 37: try { try decoder.decodeSingularBoolField(value: &_storage._forQualInvestorFlag) }()
+                case 38: try { try decoder.decodeSingularBoolField(value: &_storage._weekendFlag) }()
+                case 39: try { try decoder.decodeSingularBoolField(value: &_storage._blockedTcaFlag) }()
+                case 40: try { try decoder.decodeSingularEnumField(value: &_storage._instrumentKind) }()
                 case 56: try { try decoder.decodeSingularMessageField(value: &_storage._first1MinCandleDate) }()
                 case 57: try { try decoder.decodeSingularMessageField(value: &_storage._first1DayCandleDate) }()
                 default: break
@@ -8791,6 +9439,18 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Instrument: SwiftProtobuf.Messag
             if _storage._forIisFlag != false {
                 try visitor.visitSingularBoolField(value: _storage._forIisFlag, fieldNumber: 36)
             }
+            if _storage._forQualInvestorFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._forQualInvestorFlag, fieldNumber: 37)
+            }
+            if _storage._weekendFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._weekendFlag, fieldNumber: 38)
+            }
+            if _storage._blockedTcaFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._blockedTcaFlag, fieldNumber: 39)
+            }
+            if _storage._instrumentKind != .unspecified {
+                try visitor.visitSingularEnumField(value: _storage._instrumentKind, fieldNumber: 40)
+            }
             try { if let v = _storage._first1MinCandleDate {
                 try visitor.visitSingularMessageField(value: v, fieldNumber: 56)
             } }()
@@ -8834,6 +9494,10 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Instrument: SwiftProtobuf.Messag
                 if _storage._realExchange != rhs_storage._realExchange {return false}
                 if _storage._positionUid != rhs_storage._positionUid {return false}
                 if _storage._forIisFlag != rhs_storage._forIisFlag {return false}
+                if _storage._forQualInvestorFlag != rhs_storage._forQualInvestorFlag {return false}
+                if _storage._weekendFlag != rhs_storage._weekendFlag {return false}
+                if _storage._blockedTcaFlag != rhs_storage._blockedTcaFlag {return false}
+                if _storage._instrumentKind != rhs_storage._instrumentKind {return false}
                 if _storage._first1MinCandleDate != rhs_storage._first1MinCandleDate {return false}
                 if _storage._first1DayCandleDate != rhs_storage._first1DayCandleDate {return false}
                 return true
@@ -8940,7 +9604,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Dividend: SwiftProtobuf.Message,
         10: .standard(proto: "created_at"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _dividendNet: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
         var _paymentDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         var _declaredDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
@@ -8970,7 +9634,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Dividend: SwiftProtobuf.Message,
         }
     }
     
-    fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    public mutating func _uniqueStorage() -> _StorageClass {
         if !isKnownUniquelyReferenced(&_storage) {
             _storage = _StorageClass(copying: _storage)
         }
@@ -9135,18 +9799,31 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AssetResponse: SwiftProtobuf.Mes
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_AssetsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
     public static let protoMessageName: String = _protobuf_package + ".AssetsRequest"
-    public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+    public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+        1: .standard(proto: "instrument_type"),
+    ]
     
     public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-        while let _ = try decoder.nextFieldNumber() {
+        while let fieldNumber = try decoder.nextFieldNumber() {
+            // The use of inline closures is to circumvent an issue where the compiler
+            // allocates stack space for every case branch when no optimizations are
+            // enabled. https://github.com/apple/swift-protobuf/issues/1034
+            switch fieldNumber {
+            case 1: try { try decoder.decodeSingularEnumField(value: &self.instrumentType) }()
+            default: break
+            }
         }
     }
     
     public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+        if self.instrumentType != .unspecified {
+            try visitor.visitSingularEnumField(value: self.instrumentType, fieldNumber: 1)
+        }
         try unknownFields.traverse(visitor: &visitor)
     }
     
     public static func ==(lhs: Tinkoff_Public_Invest_Api_Contract_V1_AssetsRequest, rhs: Tinkoff_Public_Invest_Api_Contract_V1_AssetsRequest) -> Bool {
+        if lhs.instrumentType != rhs.instrumentType {return false}
         if lhs.unknownFields != rhs.unknownFields {return false}
         return true
     }
@@ -9207,7 +9884,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AssetFull: SwiftProtobuf.Message
         18: .same(proto: "instruments"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _uid: String = String()
         var _type: Tinkoff_Public_Invest_Api_Contract_V1_AssetType = .unspecified
         var _name: String = String()
@@ -9251,7 +9928,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AssetFull: SwiftProtobuf.Message
         }
     }
     
-    fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    public mutating func _uniqueStorage() -> _StorageClass {
         if !isKnownUniquelyReferenced(&_storage) {
             _storage = _StorageClass(copying: _storage)
         }
@@ -9501,6 +10178,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AssetSecurity: SwiftProtobuf.Mes
     public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "isin"),
         2: .same(proto: "type"),
+        10: .standard(proto: "instrument_kind"),
         3: .same(proto: "share"),
         4: .same(proto: "bond"),
         5: .same(proto: "sp"),
@@ -9581,6 +10259,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AssetSecurity: SwiftProtobuf.Mes
                     self.ext = .clearingCertificate(v)
                 }
             }()
+            case 10: try { try decoder.decodeSingularEnumField(value: &self.instrumentKind) }()
             default: break
             }
         }
@@ -9620,12 +10299,16 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AssetSecurity: SwiftProtobuf.Mes
         }()
         case nil: break
         }
+        if self.instrumentKind != .unspecified {
+            try visitor.visitSingularEnumField(value: self.instrumentKind, fieldNumber: 10)
+        }
         try unknownFields.traverse(visitor: &visitor)
     }
     
     public static func ==(lhs: Tinkoff_Public_Invest_Api_Contract_V1_AssetSecurity, rhs: Tinkoff_Public_Invest_Api_Contract_V1_AssetSecurity) -> Bool {
         if lhs.isin != rhs.isin {return false}
         if lhs.type != rhs.type {return false}
+        if lhs.instrumentKind != rhs.instrumentKind {return false}
         if lhs.ext != rhs.ext {return false}
         if lhs.unknownFields != rhs.unknownFields {return false}
         return true
@@ -9652,7 +10335,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AssetShare: SwiftProtobuf.Messag
         15: .standard(proto: "total_float"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _type: Tinkoff_Public_Invest_Api_Contract_V1_ShareType = .unspecified
         var _issueSize: Tinkoff_Public_Invest_Api_Contract_V1_Quotation? = nil
         var _nominal: Tinkoff_Public_Invest_Api_Contract_V1_Quotation? = nil
@@ -9692,7 +10375,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AssetShare: SwiftProtobuf.Messag
         }
     }
     
-    fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    public mutating func _uniqueStorage() -> _StorageClass {
         if !isKnownUniquelyReferenced(&_storage) {
             _storage = _StorageClass(copying: _storage)
         }
@@ -9838,7 +10521,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AssetBond: SwiftProtobuf.Message
         21: .standard(proto: "issue_size_plan"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _currentNominal: Tinkoff_Public_Invest_Api_Contract_V1_Quotation? = nil
         var _borrowName: String = String()
         var _issueSize: Tinkoff_Public_Invest_Api_Contract_V1_Quotation? = nil
@@ -9890,7 +10573,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AssetBond: SwiftProtobuf.Message
         }
     }
     
-    fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    public mutating func _uniqueStorage() -> _StorageClass {
         if !isKnownUniquelyReferenced(&_storage) {
             _storage = _StorageClass(copying: _storage)
         }
@@ -10058,7 +10741,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AssetStructuredProduct: SwiftPro
         13: .standard(proto: "issue_kind"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _borrowName: String = String()
         var _nominal: Tinkoff_Public_Invest_Api_Contract_V1_Quotation? = nil
         var _nominalCurrency: String = String()
@@ -10094,7 +10777,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AssetStructuredProduct: SwiftPro
         }
     }
     
-    fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    public mutating func _uniqueStorage() -> _StorageClass {
         if !isKnownUniquelyReferenced(&_storage) {
             _storage = _StorageClass(copying: _storage)
         }
@@ -10240,7 +10923,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AssetEtf: SwiftProtobuf.Message,
         31: .standard(proto: "nominal_currency"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _totalExpense: Tinkoff_Public_Invest_Api_Contract_V1_Quotation? = nil
         var _hurdleRate: Tinkoff_Public_Invest_Api_Contract_V1_Quotation? = nil
         var _performanceFee: Tinkoff_Public_Invest_Api_Contract_V1_Quotation? = nil
@@ -10637,6 +11320,8 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AssetInstrument: SwiftProtobuf.M
         4: .same(proto: "ticker"),
         5: .standard(proto: "class_code"),
         6: .same(proto: "links"),
+        10: .standard(proto: "instrument_kind"),
+        11: .standard(proto: "position_uid"),
     ]
     
     public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -10651,6 +11336,8 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AssetInstrument: SwiftProtobuf.M
             case 4: try { try decoder.decodeSingularStringField(value: &self.ticker) }()
             case 5: try { try decoder.decodeSingularStringField(value: &self.classCode) }()
             case 6: try { try decoder.decodeRepeatedMessageField(value: &self.links) }()
+            case 10: try { try decoder.decodeSingularEnumField(value: &self.instrumentKind) }()
+            case 11: try { try decoder.decodeSingularStringField(value: &self.positionUid) }()
             default: break
             }
         }
@@ -10675,6 +11362,12 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AssetInstrument: SwiftProtobuf.M
         if !self.links.isEmpty {
             try visitor.visitRepeatedMessageField(value: self.links, fieldNumber: 6)
         }
+        if self.instrumentKind != .unspecified {
+            try visitor.visitSingularEnumField(value: self.instrumentKind, fieldNumber: 10)
+        }
+        if !self.positionUid.isEmpty {
+            try visitor.visitSingularStringField(value: self.positionUid, fieldNumber: 11)
+        }
         try unknownFields.traverse(visitor: &visitor)
     }
     
@@ -10685,6 +11378,8 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AssetInstrument: SwiftProtobuf.M
         if lhs.ticker != rhs.ticker {return false}
         if lhs.classCode != rhs.classCode {return false}
         if lhs.links != rhs.links {return false}
+        if lhs.instrumentKind != rhs.instrumentKind {return false}
+        if lhs.positionUid != rhs.positionUid {return false}
         if lhs.unknownFields != rhs.unknownFields {return false}
         return true
     }
@@ -10789,6 +11484,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_FavoriteInstrument: SwiftProtobu
         11: .standard(proto: "instrument_type"),
         16: .standard(proto: "otc_flag"),
         17: .standard(proto: "api_trade_available_flag"),
+        18: .standard(proto: "instrument_kind"),
     ]
     
     public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -10804,6 +11500,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_FavoriteInstrument: SwiftProtobu
             case 11: try { try decoder.decodeSingularStringField(value: &self.instrumentType) }()
             case 16: try { try decoder.decodeSingularBoolField(value: &self.otcFlag) }()
             case 17: try { try decoder.decodeSingularBoolField(value: &self.apiTradeAvailableFlag) }()
+            case 18: try { try decoder.decodeSingularEnumField(value: &self.instrumentKind) }()
             default: break
             }
         }
@@ -10831,6 +11528,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_FavoriteInstrument: SwiftProtobu
         if self.apiTradeAvailableFlag != false {
             try visitor.visitSingularBoolField(value: self.apiTradeAvailableFlag, fieldNumber: 17)
         }
+        if self.instrumentKind != .unspecified {
+            try visitor.visitSingularEnumField(value: self.instrumentKind, fieldNumber: 18)
+        }
         try unknownFields.traverse(visitor: &visitor)
     }
     
@@ -10842,6 +11542,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_FavoriteInstrument: SwiftProtobu
         if lhs.instrumentType != rhs.instrumentType {return false}
         if lhs.otcFlag != rhs.otcFlag {return false}
         if lhs.apiTradeAvailableFlag != rhs.apiTradeAvailableFlag {return false}
+        if lhs.instrumentKind != rhs.instrumentKind {return false}
         if lhs.unknownFields != rhs.unknownFields {return false}
         return true
     }
@@ -11052,8 +11753,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_CountryResponse: SwiftProtobuf.M
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_FindInstrumentRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
     public static let protoMessageName: String = _protobuf_package + ".FindInstrumentRequest"
-    public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-        1: .same(proto: "query"),
+    public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [        1: .same(proto: "query"),
+        2: .standard(proto: "instrument_kind"),
+        3: .standard(proto: "api_trade_available_flag"),
     ]
     
     public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -11063,6 +11765,8 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_FindInstrumentRequest: SwiftProt
             // enabled. https://github.com/apple/swift-protobuf/issues/1034
             switch fieldNumber {
             case 1: try { try decoder.decodeSingularStringField(value: &self.query) }()
+            case 2: try { try decoder.decodeSingularEnumField(value: &self.instrumentKind) }()
+            case 3: try { try decoder.decodeSingularBoolField(value: &self.apiTradeAvailableFlag) }()
             default: break
             }
         }
@@ -11072,11 +11776,19 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_FindInstrumentRequest: SwiftProt
         if !self.query.isEmpty {
             try visitor.visitSingularStringField(value: self.query, fieldNumber: 1)
         }
+        if self.instrumentKind != .unspecified {
+            try visitor.visitSingularEnumField(value: self.instrumentKind, fieldNumber: 2)
+        }
+        if self.apiTradeAvailableFlag != false {
+            try visitor.visitSingularBoolField(value: self.apiTradeAvailableFlag, fieldNumber: 3)
+        }
         try unknownFields.traverse(visitor: &visitor)
     }
     
     public static func ==(lhs: Tinkoff_Public_Invest_Api_Contract_V1_FindInstrumentRequest, rhs: Tinkoff_Public_Invest_Api_Contract_V1_FindInstrumentRequest) -> Bool {
         if lhs.query != rhs.query {return false}
+        if lhs.instrumentKind != rhs.instrumentKind {return false}
+        if lhs.apiTradeAvailableFlag != rhs.apiTradeAvailableFlag {return false}
         if lhs.unknownFields != rhs.unknownFields {return false}
         return true
     }
@@ -11125,92 +11837,178 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_InstrumentShort: SwiftProtobuf.M
         6: .same(proto: "name"),
         7: .same(proto: "uid"),
         8: .standard(proto: "position_uid"),
+        10: .standard(proto: "instrument_kind"),
         11: .standard(proto: "api_trade_available_flag"),
         12: .standard(proto: "for_iis_flag"),
         26: .standard(proto: "first_1min_candle_date"),
         27: .standard(proto: "first_1day_candle_date"),
+        28: .standard(proto: "for_qual_investor_flag"),
+        29: .standard(proto: "weekend_flag"),
+        30: .standard(proto: "blocked_tca_flag"),
     ]
     
+    public class _StorageClass {
+        var _isin: String = String()
+        var _figi: String = String()
+        var _ticker: String = String()
+        var _classCode: String = String()
+        var _instrumentType: String = String()
+        var _name: String = String()
+        var _uid: String = String()
+        var _positionUid: String = String()
+        var _instrumentKind: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType = .unspecified
+        var _apiTradeAvailableFlag: Bool = false
+        var _forIisFlag: Bool = false
+        var _first1MinCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
+        var _first1DayCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
+        var _forQualInvestorFlag: Bool = false
+        var _weekendFlag: Bool = false
+        var _blockedTcaFlag: Bool = false
+        
+        static let defaultInstance = _StorageClass()
+        
+        private init() {}
+        
+        init(copying source: _StorageClass) {
+            _isin = source._isin
+            _figi = source._figi
+            _ticker = source._ticker
+            _classCode = source._classCode
+            _instrumentType = source._instrumentType
+            _name = source._name
+            _uid = source._uid
+            _positionUid = source._positionUid
+            _instrumentKind = source._instrumentKind
+            _apiTradeAvailableFlag = source._apiTradeAvailableFlag
+            _forIisFlag = source._forIisFlag
+            _first1MinCandleDate = source._first1MinCandleDate
+            _first1DayCandleDate = source._first1DayCandleDate
+            _forQualInvestorFlag = source._forQualInvestorFlag
+            _weekendFlag = source._weekendFlag
+            _blockedTcaFlag = source._blockedTcaFlag
+        }
+    }
+    
+    fileprivate mutating func _uniqueStorage() -> _StorageClass {
+        if !isKnownUniquelyReferenced(&_storage) {
+            _storage = _StorageClass(copying: _storage)
+        }
+        return _storage
+    }
+    
     public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-        while let fieldNumber = try decoder.nextFieldNumber() {
-            // The use of inline closures is to circumvent an issue where the compiler
-            // allocates stack space for every case branch when no optimizations are
-            // enabled. https://github.com/apple/swift-protobuf/issues/1034
-            switch fieldNumber {
-            case 1: try { try decoder.decodeSingularStringField(value: &self.isin) }()
-            case 2: try { try decoder.decodeSingularStringField(value: &self.figi) }()
-            case 3: try { try decoder.decodeSingularStringField(value: &self.ticker) }()
-            case 4: try { try decoder.decodeSingularStringField(value: &self.classCode) }()
-            case 5: try { try decoder.decodeSingularStringField(value: &self.instrumentType) }()
-            case 6: try { try decoder.decodeSingularStringField(value: &self.name) }()
-            case 7: try { try decoder.decodeSingularStringField(value: &self.uid) }()
-            case 8: try { try decoder.decodeSingularStringField(value: &self.positionUid) }()
-            case 11: try { try decoder.decodeSingularBoolField(value: &self.apiTradeAvailableFlag) }()
-            case 12: try { try decoder.decodeSingularBoolField(value: &self.forIisFlag) }()
-            case 26: try { try decoder.decodeSingularMessageField(value: &self._first1MinCandleDate) }()
-            case 27: try { try decoder.decodeSingularMessageField(value: &self._first1DayCandleDate) }()
-            default: break
+        _ = _uniqueStorage()
+        try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+            while let fieldNumber = try decoder.nextFieldNumber() {
+                // The use of inline closures is to circumvent an issue where the compiler
+                // allocates stack space for every case branch when no optimizations are
+                // enabled. https://github.com/apple/swift-protobuf/issues/1034
+                switch fieldNumber {
+                case 1: try { try decoder.decodeSingularStringField(value: &_storage._isin) }()
+                case 2: try { try decoder.decodeSingularStringField(value: &_storage._figi) }()
+                case 3: try { try decoder.decodeSingularStringField(value: &_storage._ticker) }()
+                case 4: try { try decoder.decodeSingularStringField(value: &_storage._classCode) }()
+                case 5: try { try decoder.decodeSingularStringField(value: &_storage._instrumentType) }()
+                case 6: try { try decoder.decodeSingularStringField(value: &_storage._name) }()
+                case 7: try { try decoder.decodeSingularStringField(value: &_storage._uid) }()
+                case 8: try { try decoder.decodeSingularStringField(value: &_storage._positionUid) }()
+                case 10: try { try decoder.decodeSingularEnumField(value: &_storage._instrumentKind) }()
+                case 11: try { try decoder.decodeSingularBoolField(value: &_storage._apiTradeAvailableFlag) }()
+                case 12: try { try decoder.decodeSingularBoolField(value: &_storage._forIisFlag) }()
+                case 26: try { try decoder.decodeSingularMessageField(value: &_storage._first1MinCandleDate) }()
+                case 27: try { try decoder.decodeSingularMessageField(value: &_storage._first1DayCandleDate) }()
+                case 28: try { try decoder.decodeSingularBoolField(value: &_storage._forQualInvestorFlag) }()
+                case 29: try { try decoder.decodeSingularBoolField(value: &_storage._weekendFlag) }()
+                case 30: try { try decoder.decodeSingularBoolField(value: &_storage._blockedTcaFlag) }()
+                default: break
+                }
             }
         }
     }
     
     public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-        // The use of inline closures is to circumvent an issue where the compiler
-        // allocates stack space for every if/case branch local when no optimizations
-        // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
-        // https://github.com/apple/swift-protobuf/issues/1182
-        if !self.isin.isEmpty {
-            try visitor.visitSingularStringField(value: self.isin, fieldNumber: 1)
+        try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+            // The use of inline closures is to circumvent an issue where the compiler
+            // allocates stack space for every if/case branch local when no optimizations
+            // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+            // https://github.com/apple/swift-protobuf/issues/1182
+            if !_storage._isin.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._isin, fieldNumber: 1)
+            }
+            if !_storage._figi.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._figi, fieldNumber: 2)
+            }
+            if !_storage._ticker.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._ticker, fieldNumber: 3)
+            }
+            if !_storage._classCode.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._classCode, fieldNumber: 4)
+            }
+            if !_storage._instrumentType.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._instrumentType, fieldNumber: 5)
+            }
+            if !_storage._name.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 6)
+            }
+            if !_storage._uid.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._uid, fieldNumber: 7)
+            }
+            if !_storage._positionUid.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._positionUid, fieldNumber: 8)
+            }
+            if _storage._instrumentKind != .unspecified {
+                try visitor.visitSingularEnumField(value: _storage._instrumentKind, fieldNumber: 10)
+            }
+            if _storage._apiTradeAvailableFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._apiTradeAvailableFlag, fieldNumber: 11)
+            }
+            if _storage._forIisFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._forIisFlag, fieldNumber: 12)
+            }
+            try { if let v = _storage._first1MinCandleDate {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 26)
+            } }()
+            try { if let v = _storage._first1DayCandleDate {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 27)
+            } }()
+            if _storage._forQualInvestorFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._forQualInvestorFlag, fieldNumber: 28)
+            }
+            if _storage._weekendFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._weekendFlag, fieldNumber: 29)
+            }
+            if _storage._blockedTcaFlag != false {
+                try visitor.visitSingularBoolField(value: _storage._blockedTcaFlag, fieldNumber: 30)
+            }
         }
-        if !self.figi.isEmpty {
-            try visitor.visitSingularStringField(value: self.figi, fieldNumber: 2)
-        }
-        if !self.ticker.isEmpty {
-            try visitor.visitSingularStringField(value: self.ticker, fieldNumber: 3)
-        }
-        if !self.classCode.isEmpty {
-            try visitor.visitSingularStringField(value: self.classCode, fieldNumber: 4)
-        }
-        if !self.instrumentType.isEmpty {
-            try visitor.visitSingularStringField(value: self.instrumentType, fieldNumber: 5)
-        }
-        if !self.name.isEmpty {
-            try visitor.visitSingularStringField(value: self.name, fieldNumber: 6)
-        }
-        if !self.uid.isEmpty {
-            try visitor.visitSingularStringField(value: self.uid, fieldNumber: 7)
-        }
-        if !self.positionUid.isEmpty {
-            try visitor.visitSingularStringField(value: self.positionUid, fieldNumber: 8)
-        }
-        if self.apiTradeAvailableFlag != false {
-            try visitor.visitSingularBoolField(value: self.apiTradeAvailableFlag, fieldNumber: 11)
-        }
-        if self.forIisFlag != false {
-            try visitor.visitSingularBoolField(value: self.forIisFlag, fieldNumber: 12)
-        }
-        try { if let v = self._first1MinCandleDate {
-            try visitor.visitSingularMessageField(value: v, fieldNumber: 26)
-        } }()
-        try { if let v = self._first1DayCandleDate {
-            try visitor.visitSingularMessageField(value: v, fieldNumber: 27)
-        } }()
         try unknownFields.traverse(visitor: &visitor)
     }
     
     public static func ==(lhs: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentShort, rhs: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentShort) -> Bool {
-        if lhs.isin != rhs.isin {return false}
-        if lhs.figi != rhs.figi {return false}
-        if lhs.ticker != rhs.ticker {return false}
-        if lhs.classCode != rhs.classCode {return false}
-        if lhs.instrumentType != rhs.instrumentType {return false}
-        if lhs.name != rhs.name {return false}
-        if lhs.uid != rhs.uid {return false}
-        if lhs.positionUid != rhs.positionUid {return false}
-        if lhs.apiTradeAvailableFlag != rhs.apiTradeAvailableFlag {return false}
-        if lhs.forIisFlag != rhs.forIisFlag {return false}
-        if lhs._first1MinCandleDate != rhs._first1MinCandleDate {return false}
-        if lhs._first1DayCandleDate != rhs._first1DayCandleDate {return false}
+        if lhs._storage !== rhs._storage {
+            let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+                let _storage = _args.0
+                let rhs_storage = _args.1
+                if _storage._isin != rhs_storage._isin {return false}
+                if _storage._figi != rhs_storage._figi {return false}
+                if _storage._ticker != rhs_storage._ticker {return false}
+                if _storage._classCode != rhs_storage._classCode {return false}
+                if _storage._instrumentType != rhs_storage._instrumentType {return false}
+                if _storage._name != rhs_storage._name {return false}
+                if _storage._uid != rhs_storage._uid {return false}
+                if _storage._positionUid != rhs_storage._positionUid {return false}
+                if _storage._instrumentKind != rhs_storage._instrumentKind {return false}
+                if _storage._apiTradeAvailableFlag != rhs_storage._apiTradeAvailableFlag {return false}
+                if _storage._forIisFlag != rhs_storage._forIisFlag {return false}
+                if _storage._first1MinCandleDate != rhs_storage._first1MinCandleDate {return false}
+                if _storage._first1DayCandleDate != rhs_storage._first1DayCandleDate {return false}
+                if _storage._forQualInvestorFlag != rhs_storage._forQualInvestorFlag {return false}
+                if _storage._weekendFlag != rhs_storage._weekendFlag {return false}
+                if _storage._blockedTcaFlag != rhs_storage._blockedTcaFlag {return false}
+                return true
+            }
+            if !storagesAreEqual {return false}
+        }
         if lhs.unknownFields != rhs.unknownFields {return false}
         return true
     }

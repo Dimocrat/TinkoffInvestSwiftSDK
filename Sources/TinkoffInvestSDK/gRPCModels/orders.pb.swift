@@ -83,6 +83,9 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_OrderType: SwiftProtobuf.Enum 
     
     ///Рыночная
     case market // = 2
+    
+    ///Лучшая цена
+    case bestprice // = 3
     case UNRECOGNIZED(Int)
     
     public init() {
@@ -94,6 +97,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_OrderType: SwiftProtobuf.Enum 
         case 0: self = .unspecified
         case 1: self = .limit
         case 2: self = .market
+        case 3: self = .bestprice
         default: self = .UNRECOGNIZED(rawValue)
         }
     }
@@ -103,6 +107,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_OrderType: SwiftProtobuf.Enum 
         case .unspecified: return 0
         case .limit: return 1
         case .market: return 2
+        case .bestprice: return 3
         case .UNRECOGNIZED(let i): return i
         }
     }
@@ -117,6 +122,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OrderType: CaseIterable {
         .unspecified,
         .limit,
         .market,
+        .bestprice,
     ]
 }
 
@@ -342,6 +348,9 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_OrderTrades {
     ///Идентификатор счёта.
     public var accountID: String = String()
     
+    ///UID идентификатор инструмента.
+    var instrumentUid: String = String()
+    
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
     public init() {}
@@ -365,8 +374,8 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_OrderTrade {
     /// Clears the value of `dateTime`. Subsequent reads from it will return its default value.
     public mutating func clearDateTime() {self._dateTime = nil}
     
-    ///Цена одного инструмента, по которой совершена сделка.
-    public var price: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    ///Цена за 1 инструмент, по которой совершена сделка.
+    var price: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _price ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_price = newValue}
     }
@@ -375,8 +384,11 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_OrderTrade {
     /// Clears the value of `price`. Subsequent reads from it will return its default value.
     public mutating func clearPrice() {self._price = nil}
     
-    ///Количество лотов в сделке.
-    public var quantity: Int64 = 0
+    ///Количество штук в сделке.
+    var quantity: Int64 = 0
+    
+    ///Идентификатор сделки.
+    var tradeID: String = String()
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -392,14 +404,14 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest {
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
     
-    ///Figi-идентификатор инструмента.
-    public var figi: String = String()
+    ///Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
+    var figi: String = String()
     
     ///Количество лотов.
     public var quantity: Int64 = 0
     
-    ///Цена одного инструмента. Для получения стоимости лота требуется умножить на лотность инструмента. Игнорируется для рыночных поручений.
-    public var price: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    ///Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Игнорируется для рыночных поручений.
+    var price: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _price ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_price = newValue}
     }
@@ -420,6 +432,9 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest {
     ///Идентификатор запроса выставления поручения для целей идемпотентности. Максимальная длина 36 символов.
     public var orderID: String = String()
     
+    ///Идентификатор инструмента, принимает значения Figi или Instrument_uid.
+    var instrumentID: String = String()
+    
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
     public init() {}
@@ -433,8 +448,8 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse {
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
     
-    ///Идентификатор заявки.
-    public var orderID: String {
+    ///Биржевой идентификатор заявки.
+    var orderID: String {
         get {return _storage._orderID}
         set {_uniqueStorage()._orderID = newValue}
     }
@@ -467,8 +482,8 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse {
     /// Clears the value of `initialOrderPrice`. Subsequent reads from it will return its default value.
     public mutating func clearInitialOrderPrice() {_uniqueStorage()._initialOrderPrice = nil}
     
-    ///Исполненная цена заявки. Произведение средней цены покупки на количество лотов.
-    public var executedOrderPrice: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
+    ///Исполненная средняя цена 1 одного инструмента в заявки.
+    var executedOrderPrice: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
         get {return _storage._executedOrderPrice ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
         set {_uniqueStorage()._executedOrderPrice = newValue}
     }
@@ -560,6 +575,12 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse {
     public var hasInitialOrderPricePt: Bool {return _storage._initialOrderPricePt != nil}
     /// Clears the value of `initialOrderPricePt`. Subsequent reads from it will return its default value.
     public mutating func clearInitialOrderPricePt() {_uniqueStorage()._initialOrderPricePt = nil}
+    
+    ///UID идентификатор инструмента.
+    var instrumentUid: String {
+        get {return _storage._instrumentUid}
+        set {_uniqueStorage()._instrumentUid = newValue}
+    }
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -659,8 +680,8 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_OrderState {
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
     
-    ///Идентификатор заявки.
-    public var orderID: String {
+    ///Биржевой идентификатор заявки.
+    var orderID: String {
         get {return _storage._orderID}
         set {_uniqueStorage()._orderID = newValue}
     }
@@ -803,6 +824,18 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_OrderState {
     /// Clears the value of `orderDate`. Subsequent reads from it will return its default value.
     public mutating func clearOrderDate() {_uniqueStorage()._orderDate = nil}
     
+    ///UID идентификатор инструмента.
+    var instrumentUid: String {
+        get {return _storage._instrumentUid}
+        set {_uniqueStorage()._instrumentUid = newValue}
+    }
+    
+    ///Идентификатор ключа идемпотентности, переданный клиентом.
+    var orderRequestID: String {
+        get {return _storage._orderRequestID}
+        set {_uniqueStorage()._orderRequestID = newValue}
+    }
+    
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
     public init() {}
@@ -829,8 +862,8 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_OrderStage {
     ///Количество лотов.
     public var quantity: Int64 = 0
     
-    ///Идентификатор торговой операции.
-    public var tradeID: String = String()
+    ///Идентификатор сделки.
+    var tradeID: String = String()
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -916,6 +949,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OrderType: SwiftProtobuf._ProtoN
         0: .same(proto: "ORDER_TYPE_UNSPECIFIED"),
         1: .same(proto: "ORDER_TYPE_LIMIT"),
         2: .same(proto: "ORDER_TYPE_MARKET"),
+        3: .same(proto: "ORDER_TYPE_BESTPRICE"),
     ]
 }
 
@@ -1049,6 +1083,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OrderTrades: SwiftProtobuf.Messa
         4: .same(proto: "figi"),
         5: .same(proto: "trades"),
         6: .standard(proto: "account_id"),
+        7: .standard(proto: "instrument_uid")
     ]
     
     public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1063,6 +1098,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OrderTrades: SwiftProtobuf.Messa
             case 4: try { try decoder.decodeSingularStringField(value: &self.figi) }()
             case 5: try { try decoder.decodeRepeatedMessageField(value: &self.trades) }()
             case 6: try { try decoder.decodeSingularStringField(value: &self.accountID) }()
+            case 7: try { try decoder.decodeSingularStringField(value: &self.instrumentUid) }()
             default: break
             }
         }
@@ -1091,6 +1127,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OrderTrades: SwiftProtobuf.Messa
         if !self.accountID.isEmpty {
             try visitor.visitSingularStringField(value: self.accountID, fieldNumber: 6)
         }
+        if !self.instrumentUid.isEmpty {
+            try visitor.visitSingularStringField(value: self.instrumentUid, fieldNumber: 7)
+        }
         try unknownFields.traverse(visitor: &visitor)
     }
     
@@ -1101,6 +1140,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OrderTrades: SwiftProtobuf.Messa
         if lhs.figi != rhs.figi {return false}
         if lhs.trades != rhs.trades {return false}
         if lhs.accountID != rhs.accountID {return false}
+        if lhs.instrumentUid != rhs.instrumentUid {return false}
         if lhs.unknownFields != rhs.unknownFields {return false}
         return true
     }
@@ -1112,6 +1152,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OrderTrade: SwiftProtobuf.Messag
         1: .standard(proto: "date_time"),
         2: .same(proto: "price"),
         3: .same(proto: "quantity"),
+        4: .standard(proto: "trade_id"),
     ]
     
     public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1123,6 +1164,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OrderTrade: SwiftProtobuf.Messag
             case 1: try { try decoder.decodeSingularMessageField(value: &self._dateTime) }()
             case 2: try { try decoder.decodeSingularMessageField(value: &self._price) }()
             case 3: try { try decoder.decodeSingularInt64Field(value: &self.quantity) }()
+            case 4: try { try decoder.decodeSingularStringField(value: &self.tradeID) }()
             default: break
             }
         }
@@ -1142,6 +1184,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OrderTrade: SwiftProtobuf.Messag
         if self.quantity != 0 {
             try visitor.visitSingularInt64Field(value: self.quantity, fieldNumber: 3)
         }
+        if !self.tradeID.isEmpty {
+            try visitor.visitSingularStringField(value: self.tradeID, fieldNumber: 4)
+        }
         try unknownFields.traverse(visitor: &visitor)
     }
     
@@ -1149,6 +1194,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OrderTrade: SwiftProtobuf.Messag
         if lhs._dateTime != rhs._dateTime {return false}
         if lhs._price != rhs._price {return false}
         if lhs.quantity != rhs.quantity {return false}
+        if lhs.tradeID != rhs.tradeID {return false}
         if lhs.unknownFields != rhs.unknownFields {return false}
         return true
     }
@@ -1164,6 +1210,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest: SwiftProtobuf.
         5: .standard(proto: "account_id"),
         6: .standard(proto: "order_type"),
         7: .standard(proto: "order_id"),
+        8: .standard(proto: "instrument_id"),
     ]
     
     public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1179,6 +1226,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest: SwiftProtobuf.
             case 5: try { try decoder.decodeSingularStringField(value: &self.accountID) }()
             case 6: try { try decoder.decodeSingularEnumField(value: &self.orderType) }()
             case 7: try { try decoder.decodeSingularStringField(value: &self.orderID) }()
+            case 8: try { try decoder.decodeSingularStringField(value: &self.instrumentID) }()
             default: break
             }
         }
@@ -1210,6 +1258,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest: SwiftProtobuf.
         if !self.orderID.isEmpty {
             try visitor.visitSingularStringField(value: self.orderID, fieldNumber: 7)
         }
+        if !self.instrumentID.isEmpty {
+            try visitor.visitSingularStringField(value: self.instrumentID, fieldNumber: 8)
+        }
         try unknownFields.traverse(visitor: &visitor)
     }
     
@@ -1221,6 +1272,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PostOrderRequest: SwiftProtobuf.
         if lhs.accountID != rhs.accountID {return false}
         if lhs.orderType != rhs.orderType {return false}
         if lhs.orderID != rhs.orderID {return false}
+        if lhs.instrumentID != rhs.instrumentID {return false}
         if lhs.unknownFields != rhs.unknownFields {return false}
         return true
     }
@@ -1245,9 +1297,10 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse: SwiftProtobuf
         14: .standard(proto: "order_type"),
         15: .same(proto: "message"),
         16: .standard(proto: "initial_order_price_pt"),
+        17: .standard(proto: "instrument_uid"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _orderID: String = String()
         var _executionReportStatus: Tinkoff_Public_Invest_Api_Contract_V1_OrderExecutionReportStatus = .executionReportStatusUnspecified
         var _lotsRequested: Int64 = 0
@@ -1264,6 +1317,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse: SwiftProtobuf
         var _orderType: Tinkoff_Public_Invest_Api_Contract_V1_OrderType = .unspecified
         var _message: String = String()
         var _initialOrderPricePt: Tinkoff_Public_Invest_Api_Contract_V1_Quotation? = nil
+        var _instrumentUid: String = String()
         
         public static let defaultInstance = _StorageClass()
         
@@ -1286,6 +1340,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse: SwiftProtobuf
             _orderType = source._orderType
             _message = source._message
             _initialOrderPricePt = source._initialOrderPricePt
+            _instrumentUid = source._instrumentUid
         }
     }
     
@@ -1320,6 +1375,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse: SwiftProtobuf
                 case 14: try { try decoder.decodeSingularEnumField(value: &_storage._orderType) }()
                 case 15: try { try decoder.decodeSingularStringField(value: &_storage._message) }()
                 case 16: try { try decoder.decodeSingularMessageField(value: &_storage._initialOrderPricePt) }()
+                case 17: try { try decoder.decodeSingularStringField(value: &_storage._instrumentUid) }()
                 default: break
                 }
             }
@@ -1380,6 +1436,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse: SwiftProtobuf
             try { if let v = _storage._initialOrderPricePt {
                 try visitor.visitSingularMessageField(value: v, fieldNumber: 16)
             } }()
+            if !_storage._instrumentUid.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._instrumentUid, fieldNumber: 17)
+            }
         }
         try unknownFields.traverse(visitor: &visitor)
     }
@@ -1405,6 +1464,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse: SwiftProtobuf
                 if _storage._orderType != rhs_storage._orderType {return false}
                 if _storage._message != rhs_storage._message {return false}
                 if _storage._initialOrderPricePt != rhs_storage._initialOrderPricePt {return false}
+                if _storage._instrumentUid != rhs_storage._instrumentUid {return false}
                 return true
             }
             if !storagesAreEqual {return false}
@@ -1611,9 +1671,11 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OrderState: SwiftProtobuf.Messag
         16: .same(proto: "currency"),
         17: .standard(proto: "order_type"),
         18: .standard(proto: "order_date"),
+        19: .standard(proto: "instrument_uid"),
+        20: .standard(proto: "order_request_id"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _orderID: String = String()
         var _executionReportStatus: Tinkoff_Public_Invest_Api_Contract_V1_OrderExecutionReportStatus = .executionReportStatusUnspecified
         var _lotsRequested: Int64 = 0
@@ -1632,6 +1694,8 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OrderState: SwiftProtobuf.Messag
         var _currency: String = String()
         var _orderType: Tinkoff_Public_Invest_Api_Contract_V1_OrderType = .unspecified
         var _orderDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
+        var _instrumentUid: String = String()
+        var _orderRequestID: String = String()
         
         public static let defaultInstance = _StorageClass()
         
@@ -1656,6 +1720,8 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OrderState: SwiftProtobuf.Messag
             _currency = source._currency
             _orderType = source._orderType
             _orderDate = source._orderDate
+            _instrumentUid = source._instrumentUid
+            _orderRequestID = source._orderRequestID
         }
     }
     
@@ -1692,6 +1758,8 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OrderState: SwiftProtobuf.Messag
                 case 16: try { try decoder.decodeSingularStringField(value: &_storage._currency) }()
                 case 17: try { try decoder.decodeSingularEnumField(value: &_storage._orderType) }()
                 case 18: try { try decoder.decodeSingularMessageField(value: &_storage._orderDate) }()
+                case 19: try { try decoder.decodeSingularStringField(value: &_storage._instrumentUid) }()
+                case 20: try { try decoder.decodeSingularStringField(value: &_storage._orderRequestID) }()
                 default: break
                 }
             }
@@ -1758,6 +1826,12 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OrderState: SwiftProtobuf.Messag
             try { if let v = _storage._orderDate {
                 try visitor.visitSingularMessageField(value: v, fieldNumber: 18)
             } }()
+            if !_storage._instrumentUid.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._instrumentUid, fieldNumber: 19)
+            }
+            if !_storage._orderRequestID.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._orderRequestID, fieldNumber: 20)
+            }
         }
         try unknownFields.traverse(visitor: &visitor)
     }
@@ -1785,6 +1859,8 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OrderState: SwiftProtobuf.Messag
                 if _storage._currency != rhs_storage._currency {return false}
                 if _storage._orderType != rhs_storage._orderType {return false}
                 if _storage._orderDate != rhs_storage._orderDate {return false}
+                if _storage._instrumentUid != rhs_storage._instrumentUid {return false}
+                if _storage._orderRequestID != rhs_storage._orderRequestID {return false}
                 return true
             }
             if !storagesAreEqual {return false}

@@ -286,64 +286,70 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesResponse 
     // methods supported on all messages.
     
     /// Ликвидная стоимость портфеля. Подробнее: [что такое ликвидный портфель?](https://help.tinkoff.ru/margin-trade/short/liquid-portfolio/).
-    public var liquidPortfolio: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
-        get {return _liquidPortfolio ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
-        set {_liquidPortfolio = newValue}
+    var liquidPortfolio: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
+        get {return _storage._liquidPortfolio ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
+        set {_uniqueStorage()._liquidPortfolio = newValue}
     }
     /// Returns true if `liquidPortfolio` has been explicitly set.
-    public var hasLiquidPortfolio: Bool {return self._liquidPortfolio != nil}
+    var hasLiquidPortfolio: Bool {return _storage._liquidPortfolio != nil}
     /// Clears the value of `liquidPortfolio`. Subsequent reads from it will return its default value.
-    public mutating func clearLiquidPortfolio() {self._liquidPortfolio = nil}
+    mutating func clearLiquidPortfolio() {_uniqueStorage()._liquidPortfolio = nil}
     
     /// Начальная маржа — начальное обеспечение для совершения новой сделки. Подробнее: [начальная и минимальная маржа](https://help.tinkoff.ru/margin-trade/short/initial-and-maintenance-margin/).
-    public var startingMargin: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
-        get {return _startingMargin ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
-        set {_startingMargin = newValue}
+    var startingMargin: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
+        get {return _storage._startingMargin ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
+        set {_uniqueStorage()._startingMargin = newValue}
     }
     /// Returns true if `startingMargin` has been explicitly set.
-    public var hasStartingMargin: Bool {return self._startingMargin != nil}
+    var hasStartingMargin: Bool {return _storage._startingMargin != nil}
     /// Clears the value of `startingMargin`. Subsequent reads from it will return its default value.
-    public mutating func clearStartingMargin() {self._startingMargin = nil}
+    mutating func clearStartingMargin() {_uniqueStorage()._startingMargin = nil}
     
     /// Минимальная маржа — это минимальное обеспечение для поддержания позиции, которую вы уже открыли. Подробнее: [начальная и минимальная маржа](https://help.tinkoff.ru/margin-trade/short/initial-and-maintenance-margin/).
-    public var minimalMargin: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
-        get {return _minimalMargin ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
-        set {_minimalMargin = newValue}
+    var minimalMargin: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
+        get {return _storage._minimalMargin ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
+        set {_uniqueStorage()._minimalMargin = newValue}
     }
     /// Returns true if `minimalMargin` has been explicitly set.
-    public var hasMinimalMargin: Bool {return self._minimalMargin != nil}
+    var hasMinimalMargin: Bool {return _storage._minimalMargin != nil}
     /// Clears the value of `minimalMargin`. Subsequent reads from it will return its default value.
-    public mutating func clearMinimalMargin() {self._minimalMargin = nil}
+    mutating func clearMinimalMargin() {_uniqueStorage()._minimalMargin = nil}
     
     /// Уровень достаточности средств. Соотношение стоимости ликвидного портфеля к начальной марже.
-    public var fundsSufficiencyLevel: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
-        get {return _fundsSufficiencyLevel ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
-        set {_fundsSufficiencyLevel = newValue}
+    var fundsSufficiencyLevel: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+        get {return _storage._fundsSufficiencyLevel ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
+        set {_uniqueStorage()._fundsSufficiencyLevel = newValue}
     }
     /// Returns true if `fundsSufficiencyLevel` has been explicitly set.
-    public var hasFundsSufficiencyLevel: Bool {return self._fundsSufficiencyLevel != nil}
+    var hasFundsSufficiencyLevel: Bool {return _storage._fundsSufficiencyLevel != nil}
     /// Clears the value of `fundsSufficiencyLevel`. Subsequent reads from it will return its default value.
-    public mutating func clearFundsSufficiencyLevel() {self._fundsSufficiencyLevel = nil}
+    mutating func clearFundsSufficiencyLevel() {_uniqueStorage()._fundsSufficiencyLevel = nil}
     
     /// Объем недостающих средств. Разница между стартовой маржой и ликвидной стоимости портфеля.
-    public var amountOfMissingFunds: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
-        get {return _amountOfMissingFunds ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
-        set {_amountOfMissingFunds = newValue}
+    var amountOfMissingFunds: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
+        get {return _storage._amountOfMissingFunds ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
+        set {_uniqueStorage()._amountOfMissingFunds = newValue}
     }
     /// Returns true if `amountOfMissingFunds` has been explicitly set.
-    public var hasAmountOfMissingFunds: Bool {return self._amountOfMissingFunds != nil}
+    var hasAmountOfMissingFunds: Bool {return _storage._amountOfMissingFunds != nil}
     /// Clears the value of `amountOfMissingFunds`. Subsequent reads from it will return its default value.
-    public mutating func clearAmountOfMissingFunds() {self._amountOfMissingFunds = nil}
+    mutating func clearAmountOfMissingFunds() {_uniqueStorage()._amountOfMissingFunds = nil}
+    
+    /// Скорректированная маржа.Начальная маржа, в которой плановые позиции рассчитываются с учётом активных заявок на покупку позиций лонг или продажу позиций шорт.
+    var correctedMargin: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
+        get {return _storage._correctedMargin ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
+        set {_uniqueStorage()._correctedMargin = newValue}
+    }
+    /// Returns true if `correctedMargin` has been explicitly set.
+    var hasCorrectedMargin: Bool {return _storage._correctedMargin != nil}
+    /// Clears the value of `correctedMargin`. Subsequent reads from it will return its default value.
+    mutating func clearCorrectedMargin() {_uniqueStorage()._correctedMargin = nil}
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
     public init() {}
     
-    fileprivate var _liquidPortfolio: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
-    fileprivate var _startingMargin: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
-    fileprivate var _minimalMargin: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
-    fileprivate var _fundsSufficiencyLevel: Tinkoff_Public_Invest_Api_Contract_V1_Quotation? = nil
-    fileprivate var _amountOfMissingFunds: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
+    fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 ///Запрос текущих лимитов пользователя.
@@ -363,11 +369,11 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetUserTariffResponse {
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
     
-    ///Массив лимитов пользователя по unary-запросам
-    public var unaryLimits: [Tinkoff_Public_Invest_Api_Contract_V1_UnaryLimit] = []
+    ///Массив лимитов пользователя по unary-запросам.
+    var unaryLimits: [Tinkoff_Public_Invest_Api_Contract_V1_UnaryLimit] = []
     
-    ///Массив лимитов пользователей для stream-соединений
-    public var streamLimits: [Tinkoff_Public_Invest_Api_Contract_V1_StreamLimit] = []
+    ///Массив лимитов пользователей для stream-соединений.
+    var streamLimits: [Tinkoff_Public_Invest_Api_Contract_V1_StreamLimit] = []
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -402,6 +408,9 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_StreamLimit {
     
     ///Названия stream-методов
     public var streams: [String] = []
+    
+    ///Текущее количество открытых stream-соединений.
+    var `open`: Int32 = 0
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -653,53 +662,101 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesResponse: Swi
         3: .standard(proto: "minimal_margin"),
         4: .standard(proto: "funds_sufficiency_level"),
         5: .standard(proto: "amount_of_missing_funds"),
+        6: .standard(proto: "corrected_margin"),
     ]
     
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-        while let fieldNumber = try decoder.nextFieldNumber() {
-            // The use of inline closures is to circumvent an issue where the compiler
-            // allocates stack space for every case branch when no optimizations are
-            // enabled. https://github.com/apple/swift-protobuf/issues/1034
-            switch fieldNumber {
-            case 1: try { try decoder.decodeSingularMessageField(value: &self._liquidPortfolio) }()
-            case 2: try { try decoder.decodeSingularMessageField(value: &self._startingMargin) }()
-            case 3: try { try decoder.decodeSingularMessageField(value: &self._minimalMargin) }()
-            case 4: try { try decoder.decodeSingularMessageField(value: &self._fundsSufficiencyLevel) }()
-            case 5: try { try decoder.decodeSingularMessageField(value: &self._amountOfMissingFunds) }()
-            default: break
+    public class _StorageClass {
+        var _liquidPortfolio: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
+        var _startingMargin: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
+        var _minimalMargin: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
+        var _fundsSufficiencyLevel: Tinkoff_Public_Invest_Api_Contract_V1_Quotation? = nil
+        var _amountOfMissingFunds: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
+        var _correctedMargin: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
+        
+        static let defaultInstance = _StorageClass()
+        
+        private init() {}
+        
+        init(copying source: _StorageClass) {
+            _liquidPortfolio = source._liquidPortfolio
+            _startingMargin = source._startingMargin
+            _minimalMargin = source._minimalMargin
+            _fundsSufficiencyLevel = source._fundsSufficiencyLevel
+            _amountOfMissingFunds = source._amountOfMissingFunds
+            _correctedMargin = source._correctedMargin
+        }
+    }
+    
+    fileprivate mutating func _uniqueStorage() -> _StorageClass {
+        if !isKnownUniquelyReferenced(&_storage) {
+            _storage = _StorageClass(copying: _storage)
+        }
+        return _storage
+    }
+    
+    mutating public func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+        _ = _uniqueStorage()
+        try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+            while let fieldNumber = try decoder.nextFieldNumber() {
+                // The use of inline closures is to circumvent an issue where the compiler
+                // allocates stack space for every case branch when no optimizations are
+                // enabled. https://github.com/apple/swift-protobuf/issues/1034
+                switch fieldNumber {
+                case 1: try { try decoder.decodeSingularMessageField(value: &_storage._liquidPortfolio) }()
+                case 2: try { try decoder.decodeSingularMessageField(value: &_storage._startingMargin) }()
+                case 3: try { try decoder.decodeSingularMessageField(value: &_storage._minimalMargin) }()
+                case 4: try { try decoder.decodeSingularMessageField(value: &_storage._fundsSufficiencyLevel) }()
+                case 5: try { try decoder.decodeSingularMessageField(value: &_storage._amountOfMissingFunds) }()
+                case 6: try { try decoder.decodeSingularMessageField(value: &_storage._correctedMargin) }()
+                default: break
+                }
             }
         }
     }
     
     public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-        // The use of inline closures is to circumvent an issue where the compiler
-        // allocates stack space for every if/case branch local when no optimizations
-        // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
-        // https://github.com/apple/swift-protobuf/issues/1182
-        try { if let v = self._liquidPortfolio {
-            try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        } }()
-        try { if let v = self._startingMargin {
-            try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        } }()
-        try { if let v = self._minimalMargin {
-            try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-        } }()
-        try { if let v = self._fundsSufficiencyLevel {
-            try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-        } }()
-        try { if let v = self._amountOfMissingFunds {
-            try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-        } }()
+        try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+            // The use of inline closures is to circumvent an issue where the compiler
+            // allocates stack space for every if/case branch local when no optimizations
+            // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+            // https://github.com/apple/swift-protobuf/issues/1182
+            try { if let v = _storage._liquidPortfolio {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+            } }()
+            try { if let v = _storage._startingMargin {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+            } }()
+            try { if let v = _storage._minimalMargin {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+            } }()
+            try { if let v = _storage._fundsSufficiencyLevel {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+            } }()
+            try { if let v = _storage._amountOfMissingFunds {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+            } }()
+            try { if let v = _storage._correctedMargin {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+            } }()
+        }
         try unknownFields.traverse(visitor: &visitor)
     }
     
     public static func ==(lhs: Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesResponse, rhs: Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesResponse) -> Bool {
-        if lhs._liquidPortfolio != rhs._liquidPortfolio {return false}
-        if lhs._startingMargin != rhs._startingMargin {return false}
-        if lhs._minimalMargin != rhs._minimalMargin {return false}
-        if lhs._fundsSufficiencyLevel != rhs._fundsSufficiencyLevel {return false}
-        if lhs._amountOfMissingFunds != rhs._amountOfMissingFunds {return false}
+        if lhs._storage !== rhs._storage {
+            let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+                let _storage = _args.0
+                let rhs_storage = _args.1
+                if _storage._liquidPortfolio != rhs_storage._liquidPortfolio {return false}
+                if _storage._startingMargin != rhs_storage._startingMargin {return false}
+                if _storage._minimalMargin != rhs_storage._minimalMargin {return false}
+                if _storage._fundsSufficiencyLevel != rhs_storage._fundsSufficiencyLevel {return false}
+                if _storage._amountOfMissingFunds != rhs_storage._amountOfMissingFunds {return false}
+                if _storage._correctedMargin != rhs_storage._correctedMargin {return false}
+                return true
+            }
+            if !storagesAreEqual {return false}
+        }
         if lhs.unknownFields != rhs.unknownFields {return false}
         return true
     }
@@ -805,6 +862,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_StreamLimit: SwiftProtobuf.Messa
     public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "limit"),
         2: .same(proto: "streams"),
+        3: .same(proto: "open"),
     ]
     
     public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -815,6 +873,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_StreamLimit: SwiftProtobuf.Messa
             switch fieldNumber {
             case 1: try { try decoder.decodeSingularInt32Field(value: &self.limit) }()
             case 2: try { try decoder.decodeRepeatedStringField(value: &self.streams) }()
+            case 3: try { try decoder.decodeSingularInt32Field(value: &self.`open`) }()
             default: break
             }
         }
@@ -827,12 +886,16 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_StreamLimit: SwiftProtobuf.Messa
         if !self.streams.isEmpty {
             try visitor.visitRepeatedStringField(value: self.streams, fieldNumber: 2)
         }
+        if self.`open` != 0 {
+            try visitor.visitSingularInt32Field(value: self.`open`, fieldNumber: 3)
+        }
         try unknownFields.traverse(visitor: &visitor)
     }
     
     public static func ==(lhs: Tinkoff_Public_Invest_Api_Contract_V1_StreamLimit, rhs: Tinkoff_Public_Invest_Api_Contract_V1_StreamLimit) -> Bool {
         if lhs.limit != rhs.limit {return false}
         if lhs.streams != rhs.streams {return false}
+        if lhs.`open` != rhs.`open` {return false}
         if lhs.unknownFields != rhs.unknownFields {return false}
         return true
     }

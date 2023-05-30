@@ -215,6 +215,57 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_OperationType: SwiftProtobuf.E
     
     ///Корректировка налога по купонам.
     case taxCorrectionCoupon // = 44
+    
+    ///Комиссия за валютный остаток.
+    case cashFee // = 45
+    
+    ///Комиссия за вывод валюты с брокерского счета.
+    case outFee // = 46
+    
+    ///Гербовый сбор.
+    case outStampDuty // = 47
+    
+    ///    SWIFT-перевод
+    case outputSwift // = 50
+    
+    ///    SWIFT-перевод
+    case inputSwift // = 51
+    
+    ///  Перевод на карту
+    case outputAcquiring // = 53
+    
+    ///    Перевод с карты
+    case inputAcquiring // = 54
+    
+    ///    Комиссия за вывод средств
+    case outputPenalty // = 55
+    
+    ///    Списание оплаты за сервис Советов
+    case adviceFee // = 56
+    
+    ///  Перевод ценных бумаг с ИИС на Брокерский счет
+    case transIisBs // = 57
+    
+    ///  Перевод ценных бумаг с одного брокерского счета на другой
+    case transBsBs // = 58
+    
+    ///  Вывод денежных средств со счета
+    case outMulti // = 59
+    
+    ///  Пополнение денежных средств со счета
+    case inpMulti // = 60
+    
+    ///  Размещение биржевого овернайта
+    case overPlacement // = 61
+    
+    ///  Списание комиссии
+    case overCom // = 62
+    
+    ///  Доход от оверанайта
+    case overIncome // = 63
+    
+    /// Экспирация
+    case optionExpiration // = 64
     case UNRECOGNIZED(Int)
     
     public init() {
@@ -268,6 +319,23 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_OperationType: SwiftProtobuf.E
         case 42: self = .taxRepoRefundProgressive
         case 43: self = .divExt
         case 44: self = .taxCorrectionCoupon
+        case 45: self = .cashFee
+        case 46: self = .outFee
+        case 47: self = .outStampDuty
+        case 50: self = .outputSwift
+        case 51: self = .inputSwift
+        case 53: self = .outputAcquiring
+        case 54: self = .inputAcquiring
+        case 55: self = .outputPenalty
+        case 56: self = .adviceFee
+        case 57: self = .transIisBs
+        case 58: self = .transBsBs
+        case 59: self = .outMulti
+        case 60: self = .inpMulti
+        case 61: self = .overPlacement
+        case 62: self = .overCom
+        case 63: self = .overIncome
+        case 64: self = .optionExpiration
         default: self = .UNRECOGNIZED(rawValue)
         }
     }
@@ -319,6 +387,23 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_OperationType: SwiftProtobuf.E
         case .taxRepoRefundProgressive: return 42
         case .divExt: return 43
         case .taxCorrectionCoupon: return 44
+        case .cashFee: return 45
+        case .outFee: return 46
+        case .outStampDuty: return 47
+        case .outputSwift: return 50
+        case .inputSwift: return 51
+        case .outputAcquiring: return 53
+        case .inputAcquiring: return 54
+        case .outputPenalty: return 55
+        case .adviceFee: return 56
+        case .transIisBs: return 57
+        case .transBsBs: return 58
+        case .outMulti: return 59
+        case .inpMulti: return 60
+        case .overPlacement: return 61
+        case .overCom: return 62
+        case .overIncome: return 63
+        case .optionExpiration: return 64
         case .UNRECOGNIZED(let i): return i
         }
     }
@@ -375,6 +460,23 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationType: CaseIterable {
         .taxRepoRefundProgressive,
         .divExt,
         .taxCorrectionCoupon,
+        .cashFee,
+        .outFee,
+        .outStampDuty,
+        .outputSwift,
+        .inputSwift,
+        .outputAcquiring,
+        .inputAcquiring,
+        .outputPenalty,
+        .adviceFee,
+        .transIisBs,
+        .transBsBs,
+        .outMulti,
+        .inpMulti,
+        .overPlacement,
+        .overCom,
+        .overIncome,
+        .optionExpiration,
     ]
 }
 
@@ -432,85 +534,6 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioSubscriptionStatus: Cas
         .success,
         .accountNotFound,
         .internalError,
-    ]
-}
-
-#endif  // swift(>=4.2)
-
-///Тип инструмента.
-public enum Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType: SwiftProtobuf.Enum {
-    public typealias RawValue = Int
-    case unspecified // = 0
-    
-    ///Облигация.
-    case bond // = 1
-    
-    ///Акция.
-    case share // = 2
-    
-    ///Валюта.
-    case currency // = 3
-    
-    ///Exchange-traded fund. Фонд.
-    case etf // = 4
-    
-    ///Фьючерс.
-    case futures // = 5
-    
-    ///Структурная нота.
-    case sp // = 6
-    
-    ///Опцион.
-    case option // = 7
-    case UNRECOGNIZED(Int)
-    
-    public init() {
-        self = .unspecified
-    }
-    
-    public init?(rawValue: Int) {
-        switch rawValue {
-        case 0: self = .unspecified
-        case 1: self = .bond
-        case 2: self = .share
-        case 3: self = .currency
-        case 4: self = .etf
-        case 5: self = .futures
-        case 6: self = .sp
-        case 7: self = .option
-        default: self = .UNRECOGNIZED(rawValue)
-        }
-    }
-    
-    public var rawValue: Int {
-        switch self {
-        case .unspecified: return 0
-        case .bond: return 1
-        case .share: return 2
-        case .currency: return 3
-        case .etf: return 4
-        case .futures: return 5
-        case .sp: return 6
-        case .option: return 7
-        case .UNRECOGNIZED(let i): return i
-        }
-    }
-    
-}
-
-#if swift(>=4.2)
-
-extension Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType: CaseIterable {
-    // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType] = [
-        .unspecified,
-        .bond,
-        .share,
-        .currency,
-        .etf,
-        .futures,
-        .sp,
-        .option,
     ]
 }
 
@@ -732,6 +755,24 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Operation {
         set {_uniqueStorage()._trades = newValue}
     }
     
+    ///Идентификатор актива
+    var assetUid: String {
+        get {return _storage._assetUid}
+        set {_uniqueStorage()._assetUid = newValue}
+    }
+    
+    ///position_uid-идентификатора инструмента.
+    var positionUid: String {
+        get {return _storage._positionUid}
+        set {_uniqueStorage()._positionUid = newValue}
+    }
+    
+    ///Уникальный идентификатор инструмента.
+    var instrumentUid: String {
+        get {return _storage._instrumentUid}
+        set {_uniqueStorage()._instrumentUid = newValue}
+    }
+    
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
     public init() {}
@@ -788,10 +829,63 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest {
     ///Идентификатор счёта пользователя.
     public var accountID: String = String()
     
+    ///Валюта, в которой требуется рассчитать портфель
+    var currency: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest.CurrencyRequest = .rub
+    
     public var unknownFields = SwiftProtobuf.UnknownStorage()
+    
+    enum CurrencyRequest: SwiftProtobuf.Enum {
+        typealias RawValue = Int
+        
+        ///Рубли
+        case rub // = 0
+        
+        ///Доллары
+        case usd // = 1
+        
+        ///Евро
+        case eur // = 2
+        case UNRECOGNIZED(Int)
+        
+        init() {
+            self = .rub
+        }
+        
+        init?(rawValue: Int) {
+            switch rawValue {
+            case 0: self = .rub
+            case 1: self = .usd
+            case 2: self = .eur
+            default: self = .UNRECOGNIZED(rawValue)
+            }
+        }
+        
+        var rawValue: Int {
+            switch self {
+            case .rub: return 0
+            case .usd: return 1
+            case .eur: return 2
+            case .UNRECOGNIZED(let i): return i
+            }
+        }
+        
+    }
     
     public init() {}
 }
+
+#if swift(>=4.2)
+
+extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest.CurrencyRequest: CaseIterable {
+    // The compiler won't synthesize support with the UNRECOGNIZED case.
+    static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest.CurrencyRequest] = [
+        .rub,
+        .usd,
+        .eur,
+    ]
+}
+
+#endif  // swift(>=4.2)
 
 ///Текущий портфель по счёту.
 public struct Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse {
@@ -799,8 +893,8 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse {
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
     
-    ///Общая стоимость акций в портфеле в рублях.
-    public var totalAmountShares: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
+    ///Общая стоимость акций в портфеле.
+    var totalAmountShares: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
         get {return _storage._totalAmountShares ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
         set {_uniqueStorage()._totalAmountShares = newValue}
     }
@@ -809,8 +903,8 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse {
     /// Clears the value of `totalAmountShares`. Subsequent reads from it will return its default value.
     public mutating func clearTotalAmountShares() {_uniqueStorage()._totalAmountShares = nil}
     
-    ///Общая стоимость облигаций в портфеле в рублях.
-    public var totalAmountBonds: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
+    ///Общая стоимость облигаций в портфеле.
+    var totalAmountBonds: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
         get {return _storage._totalAmountBonds ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
         set {_uniqueStorage()._totalAmountBonds = newValue}
     }
@@ -819,8 +913,8 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse {
     /// Clears the value of `totalAmountBonds`. Subsequent reads from it will return its default value.
     public mutating func clearTotalAmountBonds() {_uniqueStorage()._totalAmountBonds = nil}
     
-    ///Общая стоимость фондов в портфеле в рублях.
-    public var totalAmountEtf: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
+    ///Общая стоимость фондов в портфеле.
+    var totalAmountEtf: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
         get {return _storage._totalAmountEtf ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
         set {_uniqueStorage()._totalAmountEtf = newValue}
     }
@@ -829,8 +923,8 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse {
     /// Clears the value of `totalAmountEtf`. Subsequent reads from it will return its default value.
     public mutating func clearTotalAmountEtf() {_uniqueStorage()._totalAmountEtf = nil}
     
-    ///Общая стоимость валют в портфеле в рублях.
-    public var totalAmountCurrencies: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
+    ///Общая стоимость валют в портфеле.
+    var totalAmountCurrencies: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
         get {return _storage._totalAmountCurrencies ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
         set {_uniqueStorage()._totalAmountCurrencies = newValue}
     }
@@ -839,8 +933,8 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse {
     /// Clears the value of `totalAmountCurrencies`. Subsequent reads from it will return its default value.
     public mutating func clearTotalAmountCurrencies() {_uniqueStorage()._totalAmountCurrencies = nil}
     
-    ///Общая стоимость фьючерсов в портфеле в рублях.
-    public var totalAmountFutures: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
+    ///Общая стоимость фьючерсов в портфеле.
+    var totalAmountFutures: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
         get {return _storage._totalAmountFutures ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
         set {_uniqueStorage()._totalAmountFutures = newValue}
     }
@@ -863,6 +957,48 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse {
     public var positions: [Tinkoff_Public_Invest_Api_Contract_V1_PortfolioPosition] {
         get {return _storage._positions}
         set {_uniqueStorage()._positions = newValue}
+    }
+    
+    ///Идентификатор счёта пользователя.
+    var accountID: String {
+        get {return _storage._accountID}
+        set {_uniqueStorage()._accountID = newValue}
+    }
+    
+    ///Общая стоимость опционов в портфеле.
+    var totalAmountOptions: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
+        get {return _storage._totalAmountOptions ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
+        set {_uniqueStorage()._totalAmountOptions = newValue}
+    }
+    /// Returns true if `totalAmountOptions` has been explicitly set.
+    var hasTotalAmountOptions: Bool {return _storage._totalAmountOptions != nil}
+    /// Clears the value of `totalAmountOptions`. Subsequent reads from it will return its default value.
+    mutating func clearTotalAmountOptions() {_uniqueStorage()._totalAmountOptions = nil}
+    
+    ///Общая стоимость структурных нот в портфеле.
+    var totalAmountSp: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
+        get {return _storage._totalAmountSp ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
+        set {_uniqueStorage()._totalAmountSp = newValue}
+    }
+    /// Returns true if `totalAmountSp` has been explicitly set.
+    var hasTotalAmountSp: Bool {return _storage._totalAmountSp != nil}
+    /// Clears the value of `totalAmountSp`. Subsequent reads from it will return its default value.
+    mutating func clearTotalAmountSp() {_uniqueStorage()._totalAmountSp = nil}
+    
+    ///Общая стоимость портфеля.
+    var totalAmountPortfolio: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
+        get {return _storage._totalAmountPortfolio ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
+        set {_uniqueStorage()._totalAmountPortfolio = newValue}
+    }
+    /// Returns true if `totalAmountPortfolio` has been explicitly set.
+    var hasTotalAmountPortfolio: Bool {return _storage._totalAmountPortfolio != nil}
+    /// Clears the value of `totalAmountPortfolio`. Subsequent reads from it will return its default value.
+    mutating func clearTotalAmountPortfolio() {_uniqueStorage()._totalAmountPortfolio = nil}
+    
+    ///Массив виртуальных позиций портфеля.
+    var virtualPositions: [Tinkoff_Public_Invest_Api_Contract_V1_VirtualPortfolioPosition] {
+        get {return _storage._virtualPositions}
+        set {_uniqueStorage()._virtualPositions = newValue}
     }
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -1007,8 +1143,8 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PortfolioPosition {
     /// Clears the value of `currentNkd`. Subsequent reads from it will return its default value.
     public mutating func clearCurrentNkd() {_uniqueStorage()._currentNkd = nil}
     
-    ///Средняя цена позиции в пунктах (для фьючерсов). **Возможна задержка до секунды для пересчёта**.
-    public var averagePositionPricePt: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    /// Deprecated Средняя цена позиции в пунктах (для фьючерсов). **Возможна задержка до секунды для пересчёта**.
+    var averagePositionPricePt: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._averagePositionPricePt ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._averagePositionPricePt = newValue}
     }
@@ -1037,8 +1173,8 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PortfolioPosition {
     /// Clears the value of `averagePositionPriceFifo`. Subsequent reads from it will return its default value.
     public mutating func clearAveragePositionPriceFifo() {_uniqueStorage()._averagePositionPriceFifo = nil}
     
-    ///Количество лотов в портфеле.
-    public var quantityLots: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    ///Deprecated Количество лотов в портфеле.
+    var quantityLots: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._quantityLots ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._quantityLots = newValue}
     }
@@ -1047,15 +1183,163 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PortfolioPosition {
     /// Clears the value of `quantityLots`. Subsequent reads from it will return its default value.
     public mutating func clearQuantityLots() {_uniqueStorage()._quantityLots = nil}
     
-    ///Заблокировано.
-    public var blocked: Bool {
+    ///Заблокировано на бирже.
+    var blocked: Bool {
         get {return _storage._blocked}
         set {_uniqueStorage()._blocked = newValue}
     }
     
+    ///Количество бумаг, заблокированных выставленными заявками.
+    var blockedLots: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+        get {return _storage._blockedLots ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
+        set {_uniqueStorage()._blockedLots = newValue}
+    }
+    /// Returns true if `blockedLots` has been explicitly set.
+    var hasBlockedLots: Bool {return _storage._blockedLots != nil}
+    /// Clears the value of `blockedLots`. Subsequent reads from it will return its default value.
+    mutating func clearBlockedLots() {_uniqueStorage()._blockedLots = nil}
+    
+    ///position_uid-идентификатора инструмента
+    var positionUid: String {
+        get {return _storage._positionUid}
+        set {_uniqueStorage()._positionUid = newValue}
+    }
+    
+    ///instrument_uid-идентификатора инструмента
+    var instrumentUid: String {
+        get {return _storage._instrumentUid}
+        set {_uniqueStorage()._instrumentUid = newValue}
+    }
+    
+    ///Вариационная маржа
+    var varMargin: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
+        get {return _storage._varMargin ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
+        set {_uniqueStorage()._varMargin = newValue}
+    }
+    /// Returns true if `varMargin` has been explicitly set.
+    var hasVarMargin: Bool {return _storage._varMargin != nil}
+    /// Clears the value of `varMargin`. Subsequent reads from it will return its default value.
+    mutating func clearVarMargin() {_uniqueStorage()._varMargin = nil}
+    
+    ///Текущая рассчитанная доходность позиции.
+    var expectedYieldFifo: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+        get {return _storage._expectedYieldFifo ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
+        set {_uniqueStorage()._expectedYieldFifo = newValue}
+    }
+    /// Returns true if `expectedYieldFifo` has been explicitly set.
+    var hasExpectedYieldFifo: Bool {return _storage._expectedYieldFifo != nil}
+    /// Clears the value of `expectedYieldFifo`. Subsequent reads from it will return its default value.
+    mutating func clearExpectedYieldFifo() {_uniqueStorage()._expectedYieldFifo = nil}
+    
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
     public init() {}
+    
+    fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+struct Tinkoff_Public_Invest_Api_Contract_V1_VirtualPortfolioPosition {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+    
+    ///position_uid-идентификатора инструмента
+    var positionUid: String {
+        get {return _storage._positionUid}
+        set {_uniqueStorage()._positionUid = newValue}
+    }
+    
+    ///instrument_uid-идентификатора инструмента
+    var instrumentUid: String {
+        get {return _storage._instrumentUid}
+        set {_uniqueStorage()._instrumentUid = newValue}
+    }
+    
+    ///Figi-идентификатора инструмента.
+    var figi: String {
+        get {return _storage._figi}
+        set {_uniqueStorage()._figi = newValue}
+    }
+    
+    ///Тип инструмента.
+    var instrumentType: String {
+        get {return _storage._instrumentType}
+        set {_uniqueStorage()._instrumentType = newValue}
+    }
+    
+    ///Количество инструмента в портфеле в штуках.
+    var quantity: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+        get {return _storage._quantity ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
+        set {_uniqueStorage()._quantity = newValue}
+    }
+    /// Returns true if `quantity` has been explicitly set.
+    var hasQuantity: Bool {return _storage._quantity != nil}
+    /// Clears the value of `quantity`. Subsequent reads from it will return its default value.
+    mutating func clearQuantity() {_uniqueStorage()._quantity = nil}
+    
+    ///Средневзвешенная цена позиции. **Возможна задержка до секунды для пересчёта**.
+    var averagePositionPrice: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
+        get {return _storage._averagePositionPrice ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
+        set {_uniqueStorage()._averagePositionPrice = newValue}
+    }
+    /// Returns true if `averagePositionPrice` has been explicitly set.
+    var hasAveragePositionPrice: Bool {return _storage._averagePositionPrice != nil}
+    /// Clears the value of `averagePositionPrice`. Subsequent reads from it will return its default value.
+    mutating func clearAveragePositionPrice() {_uniqueStorage()._averagePositionPrice = nil}
+    
+    ///Текущая рассчитанная доходность позиции.
+    var expectedYield: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+        get {return _storage._expectedYield ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
+        set {_uniqueStorage()._expectedYield = newValue}
+    }
+    /// Returns true if `expectedYield` has been explicitly set.
+    var hasExpectedYield: Bool {return _storage._expectedYield != nil}
+    /// Clears the value of `expectedYield`. Subsequent reads from it will return its default value.
+    mutating func clearExpectedYield() {_uniqueStorage()._expectedYield = nil}
+    
+    ///Текущая рассчитанная доходность позиции.
+    var expectedYieldFifo: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+        get {return _storage._expectedYieldFifo ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
+        set {_uniqueStorage()._expectedYieldFifo = newValue}
+    }
+    /// Returns true if `expectedYieldFifo` has been explicitly set.
+    var hasExpectedYieldFifo: Bool {return _storage._expectedYieldFifo != nil}
+    /// Clears the value of `expectedYieldFifo`. Subsequent reads from it will return its default value.
+    mutating func clearExpectedYieldFifo() {_uniqueStorage()._expectedYieldFifo = nil}
+    
+    ///Дата до которой нужно продать виртуальные бумаги, после этой даты виртуальная позиция "сгорит"
+    var expireDate: SwiftProtobuf.Google_Protobuf_Timestamp {
+        get {return _storage._expireDate ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
+        set {_uniqueStorage()._expireDate = newValue}
+    }
+    /// Returns true if `expireDate` has been explicitly set.
+    var hasExpireDate: Bool {return _storage._expireDate != nil}
+    /// Clears the value of `expireDate`. Subsequent reads from it will return its default value.
+    mutating func clearExpireDate() {_uniqueStorage()._expireDate = nil}
+    
+    ///Текущая цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента.
+    var currentPrice: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
+        get {return _storage._currentPrice ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
+        set {_uniqueStorage()._currentPrice = newValue}
+    }
+    /// Returns true if `currentPrice` has been explicitly set.
+    var hasCurrentPrice: Bool {return _storage._currentPrice != nil}
+    /// Clears the value of `currentPrice`. Subsequent reads from it will return its default value.
+    mutating func clearCurrentPrice() {_uniqueStorage()._currentPrice = nil}
+    
+    ///Средняя цена позиции по методу FIFO. **Возможна задержка до секунды для пересчёта**.
+    var averagePositionPriceFifo: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
+        get {return _storage._averagePositionPriceFifo ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
+        set {_uniqueStorage()._averagePositionPriceFifo = newValue}
+    }
+    /// Returns true if `averagePositionPriceFifo` has been explicitly set.
+    var hasAveragePositionPriceFifo: Bool {return _storage._averagePositionPriceFifo != nil}
+    /// Clears the value of `averagePositionPriceFifo`. Subsequent reads from it will return its default value.
+    mutating func clearAveragePositionPriceFifo() {_uniqueStorage()._averagePositionPriceFifo = nil}
+    
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+    
+    init() {}
     
     fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -1069,8 +1353,8 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PositionsSecurities {
     ///Figi-идентификатор бумаги.
     public var figi: String = String()
     
-    ///Заблокировано.
-    public var blocked: Int64 = 0
+    ///Количество бумаг заблокированных выставленными заявками.
+    var blocked: Int64 = 0
     
     ///Текущий незаблокированный баланс.
     public var balance: Int64 = 0
@@ -1101,8 +1385,8 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PositionsFutures {
     ///Figi-идентификатор фьючерса.
     public var figi: String = String()
     
-    ///Заблокировано.
-    public var blocked: Int64 = 0
+    ///Количество бумаг заблокированных выставленными заявками.
+    var blocked: Int64 = 0
     
     ///Текущий незаблокированный баланс.
     public var balance: Int64 = 0
@@ -1130,8 +1414,8 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PositionsOptions {
     ///Уникальный идентификатор  инструмента.
     public var instrumentUid: String = String()
     
-    ///Заблокировано.
-    public var blocked: Int64 = 0
+    ///Количество бумаг заблокированных выставленными заявками.
+    var blocked: Int64 = 0
     
     ///Текущий незаблокированный баланс.
     public var balance: Int64 = 0
@@ -1956,7 +2240,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PortfolioSubscriptionResult 
     // methods supported on all messages.
     
     ///Массив счетов клиента.
-    public var accounts: [Tinkoff_Public_Invest_Api_Contract_V1_AccountSubscriptionStatus] = []
+    var accounts: [Tinkoff_Public_Invest_Api_Contract_V1_AccountSubscriptionStatus] = []
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -1964,20 +2248,20 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PortfolioSubscriptionResult 
 }
 
 ///Счет клиента.
-public struct Tinkoff_Public_Invest_Api_Contract_V1_AccountSubscriptionStatus {
+struct Tinkoff_Public_Invest_Api_Contract_V1_AccountSubscriptionStatus {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
     
     ///Идентификатор счёта
-    public var accountID: String = String()
+    var accountID: String = String()
     
     ///Результат подписки.
-    public var subscriptionStatus: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioSubscriptionStatus = .unspecified
+    var subscriptionStatus: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioSubscriptionStatus = .unspecified
     
-    public var unknownFields = SwiftProtobuf.UnknownStorage()
+    var unknownFields = SwiftProtobuf.UnknownStorage()
     
-    public init() {}
+    init() {}
 }
 
 ///Запрос списка операций по счёту с пагинацией.
@@ -1987,51 +2271,51 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRequest
     // methods supported on all messages.
     
     ///Идентификатор счёта клиента. Обязательный параметр для данного метода, остальные параметры опциональны.
-    public var accountID: String = String()
+    var accountID: String = String()
     
     ///Идентификатор инструмента (Figi инструмента или uid инструмента)
-    public var instrumentID: String = String()
+    var instrumentID: String = String()
     
     ///Начало периода (по UTC).
-    public var from: SwiftProtobuf.Google_Protobuf_Timestamp {
+    var from: SwiftProtobuf.Google_Protobuf_Timestamp {
         get {return _from ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
         set {_from = newValue}
     }
     /// Returns true if `from` has been explicitly set.
-    public var hasFrom: Bool {return self._from != nil}
+    var hasFrom: Bool {return self._from != nil}
     /// Clears the value of `from`. Subsequent reads from it will return its default value.
-    public mutating func clearFrom() {self._from = nil}
+    mutating func clearFrom() {self._from = nil}
     
     ///Окончание периода (по UTC).
-    public var to: SwiftProtobuf.Google_Protobuf_Timestamp {
+    var to: SwiftProtobuf.Google_Protobuf_Timestamp {
         get {return _to ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
         set {_to = newValue}
     }
     /// Returns true if `to` has been explicitly set.
-    public var hasTo: Bool {return self._to != nil}
+    var hasTo: Bool {return self._to != nil}
     /// Clears the value of `to`. Subsequent reads from it will return its default value.
-    public mutating func clearTo() {self._to = nil}
+    mutating func clearTo() {self._to = nil}
     
     ///Идентификатор элемента, с которого начать формировать ответ.
-    public var cursor: String = String()
+    var cursor: String = String()
     
     ///Лимит количества операций. По умолчанию устанавливается значение **100**, максимальное значение 1000.
-    public var limit: Int32 = 0
+    var limit: Int32 = 0
     
     ///Тип операции. Принимает значение из списка OperationType.
-    public var operationTypes: [Tinkoff_Public_Invest_Api_Contract_V1_OperationType] = []
+    var operationTypes: [Tinkoff_Public_Invest_Api_Contract_V1_OperationType] = []
     
     ///Статус запрашиваемых операций, возможные значения указаны в OperationState.
-    public var state: Tinkoff_Public_Invest_Api_Contract_V1_OperationState = .unspecified
+    var state: Tinkoff_Public_Invest_Api_Contract_V1_OperationState = .unspecified
     
     ///Флаг возвращать ли комиссии, по умолчанию false
-    public var withoutCommissions: Bool = false
+    var withoutCommissions: Bool = false
     
     ///Флаг получения ответа без массива сделок.
-    public var withoutTrades: Bool = false
+    var withoutTrades: Bool = false
     
     ///Флаг не показывать overnight операций.
-    public var withoutOvernights: Bool = false
+    var withoutOvernights: Bool = false
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -2048,13 +2332,13 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRespons
     // methods supported on all messages.
     
     ///Признак, есть ли следующий элемент.
-    public var hasNext_p: Bool = false
+    var hasNext_p: Bool = false
     
     ///Следующий курсор.
-    public var nextCursor: String = String()
+    var nextCursor: String = String()
     
     ///Список операций.
-    public var items: [Tinkoff_Public_Invest_Api_Contract_V1_OperationItem] = []
+    var items: [Tinkoff_Public_Invest_Api_Contract_V1_OperationItem] = []
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
@@ -2062,31 +2346,31 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetOperationsByCursorRespons
 }
 
 ///Данные об операции.
-public struct Tinkoff_Public_Invest_Api_Contract_V1_OperationItem {
+struct Tinkoff_Public_Invest_Api_Contract_V1_OperationItem {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
     
     ///Курсор.
-    public var cursor: String {
+    var cursor: String {
         get {return _storage._cursor}
         set {_uniqueStorage()._cursor = newValue}
     }
     
     ///Номер счета клиента.
-    public var brokerAccountID: String {
+    var brokerAccountID: String {
         get {return _storage._brokerAccountID}
         set {_uniqueStorage()._brokerAccountID = newValue}
     }
     
-    ///Номер поручения.
-    public var id: String {
+    ///Идентификатор операции, может меняться с течением времени.
+    var id: String {
         get {return _storage._id}
         set {_uniqueStorage()._id = newValue}
     }
     
-    ///Номер родительского поручения.
-    public var parentOperationID: String {
+    ///Идентификатор родительской операции, может измениться, если изменился id родительской операции.
+    var parentOperationID: String {
         get {return _storage._parentOperationID}
         set {_uniqueStorage()._parentOperationID = newValue}
     }
@@ -2147,6 +2431,12 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_OperationItem {
     public var instrumentKind: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType {
         get {return _storage._instrumentKind}
         set {_uniqueStorage()._instrumentKind = newValue}
+    }
+    
+    ///position_uid-идентификатора инструмента.
+    var positionUid: String {
+        get {return _storage._positionUid}
+        set {_uniqueStorage()._positionUid = newValue}
     }
     
     ///Сумма операции.
@@ -2253,9 +2543,15 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_OperationItem {
     /// Clears the value of `tradesInfo`. Subsequent reads from it will return its default value.
     public mutating func clearTradesInfo() {_uniqueStorage()._tradesInfo = nil}
     
-    public var unknownFields = SwiftProtobuf.UnknownStorage()
+    ///Идентификатор актива
+    var assetUid: String {
+        get {return _storage._assetUid}
+        set {_uniqueStorage()._assetUid = newValue}
+    }
     
-    public init() {}
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+    
+    init() {}
     
     fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -2266,7 +2562,6 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_OperationItemTrades {
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
     
-    public var tradesSize: Int32 = 0
     
     public var trades: [Tinkoff_Public_Invest_Api_Contract_V1_OperationItemTrade] = []
     
@@ -2530,19 +2825,20 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PositionsMoney {
 extension Tinkoff_Public_Invest_Api_Contract_V1_OperationState: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_OperationType: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioSubscriptionStatus: @unchecked Sendable {}
-extension Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_PositionsAccountSubscriptionStatus: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_Operation: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_OperationTrade: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest: @unchecked Sendable {}
+extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest.CurrencyRequest: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_PositionsRequest: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_PositionsResponse: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsRequest: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_WithdrawLimitsResponse: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioPosition: @unchecked Sendable {}
+extension Tinkoff_Public_Invest_Api_Contract_V1_VirtualPortfolioPosition: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_PositionsSecurities: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_PositionsFutures: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_PositionsOptions: @unchecked Sendable {}
@@ -2643,6 +2939,23 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationType: SwiftProtobuf._Pr
         42: .same(proto: "OPERATION_TYPE_TAX_REPO_REFUND_PROGRESSIVE"),
         43: .same(proto: "OPERATION_TYPE_DIV_EXT"),
         44: .same(proto: "OPERATION_TYPE_TAX_CORRECTION_COUPON"),
+        45: .same(proto: "OPERATION_TYPE_CASH_FEE"),
+        46: .same(proto: "OPERATION_TYPE_OUT_FEE"),
+        47: .same(proto: "OPERATION_TYPE_OUT_STAMP_DUTY"),
+        50: .same(proto: "OPERATION_TYPE_OUTPUT_SWIFT"),
+        51: .same(proto: "OPERATION_TYPE_INPUT_SWIFT"),
+        53: .same(proto: "OPERATION_TYPE_OUTPUT_ACQUIRING"),
+        54: .same(proto: "OPERATION_TYPE_INPUT_ACQUIRING"),
+        55: .same(proto: "OPERATION_TYPE_OUTPUT_PENALTY"),
+        56: .same(proto: "OPERATION_TYPE_ADVICE_FEE"),
+        57: .same(proto: "OPERATION_TYPE_TRANS_IIS_BS"),
+        58: .same(proto: "OPERATION_TYPE_TRANS_BS_BS"),
+        59: .same(proto: "OPERATION_TYPE_OUT_MULTI"),
+        60: .same(proto: "OPERATION_TYPE_INP_MULTI"),
+        61: .same(proto: "OPERATION_TYPE_OVER_PLACEMENT"),
+        62: .same(proto: "OPERATION_TYPE_OVER_COM"),
+        63: .same(proto: "OPERATION_TYPE_OVER_INCOME"),
+        64: .same(proto: "OPERATION_TYPE_OPTION_EXPIRATION"),
     ]
 }
 
@@ -2652,19 +2965,6 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioSubscriptionStatus: Swi
         1: .same(proto: "PORTFOLIO_SUBSCRIPTION_STATUS_SUCCESS"),
         2: .same(proto: "PORTFOLIO_SUBSCRIPTION_STATUS_ACCOUNT_NOT_FOUND"),
         3: .same(proto: "PORTFOLIO_SUBSCRIPTION_STATUS_INTERNAL_ERROR"),
-    ]
-}
-
-extension Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType: SwiftProtobuf._ProtoNameProviding {
-    public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-        0: .same(proto: "INSTRUMENT_TYPE_UNSPECIFIED"),
-        1: .same(proto: "INSTRUMENT_TYPE_BOND"),
-        2: .same(proto: "INSTRUMENT_TYPE_SHARE"),
-        3: .same(proto: "INSTRUMENT_TYPE_CURRENCY"),
-        4: .same(proto: "INSTRUMENT_TYPE_ETF"),
-        5: .same(proto: "INSTRUMENT_TYPE_FUTURES"),
-        6: .same(proto: "INSTRUMENT_TYPE_SP"),
-        7: .same(proto: "INSTRUMENT_TYPE_OPTION"),
     ]
 }
 
@@ -2687,7 +2987,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationsRequest: SwiftProtobuf
         5: .same(proto: "figi"),
     ]
     
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    mutating public func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
         while let fieldNumber = try decoder.nextFieldNumber() {
             // The use of inline closures is to circumvent an issue where the compiler
             // allocates stack space for every case branch when no optimizations are
@@ -2743,7 +3043,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationsResponse: SwiftProtobu
         1: .same(proto: "operations"),
     ]
     
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    mutating public func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
         while let fieldNumber = try decoder.nextFieldNumber() {
             // The use of inline closures is to circumvent an issue where the compiler
             // allocates stack space for every case branch when no optimizations are
@@ -2786,9 +3086,12 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Operation: SwiftProtobuf.Message
         12: .same(proto: "type"),
         13: .standard(proto: "operation_type"),
         14: .same(proto: "trades"),
+        16: .standard(proto: "asset_uid"),
+        17: .standard(proto: "position_uid"),
+        18: .standard(proto: "instrument_uid"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _id: String = String()
         var _parentOperationID: String = String()
         var _currency: String = String()
@@ -2803,6 +3106,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Operation: SwiftProtobuf.Message
         var _type: String = String()
         var _operationType: Tinkoff_Public_Invest_Api_Contract_V1_OperationType = .unspecified
         var _trades: [Tinkoff_Public_Invest_Api_Contract_V1_OperationTrade] = []
+        var _assetUid: String = String()
+        var _positionUid: String = String()
+        var _instrumentUid: String = String()
         
         public static let defaultInstance = _StorageClass()
         
@@ -2823,6 +3129,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Operation: SwiftProtobuf.Message
             _type = source._type
             _operationType = source._operationType
             _trades = source._trades
+            _assetUid = source._assetUid
+            _positionUid = source._positionUid
+            _instrumentUid = source._instrumentUid
         }
     }
     
@@ -2855,6 +3164,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Operation: SwiftProtobuf.Message
                 case 12: try { try decoder.decodeSingularStringField(value: &_storage._type) }()
                 case 13: try { try decoder.decodeSingularEnumField(value: &_storage._operationType) }()
                 case 14: try { try decoder.decodeRepeatedMessageField(value: &_storage._trades) }()
+                case 16: try { try decoder.decodeSingularStringField(value: &_storage._assetUid) }()
+                case 17: try { try decoder.decodeSingularStringField(value: &_storage._positionUid) }()
+                case 18: try { try decoder.decodeSingularStringField(value: &_storage._instrumentUid) }()
                 default: break
                 }
             }
@@ -2909,6 +3221,15 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Operation: SwiftProtobuf.Message
             if !_storage._trades.isEmpty {
                 try visitor.visitRepeatedMessageField(value: _storage._trades, fieldNumber: 14)
             }
+            if !_storage._assetUid.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._assetUid, fieldNumber: 16)
+            }
+            if !_storage._positionUid.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._positionUid, fieldNumber: 17)
+            }
+            if !_storage._instrumentUid.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._instrumentUid, fieldNumber: 18)
+            }
         }
         try unknownFields.traverse(visitor: &visitor)
     }
@@ -2932,6 +3253,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Operation: SwiftProtobuf.Message
                 if _storage._type != rhs_storage._type {return false}
                 if _storage._operationType != rhs_storage._operationType {return false}
                 if _storage._trades != rhs_storage._trades {return false}
+                if _storage._assetUid != rhs_storage._assetUid {return false}
+                if _storage._positionUid != rhs_storage._positionUid {return false}
+                if _storage._instrumentUid != rhs_storage._instrumentUid {return false}
                 return true
             }
             if !storagesAreEqual {return false}
@@ -2999,6 +3323,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest: SwiftProtobuf.
     public static let protoMessageName: String = _protobuf_package + ".PortfolioRequest"
     public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "account_id"),
+        2: .same(proto: "currency"),
     ]
     
     public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3008,6 +3333,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest: SwiftProtobuf.
             // enabled. https://github.com/apple/swift-protobuf/issues/1034
             switch fieldNumber {
             case 1: try { try decoder.decodeSingularStringField(value: &self.accountID) }()
+            case 2: try { try decoder.decodeSingularEnumField(value: &self.currency) }()
             default: break
             }
         }
@@ -3017,14 +3343,26 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest: SwiftProtobuf.
         if !self.accountID.isEmpty {
             try visitor.visitSingularStringField(value: self.accountID, fieldNumber: 1)
         }
+        if self.currency != .rub {
+            try visitor.visitSingularEnumField(value: self.currency, fieldNumber: 2)
+        }
         try unknownFields.traverse(visitor: &visitor)
     }
     
     public static func ==(lhs: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest, rhs: Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest) -> Bool {
         if lhs.accountID != rhs.accountID {return false}
+        if lhs.currency != rhs.currency {return false}
         if lhs.unknownFields != rhs.unknownFields {return false}
         return true
     }
+}
+
+extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest.CurrencyRequest: SwiftProtobuf._ProtoNameProviding {
+    static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+        0: .same(proto: "RUB"),
+        1: .same(proto: "USD"),
+        2: .same(proto: "EUR"),
+    ]
 }
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
@@ -3037,9 +3375,14 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse: SwiftProtobuf
         5: .standard(proto: "total_amount_futures"),
         6: .standard(proto: "expected_yield"),
         7: .same(proto: "positions"),
+        8: .standard(proto: "account_id"),
+        9: .standard(proto: "total_amount_options"),
+        10: .standard(proto: "total_amount_sp"),
+        11: .standard(proto: "total_amount_portfolio"),
+        12: .standard(proto: "virtual_positions"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _totalAmountShares: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
         var _totalAmountBonds: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
         var _totalAmountEtf: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
@@ -3047,6 +3390,11 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse: SwiftProtobuf
         var _totalAmountFutures: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
         var _expectedYield: Tinkoff_Public_Invest_Api_Contract_V1_Quotation? = nil
         var _positions: [Tinkoff_Public_Invest_Api_Contract_V1_PortfolioPosition] = []
+        var _accountID: String = String()
+        var _totalAmountOptions: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
+        var _totalAmountSp: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
+        var _totalAmountPortfolio: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
+        var _virtualPositions: [Tinkoff_Public_Invest_Api_Contract_V1_VirtualPortfolioPosition] = []
         
         public static let defaultInstance = _StorageClass()
         
@@ -3060,6 +3408,11 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse: SwiftProtobuf
             _totalAmountFutures = source._totalAmountFutures
             _expectedYield = source._expectedYield
             _positions = source._positions
+            _accountID = source._accountID
+            _totalAmountOptions = source._totalAmountOptions
+            _totalAmountSp = source._totalAmountSp
+            _totalAmountPortfolio = source._totalAmountPortfolio
+            _virtualPositions = source._virtualPositions
         }
     }
     
@@ -3085,6 +3438,11 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse: SwiftProtobuf
                 case 5: try { try decoder.decodeSingularMessageField(value: &_storage._totalAmountFutures) }()
                 case 6: try { try decoder.decodeSingularMessageField(value: &_storage._expectedYield) }()
                 case 7: try { try decoder.decodeRepeatedMessageField(value: &_storage._positions) }()
+                case 8: try { try decoder.decodeSingularStringField(value: &_storage._accountID) }()
+                case 9: try { try decoder.decodeSingularMessageField(value: &_storage._totalAmountOptions) }()
+                case 10: try { try decoder.decodeSingularMessageField(value: &_storage._totalAmountSp) }()
+                case 11: try { try decoder.decodeSingularMessageField(value: &_storage._totalAmountPortfolio) }()
+                case 12: try { try decoder.decodeRepeatedMessageField(value: &_storage._virtualPositions) }()
                 default: break
                 }
             }
@@ -3118,6 +3476,21 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse: SwiftProtobuf
             if !_storage._positions.isEmpty {
                 try visitor.visitRepeatedMessageField(value: _storage._positions, fieldNumber: 7)
             }
+            if !_storage._accountID.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._accountID, fieldNumber: 8)
+            }
+            try { if let v = _storage._totalAmountOptions {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+            } }()
+            try { if let v = _storage._totalAmountSp {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+            } }()
+            try { if let v = _storage._totalAmountPortfolio {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+            } }()
+            if !_storage._virtualPositions.isEmpty {
+                try visitor.visitRepeatedMessageField(value: _storage._virtualPositions, fieldNumber: 12)
+            }
         }
         try unknownFields.traverse(visitor: &visitor)
     }
@@ -3134,6 +3507,11 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioResponse: SwiftProtobuf
                 if _storage._totalAmountFutures != rhs_storage._totalAmountFutures {return false}
                 if _storage._expectedYield != rhs_storage._expectedYield {return false}
                 if _storage._positions != rhs_storage._positions {return false}
+                if _storage._accountID != rhs_storage._accountID {return false}
+                if _storage._totalAmountOptions != rhs_storage._totalAmountOptions {return false}
+                if _storage._totalAmountSp != rhs_storage._totalAmountSp {return false}
+                if _storage._totalAmountPortfolio != rhs_storage._totalAmountPortfolio {return false}
+                if _storage._virtualPositions != rhs_storage._virtualPositions {return false}
                 return true
             }
             if !storagesAreEqual {return false}
@@ -3327,9 +3705,14 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioPosition: SwiftProtobuf
         9: .standard(proto: "average_position_price_fifo"),
         10: .standard(proto: "quantity_lots"),
         21: .same(proto: "blocked"),
+        22: .standard(proto: "blocked_lots"),
+        24: .standard(proto: "position_uid"),
+        25: .standard(proto: "instrument_uid"),
+        26: .standard(proto: "var_margin"),
+        27: .standard(proto: "expected_yield_fifo"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _figi: String = String()
         var _instrumentType: String = String()
         var _quantity: Tinkoff_Public_Invest_Api_Contract_V1_Quotation? = nil
@@ -3341,6 +3724,11 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioPosition: SwiftProtobuf
         var _averagePositionPriceFifo: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
         var _quantityLots: Tinkoff_Public_Invest_Api_Contract_V1_Quotation? = nil
         var _blocked: Bool = false
+        var _blockedLots: Tinkoff_Public_Invest_Api_Contract_V1_Quotation? = nil
+        var _positionUid: String = String()
+        var _instrumentUid: String = String()
+        var _varMargin: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
+        var _expectedYieldFifo: Tinkoff_Public_Invest_Api_Contract_V1_Quotation? = nil
         
         public static let defaultInstance = _StorageClass()
         
@@ -3358,6 +3746,11 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioPosition: SwiftProtobuf
             _averagePositionPriceFifo = source._averagePositionPriceFifo
             _quantityLots = source._quantityLots
             _blocked = source._blocked
+            _blockedLots = source._blockedLots
+            _positionUid = source._positionUid
+            _instrumentUid = source._instrumentUid
+            _varMargin = source._varMargin
+            _expectedYieldFifo = source._expectedYieldFifo
         }
     }
     
@@ -3387,6 +3780,11 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioPosition: SwiftProtobuf
                 case 9: try { try decoder.decodeSingularMessageField(value: &_storage._averagePositionPriceFifo) }()
                 case 10: try { try decoder.decodeSingularMessageField(value: &_storage._quantityLots) }()
                 case 21: try { try decoder.decodeSingularBoolField(value: &_storage._blocked) }()
+                case 22: try { try decoder.decodeSingularMessageField(value: &_storage._blockedLots) }()
+                case 24: try { try decoder.decodeSingularStringField(value: &_storage._positionUid) }()
+                case 25: try { try decoder.decodeSingularStringField(value: &_storage._instrumentUid) }()
+                case 26: try { try decoder.decodeSingularMessageField(value: &_storage._varMargin) }()
+                case 27: try { try decoder.decodeSingularMessageField(value: &_storage._expectedYieldFifo) }()
                 default: break
                 }
             }
@@ -3432,6 +3830,21 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioPosition: SwiftProtobuf
             if _storage._blocked != false {
                 try visitor.visitSingularBoolField(value: _storage._blocked, fieldNumber: 21)
             }
+            try { if let v = _storage._blockedLots {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 22)
+            } }()
+            if !_storage._positionUid.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._positionUid, fieldNumber: 24)
+            }
+            if !_storage._instrumentUid.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._instrumentUid, fieldNumber: 25)
+            }
+            try { if let v = _storage._varMargin {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 26)
+            } }()
+            try { if let v = _storage._expectedYieldFifo {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 27)
+            } }()
         }
         try unknownFields.traverse(visitor: &visitor)
     }
@@ -3452,6 +3865,159 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioPosition: SwiftProtobuf
                 if _storage._averagePositionPriceFifo != rhs_storage._averagePositionPriceFifo {return false}
                 if _storage._quantityLots != rhs_storage._quantityLots {return false}
                 if _storage._blocked != rhs_storage._blocked {return false}
+                if _storage._blockedLots != rhs_storage._blockedLots {return false}
+                if _storage._positionUid != rhs_storage._positionUid {return false}
+                if _storage._instrumentUid != rhs_storage._instrumentUid {return false}
+                if _storage._varMargin != rhs_storage._varMargin {return false}
+                if _storage._expectedYieldFifo != rhs_storage._expectedYieldFifo {return false}
+                return true
+            }
+            if !storagesAreEqual {return false}
+        }
+        if lhs.unknownFields != rhs.unknownFields {return false}
+        return true
+    }
+}
+
+extension Tinkoff_Public_Invest_Api_Contract_V1_VirtualPortfolioPosition: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+    static let protoMessageName: String = _protobuf_package + ".VirtualPortfolioPosition"
+    static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+        1: .standard(proto: "position_uid"),
+        2: .standard(proto: "instrument_uid"),
+        3: .same(proto: "figi"),
+        4: .standard(proto: "instrument_type"),
+        5: .same(proto: "quantity"),
+        6: .standard(proto: "average_position_price"),
+        7: .standard(proto: "expected_yield"),
+        8: .standard(proto: "expected_yield_fifo"),
+        9: .standard(proto: "expire_date"),
+        10: .standard(proto: "current_price"),
+        11: .standard(proto: "average_position_price_fifo"),
+    ]
+    
+    public class _StorageClass {
+        var _positionUid: String = String()
+        var _instrumentUid: String = String()
+        var _figi: String = String()
+        var _instrumentType: String = String()
+        var _quantity: Tinkoff_Public_Invest_Api_Contract_V1_Quotation? = nil
+        var _averagePositionPrice: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
+        var _expectedYield: Tinkoff_Public_Invest_Api_Contract_V1_Quotation? = nil
+        var _expectedYieldFifo: Tinkoff_Public_Invest_Api_Contract_V1_Quotation? = nil
+        var _expireDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
+        var _currentPrice: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
+        var _averagePositionPriceFifo: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
+        
+        static let defaultInstance = _StorageClass()
+        
+        private init() {}
+        
+        init(copying source: _StorageClass) {
+            _positionUid = source._positionUid
+            _instrumentUid = source._instrumentUid
+            _figi = source._figi
+            _instrumentType = source._instrumentType
+            _quantity = source._quantity
+            _averagePositionPrice = source._averagePositionPrice
+            _expectedYield = source._expectedYield
+            _expectedYieldFifo = source._expectedYieldFifo
+            _expireDate = source._expireDate
+            _currentPrice = source._currentPrice
+            _averagePositionPriceFifo = source._averagePositionPriceFifo
+        }
+    }
+    
+    fileprivate mutating func _uniqueStorage() -> _StorageClass {
+        if !isKnownUniquelyReferenced(&_storage) {
+            _storage = _StorageClass(copying: _storage)
+        }
+        return _storage
+    }
+    
+    mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+        _ = _uniqueStorage()
+        try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+            while let fieldNumber = try decoder.nextFieldNumber() {
+                // The use of inline closures is to circumvent an issue where the compiler
+                // allocates stack space for every case branch when no optimizations are
+                // enabled. https://github.com/apple/swift-protobuf/issues/1034
+                switch fieldNumber {
+                case 1: try { try decoder.decodeSingularStringField(value: &_storage._positionUid) }()
+                case 2: try { try decoder.decodeSingularStringField(value: &_storage._instrumentUid) }()
+                case 3: try { try decoder.decodeSingularStringField(value: &_storage._figi) }()
+                case 4: try { try decoder.decodeSingularStringField(value: &_storage._instrumentType) }()
+                case 5: try { try decoder.decodeSingularMessageField(value: &_storage._quantity) }()
+                case 6: try { try decoder.decodeSingularMessageField(value: &_storage._averagePositionPrice) }()
+                case 7: try { try decoder.decodeSingularMessageField(value: &_storage._expectedYield) }()
+                case 8: try { try decoder.decodeSingularMessageField(value: &_storage._expectedYieldFifo) }()
+                case 9: try { try decoder.decodeSingularMessageField(value: &_storage._expireDate) }()
+                case 10: try { try decoder.decodeSingularMessageField(value: &_storage._currentPrice) }()
+                case 11: try { try decoder.decodeSingularMessageField(value: &_storage._averagePositionPriceFifo) }()
+                default: break
+                }
+            }
+        }
+    }
+    
+    func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+        try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+            // The use of inline closures is to circumvent an issue where the compiler
+            // allocates stack space for every if/case branch local when no optimizations
+            // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+            // https://github.com/apple/swift-protobuf/issues/1182
+            if !_storage._positionUid.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._positionUid, fieldNumber: 1)
+            }
+            if !_storage._instrumentUid.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._instrumentUid, fieldNumber: 2)
+            }
+            if !_storage._figi.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._figi, fieldNumber: 3)
+            }
+            if !_storage._instrumentType.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._instrumentType, fieldNumber: 4)
+            }
+            try { if let v = _storage._quantity {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+            } }()
+            try { if let v = _storage._averagePositionPrice {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+            } }()
+            try { if let v = _storage._expectedYield {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+            } }()
+            try { if let v = _storage._expectedYieldFifo {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+            } }()
+            try { if let v = _storage._expireDate {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+            } }()
+            try { if let v = _storage._currentPrice {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+            } }()
+            try { if let v = _storage._averagePositionPriceFifo {
+                try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+            } }()
+        }
+        try unknownFields.traverse(visitor: &visitor)
+    }
+    
+    static func ==(lhs: Tinkoff_Public_Invest_Api_Contract_V1_VirtualPortfolioPosition, rhs: Tinkoff_Public_Invest_Api_Contract_V1_VirtualPortfolioPosition) -> Bool {
+        if lhs._storage !== rhs._storage {
+            let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+                let _storage = _args.0
+                let rhs_storage = _args.1
+                if _storage._positionUid != rhs_storage._positionUid {return false}
+                if _storage._instrumentUid != rhs_storage._instrumentUid {return false}
+                if _storage._figi != rhs_storage._figi {return false}
+                if _storage._instrumentType != rhs_storage._instrumentType {return false}
+                if _storage._quantity != rhs_storage._quantity {return false}
+                if _storage._averagePositionPrice != rhs_storage._averagePositionPrice {return false}
+                if _storage._expectedYield != rhs_storage._expectedYield {return false}
+                if _storage._expectedYieldFifo != rhs_storage._expectedYieldFifo {return false}
+                if _storage._expireDate != rhs_storage._expireDate {return false}
+                if _storage._currentPrice != rhs_storage._currentPrice {return false}
+                if _storage._averagePositionPriceFifo != rhs_storage._averagePositionPriceFifo {return false}
                 return true
             }
             if !storagesAreEqual {return false}
@@ -3975,7 +4541,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_BrokerReport: SwiftProtobuf.Mess
         27: .standard(proto: "delivery_type"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _tradeID: String = String()
         var _orderID: String = String()
         var _figi: String = String()
@@ -4544,7 +5110,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_DividendsForeignIssuerReport: Sw
         12: .same(proto: "currency"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _recordDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         var _paymentDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         var _securityName: String = String()
@@ -5029,6 +5595,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationItem: SwiftProtobuf.Mes
         32: .same(proto: "figi"),
         33: .standard(proto: "instrument_type"),
         34: .standard(proto: "instrument_kind"),
+        35: .standard(proto: "position_uid"),
         41: .same(proto: "payment"),
         42: .same(proto: "price"),
         43: .same(proto: "commission"),
@@ -5041,9 +5608,10 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationItem: SwiftProtobuf.Mes
         56: .standard(proto: "cancel_date_time"),
         57: .standard(proto: "cancel_reason"),
         61: .standard(proto: "trades_info"),
+        64: .standard(proto: "asset_uid"),
     ]
     
-    fileprivate class _StorageClass {
+    public class _StorageClass {
         var _cursor: String = String()
         var _brokerAccountID: String = String()
         var _id: String = String()
@@ -5057,6 +5625,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationItem: SwiftProtobuf.Mes
         var _figi: String = String()
         var _instrumentType: String = String()
         var _instrumentKind: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType = .unspecified
+        var _positionUid: String = String()
         var _payment: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
         var _price: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
         var _commission: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue? = nil
@@ -5069,6 +5638,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationItem: SwiftProtobuf.Mes
         var _cancelDateTime: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         var _cancelReason: String = String()
         var _tradesInfo: Tinkoff_Public_Invest_Api_Contract_V1_OperationItemTrades? = nil
+        var _assetUid: String = String()
         
         public static let defaultInstance = _StorageClass()
         
@@ -5088,6 +5658,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationItem: SwiftProtobuf.Mes
             _figi = source._figi
             _instrumentType = source._instrumentType
             _instrumentKind = source._instrumentKind
+            _positionUid = source._positionUid
             _payment = source._payment
             _price = source._price
             _commission = source._commission
@@ -5100,6 +5671,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationItem: SwiftProtobuf.Mes
             _cancelDateTime = source._cancelDateTime
             _cancelReason = source._cancelReason
             _tradesInfo = source._tradesInfo
+            _assetUid = source._assetUid
         }
     }
     
@@ -5131,6 +5703,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationItem: SwiftProtobuf.Mes
                 case 32: try { try decoder.decodeSingularStringField(value: &_storage._figi) }()
                 case 33: try { try decoder.decodeSingularStringField(value: &_storage._instrumentType) }()
                 case 34: try { try decoder.decodeSingularEnumField(value: &_storage._instrumentKind) }()
+                case 35: try { try decoder.decodeSingularStringField(value: &_storage._positionUid) }()
                 case 41: try { try decoder.decodeSingularMessageField(value: &_storage._payment) }()
                 case 42: try { try decoder.decodeSingularMessageField(value: &_storage._price) }()
                 case 43: try { try decoder.decodeSingularMessageField(value: &_storage._commission) }()
@@ -5143,6 +5716,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationItem: SwiftProtobuf.Mes
                 case 56: try { try decoder.decodeSingularMessageField(value: &_storage._cancelDateTime) }()
                 case 57: try { try decoder.decodeSingularStringField(value: &_storage._cancelReason) }()
                 case 61: try { try decoder.decodeSingularMessageField(value: &_storage._tradesInfo) }()
+                case 64: try { try decoder.decodeSingularStringField(value: &_storage._assetUid) }()
                 default: break
                 }
             }
@@ -5194,6 +5768,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationItem: SwiftProtobuf.Mes
             if _storage._instrumentKind != .unspecified {
                 try visitor.visitSingularEnumField(value: _storage._instrumentKind, fieldNumber: 34)
             }
+            if !_storage._positionUid.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._positionUid, fieldNumber: 35)
+            }
             try { if let v = _storage._payment {
                 try visitor.visitSingularMessageField(value: v, fieldNumber: 41)
             } }()
@@ -5230,6 +5807,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationItem: SwiftProtobuf.Mes
             try { if let v = _storage._tradesInfo {
                 try visitor.visitSingularMessageField(value: v, fieldNumber: 61)
             } }()
+            if !_storage._assetUid.isEmpty {
+                try visitor.visitSingularStringField(value: _storage._assetUid, fieldNumber: 64)
+            }
         }
         try unknownFields.traverse(visitor: &visitor)
     }
@@ -5252,6 +5832,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationItem: SwiftProtobuf.Mes
                 if _storage._figi != rhs_storage._figi {return false}
                 if _storage._instrumentType != rhs_storage._instrumentType {return false}
                 if _storage._instrumentKind != rhs_storage._instrumentKind {return false}
+                if _storage._positionUid != rhs_storage._positionUid {return false}
                 if _storage._payment != rhs_storage._payment {return false}
                 if _storage._price != rhs_storage._price {return false}
                 if _storage._commission != rhs_storage._commission {return false}
@@ -5264,6 +5845,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationItem: SwiftProtobuf.Mes
                 if _storage._cancelDateTime != rhs_storage._cancelDateTime {return false}
                 if _storage._cancelReason != rhs_storage._cancelReason {return false}
                 if _storage._tradesInfo != rhs_storage._tradesInfo {return false}
+                if _storage._assetUid != rhs_storage._assetUid {return false}
                 return true
             }
             if !storagesAreEqual {return false}
@@ -5276,7 +5858,6 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationItem: SwiftProtobuf.Mes
 extension Tinkoff_Public_Invest_Api_Contract_V1_OperationItemTrades: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
     public static let protoMessageName: String = _protobuf_package + ".OperationItemTrades"
     public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-        1: .standard(proto: "trades_size"),
         6: .same(proto: "trades"),
     ]
     
@@ -5286,7 +5867,6 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationItemTrades: SwiftProtob
             // allocates stack space for every case branch when no optimizations are
             // enabled. https://github.com/apple/swift-protobuf/issues/1034
             switch fieldNumber {
-            case 1: try { try decoder.decodeSingularInt32Field(value: &self.tradesSize) }()
             case 6: try { try decoder.decodeRepeatedMessageField(value: &self.trades) }()
             default: break
             }
@@ -5294,9 +5874,6 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationItemTrades: SwiftProtob
     }
     
     public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-        if self.tradesSize != 0 {
-            try visitor.visitSingularInt32Field(value: self.tradesSize, fieldNumber: 1)
-        }
         if !self.trades.isEmpty {
             try visitor.visitRepeatedMessageField(value: self.trades, fieldNumber: 6)
         }
@@ -5304,7 +5881,6 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_OperationItemTrades: SwiftProtob
     }
     
     public static func ==(lhs: Tinkoff_Public_Invest_Api_Contract_V1_OperationItemTrades, rhs: Tinkoff_Public_Invest_Api_Contract_V1_OperationItemTrades) -> Bool {
-        if lhs.tradesSize != rhs.tradesSize {return false}
         if lhs.trades != rhs.trades {return false}
         if lhs.unknownFields != rhs.unknownFields {return false}
         return true

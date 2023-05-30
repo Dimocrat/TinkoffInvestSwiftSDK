@@ -24,6 +24,7 @@ import GRPC
 import NIO
 import NIOConcurrencyHelpers
 import SwiftProtobuf
+import CombineGRPC
 
 
 ///Сервис предназначен для получения:</br>**1**. информации об инструментах;</br>**2**.
@@ -94,6 +95,11 @@ internal protocol Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceClient
         _ request: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsRequest,
         callOptions: CallOptions?
     ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OptionsResponse>
+    
+    func optionsBy(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_FilterOptionsRequest,
+        callOptions: CallOptions?
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_FilterOptionsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OptionsResponse>
     
     func shareBy(
         _ request: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentRequest,
@@ -369,7 +375,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceClientProtocol
         )
     }
     
-    ///Метод получения списка опционов.
+    ///Deprecated Метод получения списка опционов.
     ///
     /// - Parameters:
     ///   - request: Request to send to Options.
@@ -384,6 +390,24 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceClientProtocol
             request: request,
             callOptions: callOptions ?? self.defaultCallOptions,
             interceptors: self.interceptors?.makeOptionsInterceptors() ?? []
+        )
+    }
+    
+    ///Метод получения списка опционов.
+    ///
+    /// - Parameters:
+    ///   - request: Request to send to OptionsBy.
+    ///   - callOptions: Call options.
+    /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+    internal func optionsBy(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_FilterOptionsRequest,
+        callOptions: CallOptions? = nil
+    ) -> UnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_FilterOptionsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OptionsResponse> {
+        return self.makeUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceClientMetadata.Methods.optionsBy.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeOptionsByInterceptors() ?? []
         )
     }
     
@@ -768,6 +792,11 @@ internal protocol Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceAsyncC
         callOptions: CallOptions?
     ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OptionsResponse>
     
+    func makeOptionsByCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_FilterOptionsRequest,
+        callOptions: CallOptions?
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_FilterOptionsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OptionsResponse>
+    
     func makeShareByCall(
         _ request: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentRequest,
         callOptions: CallOptions?
@@ -990,6 +1019,18 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceAsyncClientPro
             request: request,
             callOptions: callOptions ?? self.defaultCallOptions,
             interceptors: self.interceptors?.makeOptionsInterceptors() ?? []
+        )
+    }
+    
+    internal func makeOptionsByCall(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_FilterOptionsRequest,
+        callOptions: CallOptions? = nil
+    ) -> GRPCAsyncUnaryCall<Tinkoff_Public_Invest_Api_Contract_V1_FilterOptionsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OptionsResponse> {
+        return self.makeAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceClientMetadata.Methods.optionsBy.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeOptionsByInterceptors() ?? []
         )
     }
     
@@ -1308,6 +1349,18 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceAsyncClientPro
         )
     }
     
+    internal func optionsBy(
+        _ request: Tinkoff_Public_Invest_Api_Contract_V1_FilterOptionsRequest,
+        callOptions: CallOptions? = nil
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_OptionsResponse {
+        return try await self.performAsyncUnaryCall(
+            path: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceClientMetadata.Methods.optionsBy.path,
+            request: request,
+            callOptions: callOptions ?? self.defaultCallOptions,
+            interceptors: self.interceptors?.makeOptionsByInterceptors() ?? []
+        )
+    }
+    
     internal func shareBy(
         _ request: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentRequest,
         callOptions: CallOptions? = nil
@@ -1534,6 +1587,9 @@ public  protocol Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceClientI
     /// - Returns: Interceptors to use when invoking 'options'.
     func makeOptionsInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OptionsResponse>]
     
+    /// - Returns: Interceptors to use when invoking 'optionsBy'.
+    func makeOptionsByInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_FilterOptionsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OptionsResponse>]
+    
     /// - Returns: Interceptors to use when invoking 'shareBy'.
     func makeShareByInterceptors() -> [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_InstrumentRequest, Tinkoff_Public_Invest_Api_Contract_V1_ShareResponse>]
     
@@ -1594,6 +1650,7 @@ internal enum Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceClientMeta
             Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceClientMetadata.Methods.futures,
             Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceClientMetadata.Methods.optionBy,
             Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceClientMetadata.Methods.options,
+            Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceClientMetadata.Methods.optionsBy,
             Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceClientMetadata.Methods.shareBy,
             Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceClientMetadata.Methods.shares,
             Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceClientMetadata.Methods.getAccruedInterests,
@@ -1681,6 +1738,12 @@ internal enum Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceClientMeta
         internal static let options = GRPCMethodDescriptor(
             name: "Options",
             path: "/tinkoff.public.invest.api.contract.v1.InstrumentsService/Options",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let optionsBy = GRPCMethodDescriptor(
+            name: "OptionsBy",
+            path: "/tinkoff.public.invest.api.contract.v1.InstrumentsService/OptionsBy",
             type: GRPCCallType.unary
         )
         
@@ -1811,8 +1874,11 @@ internal protocol Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceProvid
     ///Метод получения опциона по его идентификатору.
     func optionBy(request: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_OptionResponse>
     
-    ///Метод получения списка опционов.
+    ///Deprecated Метод получения списка опционов.
     func options(request: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_OptionsResponse>
+    
+    ///Метод получения списка опционов.
+    func optionsBy(request: Tinkoff_Public_Invest_Api_Contract_V1_FilterOptionsRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_OptionsResponse>
     
     ///Метод получения акции по её идентификатору.
     func shareBy(request: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Tinkoff_Public_Invest_Api_Contract_V1_ShareResponse>
@@ -1975,6 +2041,15 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceProvider {
                 responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_OptionsResponse>(),
                 interceptors: self.interceptors?.makeOptionsInterceptors() ?? [],
                 userFunction: self.options(request:context:)
+            )
+            
+        case "OptionsBy":
+            return UnaryServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_FilterOptionsRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_OptionsResponse>(),
+                interceptors: self.interceptors?.makeOptionsByInterceptors() ?? [],
+                userFunction: self.optionsBy(request:context:)
             )
             
         case "ShareBy":
@@ -2187,9 +2262,15 @@ internal protocol Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceAsyncP
         context: GRPCAsyncServerCallContext
     ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_OptionResponse
     
-    ///Метод получения списка опционов.
+    ///Deprecated Метод получения списка опционов.
     @Sendable func options(
         request: Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsRequest,
+        context: GRPCAsyncServerCallContext
+    ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_OptionsResponse
+    
+    ///Метод получения списка опционов.
+    @Sendable func optionsBy(
+        request: Tinkoff_Public_Invest_Api_Contract_V1_FilterOptionsRequest,
         context: GRPCAsyncServerCallContext
     ) async throws -> Tinkoff_Public_Invest_Api_Contract_V1_OptionsResponse
     
@@ -2405,6 +2486,15 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceAsyncProvider 
                 wrapping: self.options(request:context:)
             )
             
+        case "OptionsBy":
+            return GRPCAsyncServerHandler(
+                context: context,
+                requestDeserializer: ProtobufDeserializer<Tinkoff_Public_Invest_Api_Contract_V1_FilterOptionsRequest>(),
+                responseSerializer: ProtobufSerializer<Tinkoff_Public_Invest_Api_Contract_V1_OptionsResponse>(),
+                interceptors: self.interceptors?.makeOptionsByInterceptors() ?? [],
+                wrapping: self.optionsBy(request:context:)
+            )
+            
         case "ShareBy":
             return GRPCAsyncServerHandler(
                 context: context,
@@ -2589,6 +2679,10 @@ internal protocol Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceServer
     ///   Defaults to calling `self.makeInterceptors()`.
     func makeOptionsInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OptionsResponse>]
     
+    /// - Returns: Interceptors to use when handling 'optionsBy'.
+    ///   Defaults to calling `self.makeInterceptors()`.
+    func makeOptionsByInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_FilterOptionsRequest, Tinkoff_Public_Invest_Api_Contract_V1_OptionsResponse>]
+    
     /// - Returns: Interceptors to use when handling 'shareBy'.
     ///   Defaults to calling `self.makeInterceptors()`.
     func makeShareByInterceptors() -> [ServerInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_InstrumentRequest, Tinkoff_Public_Invest_Api_Contract_V1_ShareResponse>]
@@ -2663,6 +2757,7 @@ internal enum Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceServerMeta
             Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceServerMetadata.Methods.futures,
             Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceServerMetadata.Methods.optionBy,
             Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceServerMetadata.Methods.options,
+            Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceServerMetadata.Methods.optionsBy,
             Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceServerMetadata.Methods.shareBy,
             Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceServerMetadata.Methods.shares,
             Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceServerMetadata.Methods.getAccruedInterests,
@@ -2750,6 +2845,12 @@ internal enum Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceServerMeta
         internal static let options = GRPCMethodDescriptor(
             name: "Options",
             path: "/tinkoff.public.invest.api.contract.v1.InstrumentsService/Options",
+            type: GRPCCallType.unary
+        )
+        
+        internal static let optionsBy = GRPCMethodDescriptor(
+            name: "OptionsBy",
+            path: "/tinkoff.public.invest.api.contract.v1.InstrumentsService/OptionsBy",
             type: GRPCCallType.unary
         )
         
