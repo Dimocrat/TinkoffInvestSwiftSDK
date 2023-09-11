@@ -449,7 +449,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse {
     // methods supported on all messages.
     
     ///Биржевой идентификатор заявки.
-    var orderID: String {
+    public var orderID: String {
         get {return _storage._orderID}
         set {_uniqueStorage()._orderID = newValue}
     }
@@ -483,7 +483,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse {
     public mutating func clearInitialOrderPrice() {_uniqueStorage()._initialOrderPrice = nil}
     
     ///Исполненная средняя цена 1 одного инструмента в заявки.
-    var executedOrderPrice: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
+    public var executedOrderPrice: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
         get {return _storage._executedOrderPrice ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
         set {_uniqueStorage()._executedOrderPrice = newValue}
     }
@@ -577,7 +577,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse {
     public mutating func clearInitialOrderPricePt() {_uniqueStorage()._initialOrderPricePt = nil}
     
     ///UID идентификатор инструмента.
-    var instrumentUid: String {
+    public var instrumentUid: String {
         get {return _storage._instrumentUid}
         set {_uniqueStorage()._instrumentUid = newValue}
     }
@@ -825,13 +825,13 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_OrderState {
     public mutating func clearOrderDate() {_uniqueStorage()._orderDate = nil}
     
     ///UID идентификатор инструмента.
-    var instrumentUid: String {
+    public var instrumentUid: String {
         get {return _storage._instrumentUid}
         set {_uniqueStorage()._instrumentUid = newValue}
     }
     
     ///Идентификатор ключа идемпотентности, переданный клиентом.
-    var orderRequestID: String {
+    public var orderRequestID: String {
         get {return _storage._orderRequestID}
         set {_uniqueStorage()._orderRequestID = newValue}
     }
@@ -863,7 +863,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_OrderStage {
     public var quantity: Int64 = 0
     
     ///Идентификатор сделки.
-    var tradeID: String = String()
+    public var tradeID: String = String()
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
     
