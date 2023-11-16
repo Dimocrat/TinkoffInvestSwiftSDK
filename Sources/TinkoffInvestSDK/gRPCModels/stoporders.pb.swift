@@ -62,7 +62,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_StopOrderDirection: SwiftProto
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_StopOrderDirection: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_StopOrderDirection] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_StopOrderDirection] = [
         .unspecified,
         .buy,
         .sell,
@@ -113,7 +113,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_StopOrderExpirationType: Swift
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_StopOrderExpirationType: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_StopOrderExpirationType] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_StopOrderExpirationType] = [
         .unspecified,
         .goodTillCancel,
         .goodTillDate,
@@ -169,7 +169,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_StopOrderType: SwiftProtobuf.E
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_StopOrderType: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_StopOrderType] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_StopOrderType] = [
         .unspecified,
         .takeProfit,
         .stopLoss,

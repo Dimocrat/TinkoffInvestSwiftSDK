@@ -67,7 +67,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_AccountType: SwiftProtobuf.Enu
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_AccountType: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_AccountType] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_AccountType] = [
         .unspecified,
         .tinkoff,
         .tinkoffIis,
@@ -124,7 +124,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_AccountStatus: SwiftProtobuf.E
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_AccountStatus: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_AccountStatus] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_AccountStatus] = [
         .unspecified,
         .new,
         .open,
@@ -181,7 +181,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_AccessLevel: SwiftProtobuf.Enu
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_AccessLevel: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_AccessLevel] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_AccessLevel] = [
         .accountAccessLevelUnspecified,
         .accountAccessLevelFullAccess,
         .accountAccessLevelReadOnly,
@@ -386,10 +386,10 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_UnaryLimit {
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
     
-    ///Количество unary-запросов в минуту
+    ///Количество unary-запросов в минуту.
     public var limitPerMinute: Int32 = 0
     
-    ///Названия методов
+    ///Названия методов.
     public var methods: [String] = []
     
     public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -403,10 +403,10 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_StreamLimit {
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
     
-    ///Максимальное количество stream-соединений
+    ///Максимальное количество stream-соединений.
     public var limit: Int32 = 0
     
-    ///Названия stream-методов
+    ///Названия stream-методов.
     public var streams: [String] = []
     
     ///Текущее количество открытых stream-соединений.

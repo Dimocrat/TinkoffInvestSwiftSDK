@@ -67,7 +67,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_OperationState: SwiftProtobuf.
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_OperationState: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_OperationState] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_OperationState] = [
         .unspecified,
         .executed,
         .canceled,
@@ -414,7 +414,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_OperationType: SwiftProtobuf.E
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_OperationType: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_OperationType] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_OperationType] = [
         .unspecified,
         .input,
         .bondTax,
@@ -529,7 +529,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_PortfolioSubscriptionStatus: S
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioSubscriptionStatus: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_PortfolioSubscriptionStatus] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_PortfolioSubscriptionStatus] = [
         .unspecified,
         .success,
         .accountNotFound,
@@ -586,7 +586,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_PositionsAccountSubscriptionSt
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_PositionsAccountSubscriptionStatus: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_PositionsAccountSubscriptionStatus] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_PositionsAccountSubscriptionStatus] = [
         .positionsSubscriptionStatusUnspecified,
         .positionsSubscriptionStatusSuccess,
         .positionsSubscriptionStatusAccountNotFound,
@@ -878,7 +878,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest {
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest.CurrencyRequest: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest.CurrencyRequest] = [
+    static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_PortfolioRequest.CurrencyRequest] = [
         .rub,
         .usd,
         .eur,

@@ -90,7 +90,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType: SwiftProtobuf.
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType] = [
         .unspecified,
         .bond,
         .share,
@@ -217,7 +217,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_SecurityTradingStatus: SwiftPr
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_SecurityTradingStatus: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_SecurityTradingStatus] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_SecurityTradingStatus] = [
         .unspecified,
         .notAvailableForTrading,
         .openingPeriod,
@@ -260,7 +260,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
     public init() {}
 }
 
-///Котировка - денежная сумма без указания валюты
+///Котировка — денежная сумма без указания валюты
 public struct Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -301,6 +301,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Ping {
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
+extension Tinkoff_Public_Invest_Api_Contract_V1_InstrumentType: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_SecurityTradingStatus: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue: @unchecked Sendable {}
 extension Tinkoff_Public_Invest_Api_Contract_V1_Quotation: @unchecked Sendable {}
@@ -398,7 +399,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Quotation: SwiftProtobuf.Message
         2: .same(proto: "nano"),
     ]
     
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    mutating public func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
         while let fieldNumber = try decoder.nextFieldNumber() {
             // The use of inline closures is to circumvent an issue where the compiler
             // allocates stack space for every case branch when no optimizations are

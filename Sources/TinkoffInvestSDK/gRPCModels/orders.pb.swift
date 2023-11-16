@@ -62,7 +62,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_OrderDirection: SwiftProtobuf.
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_OrderDirection: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_OrderDirection] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_OrderDirection] = [
         .unspecified,
         .buy,
         .sell,
@@ -118,7 +118,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_OrderType: SwiftProtobuf.Enum 
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_OrderType: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_OrderType] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_OrderType] = [
         .unspecified,
         .limit,
         .market,
@@ -183,7 +183,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_OrderExecutionReportStatus: Sw
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_OrderExecutionReportStatus: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_OrderExecutionReportStatus] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_OrderExecutionReportStatus] = [
         .executionReportStatusUnspecified,
         .executionReportStatusFill,
         .executionReportStatusRejected,
@@ -237,7 +237,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_PriceType: SwiftProtobuf.Enum 
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_PriceType: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_PriceType] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_PriceType] = [
         .unspecified,
         .point,
         .currency,
@@ -482,7 +482,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_PostOrderResponse {
     /// Clears the value of `initialOrderPrice`. Subsequent reads from it will return its default value.
     public mutating func clearInitialOrderPrice() {_uniqueStorage()._initialOrderPrice = nil}
     
-    ///Исполненная средняя цена 1 одного инструмента в заявки.
+    ///Исполненная средняя цена одного инструмента в заявке.
     public var executedOrderPrice: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
         get {return _storage._executedOrderPrice ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
         set {_uniqueStorage()._executedOrderPrice = newValue}
@@ -830,7 +830,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_OrderState {
         set {_uniqueStorage()._instrumentUid = newValue}
     }
     
-    ///Идентификатор ключа идемпотентности, переданный клиентом.
+    ///Идентификатор ключа идемпотентности, переданный клиентом, в формате UID. Максимальная длина 36 символов.
     public var orderRequestID: String {
         get {return _storage._orderRequestID}
         set {_uniqueStorage()._orderRequestID = newValue}

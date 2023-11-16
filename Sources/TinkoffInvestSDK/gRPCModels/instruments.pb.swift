@@ -87,7 +87,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_CouponType: SwiftProtobuf.Enum
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_CouponType: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_CouponType] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_CouponType] = [
         .unspecified,
         .constant,
         .floating,
@@ -143,7 +143,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_OptionDirection: SwiftProtobuf
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_OptionDirection: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_OptionDirection] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_OptionDirection] = [
         .unspecified,
         .put,
         .call,
@@ -194,7 +194,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_OptionPaymentType: SwiftProtob
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_OptionPaymentType: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_OptionPaymentType] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_OptionPaymentType] = [
         .unspecified,
         .premium,
         .marginal,
@@ -245,7 +245,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_OptionStyle: SwiftProtobuf.Enu
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_OptionStyle: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_OptionStyle] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_OptionStyle] = [
         .unspecified,
         .american,
         .european,
@@ -296,7 +296,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_OptionSettlementType: SwiftPro
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_OptionSettlementType: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_OptionSettlementType] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_OptionSettlementType] = [
         .optionExecutionTypeUnspecified,
         .optionExecutionTypePhysicalDelivery,
         .optionExecutionTypeCashSettlement,
@@ -357,7 +357,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_InstrumentIdType: SwiftProtobu
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_InstrumentIdType: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_InstrumentIdType] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_InstrumentIdType] = [
         .instrumentIDUnspecified,
         .figi,
         .ticker,
@@ -375,7 +375,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_InstrumentStatus: SwiftProtobu
     ///Значение не определено.
     case unspecified // = 0
     
-    ///Базовый список инструментов (по умолчанию). Инструменты доступные для торговли через TINKOFF INVEST API.
+    ///Базовый список инструментов (по умолчанию). Инструменты доступные для торговли через TINKOFF INVEST API. Cейчас списки бумаг, доступных из api и других интерфейсах совпадают (за исключением внебиржевых бумаг), но в будущем возможны ситуации, когда списки инструментов будут отличаться
     case base // = 1
     
     ///Список всех инструментов.
@@ -410,7 +410,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_InstrumentStatus: SwiftProtobu
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_InstrumentStatus: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_InstrumentStatus] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_InstrumentStatus] = [
         .unspecified,
         .base,
         .all,
@@ -491,7 +491,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_ShareType: SwiftProtobuf.Enum 
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_ShareType: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_ShareType] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_ShareType] = [
         .unspecified,
         .common,
         .preferred,
@@ -558,7 +558,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_AssetType: SwiftProtobuf.Enum 
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_AssetType: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_AssetType] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_AssetType] = [
         .unspecified,
         .currency,
         .commodity,
@@ -611,7 +611,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_StructuredProductType: SwiftPr
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_StructuredProductType: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_StructuredProductType] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_StructuredProductType] = [
         .spTypeUnspecified,
         .spTypeDeliverable,
         .spTypeNonDeliverable,
@@ -662,7 +662,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_EditFavoritesActionType: Swift
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_EditFavoritesActionType: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_EditFavoritesActionType] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_EditFavoritesActionType] = [
         .unspecified,
         .add,
         .del,
@@ -718,7 +718,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_RealExchange: SwiftProtobuf.En
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_RealExchange: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_RealExchange] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_RealExchange] = [
         .unspecified,
         .moex,
         .rts,
@@ -731,38 +731,35 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_RealExchange: CaseIterable {
 ///Уровень риска облигации.
 public enum Tinkoff_Public_Invest_Api_Contract_V1_RiskLevel: SwiftProtobuf.Enum {
     public typealias RawValue = Int
-    case unspecified // = 0
-    
-    ///Низкий уровень риска
-    case low // = 1
-    
-    ///Средний уровень риска
-    case moderate // = 2
     
     ///Высокий уровень риска
-    case high // = 3
+    case high // = 0
+    
+    ///Средний уровень риска
+    case moderate // = 1
+    
+    ///Низкий уровень риска
+    case low // = 2
     case UNRECOGNIZED(Int)
     
     public init() {
-        self = .unspecified
+        self = .high
     }
     
     public init?(rawValue: Int) {
         switch rawValue {
-        case 0: self = .unspecified
-        case 1: self = .low
-        case 2: self = .moderate
-        case 3: self = .high
+        case 0: self = .high
+        case 1: self = .moderate
+        case 2: self = .low
         default: self = .UNRECOGNIZED(rawValue)
         }
     }
     
     public var rawValue: Int {
         switch self {
-        case .unspecified: return 0
-        case .low: return 1
-        case .moderate: return 2
-        case .high: return 3
+        case .high: return 0
+        case .moderate: return 1
+        case .low: return 2
         case .UNRECOGNIZED(let i): return i
         }
     }
@@ -773,11 +770,10 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_RiskLevel: SwiftProtobuf.Enum 
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_RiskLevel: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_RiskLevel] = [
-        .unspecified,
-        .low,
-        .moderate,
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_RiskLevel] = [
         .high,
+        .moderate,
+        .low,
     ]
 }
 
@@ -1417,7 +1413,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Option {
         set {_uniqueStorage()._tradingStatus = newValue}
     }
     
-    ///Реальная площадка исполнения расчётов. Допустимые значения: [REAL_EXCHANGE_MOEX, REAL_EXCHANGE_RTS]
+    ///Реальная площадка исполнения расчётов (биржа). Допустимые значения: [REAL_EXCHANGE_MOEX, REAL_EXCHANGE_RTS]
     public var realExchange: Tinkoff_Public_Invest_Api_Contract_V1_RealExchange {
         get {return _storage._realExchange}
         set {_uniqueStorage()._realExchange = newValue}
@@ -1477,7 +1473,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Option {
         set {_uniqueStorage()._basicAsset = newValue}
     }
     
-    ///Биржа.
+    /// Tорговая площадка (секция биржи).
     public var exchange: String {
         get {return _storage._exchange}
         set {_uniqueStorage()._exchange = newValue}
@@ -1517,7 +1513,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Option {
     /// Clears the value of `basicAssetSize`. Subsequent reads from it will return its default value.
     public mutating func clearBasicAssetSize() {_uniqueStorage()._basicAssetSize = nil}
     
-    ///Коэффициент ставки риска длинной позиции по клиенту.
+    ///Коэффициент ставки риска длинной позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР)
     public var klong: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._klong ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._klong = newValue}
@@ -1527,7 +1523,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Option {
     /// Clears the value of `klong`. Subsequent reads from it will return its default value.
     public mutating func clearKlong() {_uniqueStorage()._klong = nil}
     
-    ///Коэффициент ставки риска короткой позиции по клиенту.
+    ///Коэффициент ставки риска короткой позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР)
     public var kshort: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._kshort ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._kshort = newValue}
@@ -1537,7 +1533,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Option {
     /// Clears the value of `kshort`. Subsequent reads from it will return its default value.
     public mutating func clearKshort() {_uniqueStorage()._kshort = nil}
     
-    ///Ставка риска минимальной маржи лонг.
+    ///Ставка риска начальной маржи для КСУР лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
     public var dlong: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dlong ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dlong = newValue}
@@ -1547,7 +1543,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Option {
     /// Clears the value of `dlong`. Subsequent reads from it will return its default value.
     public mutating func clearDlong() {_uniqueStorage()._dlong = nil}
     
-    ///Ставка риска минимальной маржи шорт.
+    ///Ставка риска начальной маржи для КСУР шорт.  Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
     public var dshort: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dshort ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dshort = newValue}
@@ -1557,7 +1553,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Option {
     /// Clears the value of `dshort`. Subsequent reads from it will return its default value.
     public mutating func clearDshort() {_uniqueStorage()._dshort = nil}
     
-    ///Ставка риска начальной маржи лонг.
+    ///Ставка риска начальной маржи для КПУР лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
     public var dlongMin: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dlongMin ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dlongMin = newValue}
@@ -1567,7 +1563,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Option {
     /// Clears the value of `dlongMin`. Subsequent reads from it will return its default value.
     public mutating func clearDlongMin() {_uniqueStorage()._dlongMin = nil}
     
-    ///Ставка риска начальной маржи шорт.
+    ///Ставка риска начальной маржи для КПУР шорт.  Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
     public var dshortMin: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dshortMin ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dshortMin = newValue}
@@ -1787,7 +1783,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Bond {
         set {_uniqueStorage()._currency = newValue}
     }
     
-    ///Коэффициент ставки риска длинной позиции по инструменту.
+    ///Коэффициент ставки риска длинной позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР)
     public var klong: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._klong ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._klong = newValue}
@@ -1797,7 +1793,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Bond {
     /// Clears the value of `klong`. Subsequent reads from it will return its default value.
     public mutating func clearKlong() {_uniqueStorage()._klong = nil}
     
-    ///Коэффициент ставки риска короткой позиции по инструменту.
+    ///Коэффициент ставки риска короткой позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР)
     public var kshort: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._kshort ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._kshort = newValue}
@@ -1807,7 +1803,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Bond {
     /// Clears the value of `kshort`. Subsequent reads from it will return its default value.
     public mutating func clearKshort() {_uniqueStorage()._kshort = nil}
     
-    ///Ставка риска минимальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
+    ///Ставка риска начальной маржи для КСУР лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
     public var dlong: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dlong ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dlong = newValue}
@@ -1817,7 +1813,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Bond {
     /// Clears the value of `dlong`. Subsequent reads from it will return its default value.
     public mutating func clearDlong() {_uniqueStorage()._dlong = nil}
     
-    ///Ставка риска минимальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
+    ///Ставка риска начальной маржи для КСУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
     public var dshort: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dshort ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dshort = newValue}
@@ -1827,7 +1823,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Bond {
     /// Clears the value of `dshort`. Subsequent reads from it will return its default value.
     public mutating func clearDshort() {_uniqueStorage()._dshort = nil}
     
-    ///Ставка риска начальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
+    /// Ставка риска начальной маржи для КПУР лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
     public var dlongMin: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dlongMin ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dlongMin = newValue}
@@ -1837,7 +1833,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Bond {
     /// Clears the value of `dlongMin`. Subsequent reads from it will return its default value.
     public mutating func clearDlongMin() {_uniqueStorage()._dlongMin = nil}
     
-    ///Ставка риска начальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
+    ///Ставка риска начальной маржи для КПУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
     public var dshortMin: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dshortMin ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dshortMin = newValue}
@@ -1859,7 +1855,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Bond {
         set {_uniqueStorage()._name = newValue}
     }
     
-    ///Торговая площадка.
+    ///Tорговая площадка (секция биржи).
     public var exchange: String {
         get {return _storage._exchange}
         set {_uniqueStorage()._exchange = newValue}
@@ -2041,7 +2037,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Bond {
         set {_uniqueStorage()._uid = newValue}
     }
     
-    ///Реальная площадка исполнения расчётов.
+    ///Реальная площадка исполнения расчётов. (биржа)
     public var realExchange: Tinkoff_Public_Invest_Api_Contract_V1_RealExchange {
         get {return _storage._realExchange}
         set {_uniqueStorage()._realExchange = newValue}
@@ -2164,7 +2160,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Currency {
         set {_uniqueStorage()._currency = newValue}
     }
     
-    ///Коэффициент ставки риска длинной позиции по инструменту.
+    ///Коэффициент ставки риска длинной позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР)
     public var klong: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._klong ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._klong = newValue}
@@ -2174,7 +2170,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Currency {
     /// Clears the value of `klong`. Subsequent reads from it will return its default value.
     public mutating func clearKlong() {_uniqueStorage()._klong = nil}
     
-    ///Коэффициент ставки риска короткой позиции по инструменту.
+    ///Коэффициент ставки риска короткой позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР)
     public var kshort: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._kshort ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._kshort = newValue}
@@ -2184,7 +2180,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Currency {
     /// Clears the value of `kshort`. Subsequent reads from it will return its default value.
     public mutating func clearKshort() {_uniqueStorage()._kshort = nil}
     
-    ///Ставка риска минимальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
+    ///Ставка риска начальной маржи для КСУР лонг.Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
     public var dlong: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dlong ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dlong = newValue}
@@ -2194,7 +2190,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Currency {
     /// Clears the value of `dlong`. Subsequent reads from it will return its default value.
     public mutating func clearDlong() {_uniqueStorage()._dlong = nil}
     
-    ///Ставка риска минимальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
+    ///Ставка риска начальной маржи для КСУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
     public var dshort: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dshort ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dshort = newValue}
@@ -2204,8 +2200,8 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Currency {
     /// Clears the value of `dshort`. Subsequent reads from it will return its default value.
     public mutating func clearDshort() {_uniqueStorage()._dshort = nil}
     
-    ///Ставка риска начальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
-    public var dlongMin: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
+    ///Ставка риска начальной маржи для КПУР лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
+    var dlongMin: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dlongMin ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dlongMin = newValue}
     }
@@ -2214,7 +2210,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Currency {
     /// Clears the value of `dlongMin`. Subsequent reads from it will return its default value.
     public mutating func clearDlongMin() {_uniqueStorage()._dlongMin = nil}
     
-    ///Ставка риска начальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
+    ///Ставка риска начальной маржи для КПУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
     public var dshortMin: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dshortMin ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dshortMin = newValue}
@@ -2236,7 +2232,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Currency {
         set {_uniqueStorage()._name = newValue}
     }
     
-    ///Торговая площадка.
+    ///Tорговая площадка (секция биржи)
     public var exchange: String {
         get {return _storage._exchange}
         set {_uniqueStorage()._exchange = newValue}
@@ -2316,7 +2312,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Currency {
         set {_uniqueStorage()._uid = newValue}
     }
     
-    ///Реальная площадка исполнения расчётов.
+    ///Реальная площадка исполнения расчётов (биржа).
     public var realExchange: Tinkoff_Public_Invest_Api_Contract_V1_RealExchange {
         get {return _storage._realExchange}
         set {_uniqueStorage()._realExchange = newValue}
@@ -2421,7 +2417,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Etf {
         set {_uniqueStorage()._currency = newValue}
     }
     
-    ///Коэффициент ставки риска длинной позиции по инструменту.
+    ///Коэффициент ставки риска длинной позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР)
     public var klong: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._klong ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._klong = newValue}
@@ -2431,7 +2427,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Etf {
     /// Clears the value of `klong`. Subsequent reads from it will return its default value.
     public mutating func clearKlong() {_uniqueStorage()._klong = nil}
     
-    ///Коэффициент ставки риска короткой позиции по инструменту.
+    ///Коэффициент ставки риска короткой позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР)
     public var kshort: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._kshort ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._kshort = newValue}
@@ -2441,7 +2437,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Etf {
     /// Clears the value of `kshort`. Subsequent reads from it will return its default value.
     public mutating func clearKshort() {_uniqueStorage()._kshort = nil}
     
-    ///Ставка риска минимальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
+    ///Ставка риска начальной маржи для КСУР лонг.Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
     public var dlong: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dlong ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dlong = newValue}
@@ -2451,7 +2447,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Etf {
     /// Clears the value of `dlong`. Subsequent reads from it will return its default value.
     public mutating func clearDlong() {_uniqueStorage()._dlong = nil}
     
-    ///Ставка риска минимальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
+    ///Ставка риска начальной маржи для КСУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
     public var dshort: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dshort ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dshort = newValue}
@@ -2461,7 +2457,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Etf {
     /// Clears the value of `dshort`. Subsequent reads from it will return its default value.
     public mutating func clearDshort() {_uniqueStorage()._dshort = nil}
     
-    ///Ставка риска начальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
+    ///Ставка риска начальной маржи для КПУР лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
     public var dlongMin: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dlongMin ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dlongMin = newValue}
@@ -2471,7 +2467,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Etf {
     /// Clears the value of `dlongMin`. Subsequent reads from it will return its default value.
     public mutating func clearDlongMin() {_uniqueStorage()._dlongMin = nil}
     
-    ///Ставка риска начальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
+    ///Ставка риска начальной маржи для КПУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
     public var dshortMin: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dshortMin ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dshortMin = newValue}
@@ -2493,7 +2489,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Etf {
         set {_uniqueStorage()._name = newValue}
     }
     
-    ///Торговая площадка.
+    ///Tорговая площадка (секция биржи).
     public var exchange: String {
         get {return _storage._exchange}
         set {_uniqueStorage()._exchange = newValue}
@@ -2605,7 +2601,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Etf {
         set {_uniqueStorage()._uid = newValue}
     }
     
-    ///Реальная площадка исполнения расчётов.
+    ///Реальная площадка исполнения расчётов (биржа).
     public var realExchange: Tinkoff_Public_Invest_Api_Contract_V1_RealExchange {
         get {return _storage._realExchange}
         set {_uniqueStorage()._realExchange = newValue}
@@ -2710,7 +2706,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Future {
         set {_uniqueStorage()._currency = newValue}
     }
     
-    ///Коэффициент ставки риска длинной позиции по клиенту.
+    ///Коэффициент ставки риска длинной позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР)
     public var klong: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._klong ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._klong = newValue}
@@ -2720,7 +2716,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Future {
     /// Clears the value of `klong`. Subsequent reads from it will return its default value.
     public mutating func clearKlong() {_uniqueStorage()._klong = nil}
     
-    ///Коэффициент ставки риска короткой позиции по клиенту.
+    ///Коэффициент ставки риска короткой позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР)
     public var kshort: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._kshort ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._kshort = newValue}
@@ -2730,7 +2726,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Future {
     /// Clears the value of `kshort`. Subsequent reads from it will return its default value.
     public mutating func clearKshort() {_uniqueStorage()._kshort = nil}
     
-    ///Ставка риска минимальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
+    ///Ставка риска начальной маржи для КСУР лонг.Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
     public var dlong: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dlong ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dlong = newValue}
@@ -2740,7 +2736,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Future {
     /// Clears the value of `dlong`. Subsequent reads from it will return its default value.
     public mutating func clearDlong() {_uniqueStorage()._dlong = nil}
     
-    ///Ставка риска минимальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
+    ///Ставка риска начальной маржи для КСУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
     public var dshort: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dshort ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dshort = newValue}
@@ -2750,17 +2746,17 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Future {
     /// Clears the value of `dshort`. Subsequent reads from it will return its default value.
     public mutating func clearDshort() {_uniqueStorage()._dshort = nil}
     
-    ///Ставка риска начальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
+    ///Ставка риска начальной маржи для КПУР лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
     public var dlongMin: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dlongMin ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dlongMin = newValue}
     }
     /// Returns true if `dlongMin` has been explicitly set.
-    public var hasDlongMin: Bool {return _storage._dlongMin != nil}
+    var hasDlongMin: Bool {return _storage._dlongMin != nil}
     /// Clears the value of `dlongMin`. Subsequent reads from it will return its default value.
     public mutating func clearDlongMin() {_uniqueStorage()._dlongMin = nil}
     
-    ///Ставка риска начальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
+    ///Ставка риска начальной маржи для КПУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
     public var dshortMin: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dshortMin ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dshortMin = newValue}
@@ -2782,7 +2778,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Future {
         set {_uniqueStorage()._name = newValue}
     }
     
-    ///Торговая площадка.
+    ///Tорговая площадка (секция биржи).
     public var exchange: String {
         get {return _storage._exchange}
         set {_uniqueStorage()._exchange = newValue}
@@ -2910,7 +2906,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Future {
         set {_uniqueStorage()._uid = newValue}
     }
     
-    ///Реальная площадка исполнения расчётов.
+    ///Реальная площадка исполнения расчётов (биржа).
     public var realExchange: Tinkoff_Public_Invest_Api_Contract_V1_RealExchange {
         get {return _storage._realExchange}
         set {_uniqueStorage()._realExchange = newValue}
@@ -3021,7 +3017,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Share {
         set {_uniqueStorage()._currency = newValue}
     }
     
-    ///Коэффициент ставки риска длинной позиции по инструменту.
+    ///Коэффициент ставки риска длинной позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР)
     public var klong: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._klong ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._klong = newValue}
@@ -3031,7 +3027,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Share {
     /// Clears the value of `klong`. Subsequent reads from it will return its default value.
     public mutating func clearKlong() {_uniqueStorage()._klong = nil}
     
-    ///Коэффициент ставки риска короткой позиции по инструменту.
+    ///Коэффициент ставки риска короткой позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР)
     public var kshort: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._kshort ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._kshort = newValue}
@@ -3041,7 +3037,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Share {
     /// Clears the value of `kshort`. Subsequent reads from it will return its default value.
     public mutating func clearKshort() {_uniqueStorage()._kshort = nil}
     
-    ///Ставка риска минимальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
+    ///Ставка риска начальной маржи для КСУР лонг.Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
     public var dlong: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dlong ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dlong = newValue}
@@ -3051,7 +3047,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Share {
     /// Clears the value of `dlong`. Subsequent reads from it will return its default value.
     public mutating func clearDlong() {_uniqueStorage()._dlong = nil}
     
-    ///Ставка риска минимальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
+    ///Ставка риска начальной маржи для КСУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
     public var dshort: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dshort ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dshort = newValue}
@@ -3061,7 +3057,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Share {
     /// Clears the value of `dshort`. Subsequent reads from it will return its default value.
     public mutating func clearDshort() {_uniqueStorage()._dshort = nil}
     
-    ///Ставка риска начальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
+    ///Ставка риска начальной маржи для КПУР лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
     public var dlongMin: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dlongMin ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dlongMin = newValue}
@@ -3071,7 +3067,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Share {
     /// Clears the value of `dlongMin`. Subsequent reads from it will return its default value.
     public mutating func clearDlongMin() {_uniqueStorage()._dlongMin = nil}
     
-    ///Ставка риска начальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
+    ///Ставка риска начальной маржи для КПУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
     public var dshortMin: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dshortMin ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dshortMin = newValue}
@@ -3093,7 +3089,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Share {
         set {_uniqueStorage()._name = newValue}
     }
     
-    ///Торговая площадка.
+    ///Tорговая площадка (секция биржи).
     public var exchange: String {
         get {return _storage._exchange}
         set {_uniqueStorage()._exchange = newValue}
@@ -3207,7 +3203,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Share {
         set {_uniqueStorage()._uid = newValue}
     }
     
-    ///Реальная площадка исполнения расчётов.
+    ///Реальная площадка исполнения расчётов (биржа).
     public var realExchange: Tinkoff_Public_Invest_Api_Contract_V1_RealExchange {
         get {return _storage._realExchange}
         set {_uniqueStorage()._realExchange = newValue}
@@ -3518,7 +3514,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Instrument {
         set {_uniqueStorage()._currency = newValue}
     }
     
-    ///Коэффициент ставки риска длинной позиции по инструменту.
+    ///Коэффициент ставки риска длинной позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР)
     public var klong: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._klong ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._klong = newValue}
@@ -3528,7 +3524,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Instrument {
     /// Clears the value of `klong`. Subsequent reads from it will return its default value.
     public mutating func clearKlong() {_uniqueStorage()._klong = nil}
     
-    ///Коэффициент ставки риска короткой позиции по инструменту.
+    ///Коэффициент ставки риска короткой позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР)
     public var kshort: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._kshort ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._kshort = newValue}
@@ -3538,7 +3534,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Instrument {
     /// Clears the value of `kshort`. Subsequent reads from it will return its default value.
     public mutating func clearKshort() {_uniqueStorage()._kshort = nil}
     
-    ///Ставка риска минимальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
+    ///Ставка риска начальной маржи для КСУР лонг.Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
     public var dlong: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dlong ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dlong = newValue}
@@ -3548,7 +3544,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Instrument {
     /// Clears the value of `dlong`. Subsequent reads from it will return its default value.
     public mutating func clearDlong() {_uniqueStorage()._dlong = nil}
     
-    ///Ставка риска минимальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
+    ///Ставка риска начальной маржи для КСУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
     public var dshort: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dshort ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dshort = newValue}
@@ -3558,7 +3554,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Instrument {
     /// Clears the value of `dshort`. Subsequent reads from it will return its default value.
     public mutating func clearDshort() {_uniqueStorage()._dshort = nil}
     
-    ///Ставка риска начальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
+    ///Ставка риска начальной маржи для КПУР лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/)
     public var dlongMin: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dlongMin ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dlongMin = newValue}
@@ -3568,7 +3564,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Instrument {
     /// Clears the value of `dlongMin`. Subsequent reads from it will return its default value.
     public mutating func clearDlongMin() {_uniqueStorage()._dlongMin = nil}
     
-    ///Ставка риска начальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
+    ///Ставка риска начальной маржи для КПУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/)
     public var dshortMin: Tinkoff_Public_Invest_Api_Contract_V1_Quotation {
         get {return _storage._dshortMin ?? Tinkoff_Public_Invest_Api_Contract_V1_Quotation()}
         set {_uniqueStorage()._dshortMin = newValue}
@@ -3590,7 +3586,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Instrument {
         set {_uniqueStorage()._name = newValue}
     }
     
-    ///Торговая площадка.
+    ///Tорговая площадка (секция биржи).
     public var exchange: String {
         get {return _storage._exchange}
         set {_uniqueStorage()._exchange = newValue}
@@ -3660,7 +3656,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Instrument {
         set {_uniqueStorage()._uid = newValue}
     }
     
-    ///Реальная площадка исполнения расчётов.
+    ///Реальная площадка исполнения расчётов (биржа).
     public var realExchange: Tinkoff_Public_Invest_Api_Contract_V1_RealExchange {
         get {return _storage._realExchange}
         set {_uniqueStorage()._realExchange = newValue}
@@ -5594,10 +5590,9 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_RealExchange: SwiftProtobuf._Pro
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_RiskLevel: SwiftProtobuf._ProtoNameProviding {
     public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-        0: .same(proto: "RISK_LEVEL_UNSPECIFIED"),
-        1: .same(proto: "RISK_LEVEL_LOW"),
-        2: .same(proto: "RISK_LEVEL_MODERATE"),
-        3: .same(proto: "RISK_LEVEL_HIGH"),
+        0: .same(proto: "RISK_LEVEL_HIGH"),
+        1: .same(proto: "RISK_LEVEL_MODERATE"),
+        2: .same(proto: "RISK_LEVEL_LOW"),
     ]
 }
 
@@ -7102,7 +7097,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Bond: SwiftProtobuf.Message, Swi
         var _liquidityFlag: Bool = false
         var _first1MinCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
         var _first1DayCandleDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
-        var _riskLevel: Tinkoff_Public_Invest_Api_Contract_V1_RiskLevel = .unspecified
+        var _riskLevel: Tinkoff_Public_Invest_Api_Contract_V1_RiskLevel = .high
         
         public static let defaultInstance = _StorageClass()
         
@@ -7386,7 +7381,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_Bond: SwiftProtobuf.Message, Swi
             try { if let v = _storage._first1DayCandleDate {
                 try visitor.visitSingularMessageField(value: v, fieldNumber: 62)
             } }()
-            if _storage._riskLevel != .unspecified {
+            if _storage._riskLevel != .high {
                 try visitor.visitSingularEnumField(value: _storage._riskLevel, fieldNumber: 63)
             }
         }

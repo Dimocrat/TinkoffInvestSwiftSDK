@@ -62,7 +62,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_SubscriptionAction: SwiftProto
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_SubscriptionAction: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_SubscriptionAction] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_SubscriptionAction] = [
         .unspecified,
         .subscribe,
         .unsubscribe,
@@ -113,7 +113,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_SubscriptionInterval: SwiftPro
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_SubscriptionInterval: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_SubscriptionInterval] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_SubscriptionInterval] = [
         .unspecified,
         .oneMinute,
         .fiveMinutes,
@@ -152,6 +152,9 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_SubscriptionStatus: SwiftProto
     
     ///Превышен лимит на количество запросов на подписки в течение установленного отрезка времени
     case tooManyRequests // = 8
+    
+    /// Активная подписка не найдена. Ошибка может возникнуть только при отписке от не существующей отписки
+    case subscriptionNotFound // = 9
     case UNRECOGNIZED(Int)
     
     public init() {
@@ -169,6 +172,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_SubscriptionStatus: SwiftProto
         case 6: self = .limitIsExceeded
         case 7: self = .internalError
         case 8: self = .tooManyRequests
+        case 9: self = .subscriptionNotFound
         default: self = .UNRECOGNIZED(rawValue)
         }
     }
@@ -184,6 +188,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_SubscriptionStatus: SwiftProto
         case .limitIsExceeded: return 6
         case .internalError: return 7
         case .tooManyRequests: return 8
+        case .subscriptionNotFound: return 9
         case .UNRECOGNIZED(let i): return i
         }
     }
@@ -194,7 +199,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_SubscriptionStatus: SwiftProto
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_SubscriptionStatus: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_SubscriptionStatus] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_SubscriptionStatus] = [
         .unspecified,
         .success,
         .instrumentNotFound,
@@ -204,6 +209,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_SubscriptionStatus: CaseIterable
         .limitIsExceeded,
         .internalError,
         .tooManyRequests,
+        .subscriptionNotFound,
     ]
 }
 
@@ -251,7 +257,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_TradeDirection: SwiftProtobuf.
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_TradeDirection: CaseIterable {
     // The compiler won't synthesize support with the UNRECOGNIZED case.
-    public static var allCases: [Tinkoff_Public_Invest_Api_Contract_V1_TradeDirection] = [
+    public static let allCases: [Tinkoff_Public_Invest_Api_Contract_V1_TradeDirection] = [
         .unspecified,
         .buy,
         .sell,
@@ -267,43 +273,43 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_CandleInterval: SwiftProtobuf.
     ///Интервал не определён.
     case unspecified // = 0
     
-    ///1 минута.
+    ///от 1 минуты до 1 дня.
     case candleInterval1Min // = 1
     
-    ///5 минут.
+    ///от 5 минут до 1 дня.
     case candleInterval5Min // = 2
     
-    ///15 минут.
+    ///от 15 минут до 1 дня.
     case candleInterval15Min // = 3
     
-    ///1 час.
+    ///от 1 часа до 1 недели.
     case hour // = 4
     
-    ///1 день.
+    ///от 1 дня до 1 года.
     case day // = 5
     
-    ///2 минуты.
+    ///от 2 минут до 1 дня.
     case candleInterval2Min // = 6
     
-    ///3 минуты.
+    ///от 3 минут до 1 дня.
     case candleInterval3Min // = 7
     
-    ///10 минут.
+    ///от 10 минут до 1 дня.
     case candleInterval10Min // = 8
     
-    ///30 минут.
+    ///от 30 минут до 2 дней.
     case candleInterval30Min // = 9
     
-    ///2 часа.
+    ///от 2 часов до 1 месяца.
     case candleInterval2Hour // = 10
     
-    ///4 часа.
+    ///от 4 часов до 1 месяца.
     case candleInterval4Hour // = 11
     
-    ///1 неделя.
+    ///от 1 недели до 2 лет.
     case week // = 12
     
-    ///1 месяц.
+    ///от 1 месяца до 10 лет.
     case month // = 13
     case UNRECOGNIZED(Int)
     
@@ -539,7 +545,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_MarketDataServerSideStreamRe
     /// Clears the value of `subscribeInfoRequest`. Subsequent reads from it will return its default value.
     public mutating func clearSubscribeInfoRequest() {self._subscribeInfoRequest = nil}
     
-    ///Запрос подписки на последние цены.
+    ///Запрос подписки на цены последних сделок.
     public var subscribeLastPriceRequest: Tinkoff_Public_Invest_Api_Contract_V1_SubscribeLastPriceRequest {
         get {return _subscribeLastPriceRequest ?? Tinkoff_Public_Invest_Api_Contract_V1_SubscribeLastPriceRequest()}
         set {_subscribeLastPriceRequest = newValue}
@@ -2028,6 +2034,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_SubscriptionStatus: SwiftProtobu
         6: .same(proto: "SUBSCRIPTION_STATUS_LIMIT_IS_EXCEEDED"),
         7: .same(proto: "SUBSCRIPTION_STATUS_INTERNAL_ERROR"),
         8: .same(proto: "SUBSCRIPTION_STATUS_TOO_MANY_REQUESTS"),
+        9: .same(proto: "SUBSCRIPTION_STATUS_SUBSCRIPTION_NOT_FOUND"),
     ]
 }
 
